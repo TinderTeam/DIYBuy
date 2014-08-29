@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Lang" content="en">
+<meta http-equiv="Reply-to" content="@.com">
+<meta name="generator" content="PhpED 8.0">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="creation-date" content="09/06/2012">
+<meta name="revisit-after" content="15 days">
+
+<title>DIY团购网</title>
+<link rel="stylesheet" href="__PUBLIC__/css/my.css" type="text/css"/>  
+
+</head>
+<body>
+
+<div id="container"><!--页面容器-->
+    <div class="row">
+      <div class="col-md-1">
+        
+      </div>
+      <div class="col-md-8">
+        <a href="#" onclick="javascript:window.external.addFavorite('http://localhost:9010/php/app/','DIY团购网')" title="收藏"><span style="color: black;">收藏本站</span></a>
+      </div>
+      <div class="col-md-2">                                 
+          <a href="#" ><span style="color: black;">登录</span></a>
+          <a href="#" ><span style="color: black;">注册</span></a>
+      </div>
+    </div>
+    <hr/>
+    
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" style=" font-family: 华文新魏;">
+            <span style="font-style:inherit; font-size:30px; color: #42CA4D; text-align: right;"><b>DIY团购网</b></span>
+        </div>
+        <div class="col-md-5">
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">搜索</button>
+              </span>
+            </div><!-- /input-group -->
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    
+    
+  
+    <div class="row">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-7">
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#">今日团购</a></li>
+          <li role="presentation"><a href="#">团购进行时</a></li>
+          <li role="presentation"><a href="#">往期团购</a></li>
+          <li role="presentation"><a href="#">关于组团团购</a></li>
+        </ul>
+      </div>
+      <div class="col-xs-2"></div>
+    </div>
+    <br/>
+    
+    <div class="row" style="background-color: #F0F0F0;">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-7" style="float: left; background-color: #F0F0F0; padding: 10px 10px;"><!-- 仿糯米--> 
+            <div class="row">             
+            <foreach name='productinfo' item='vo' > 
+                <div  class="col-xs-6" style="width: 40%; height: auto; margin: 10px 10px;  background: #fff;">  
+                <div style="width: 100%; height:auto;">    
+                    <div class="row ">
+                        <input type="image" width=100% height=51% style=" margin:0;" src="{$vo.pic_add}" > 
+                    </div>
+                    <div class="row" style="padding: 0px 10px;">
+                        <h4><b>{$vo.name}</b></h4> 
+                    </div>
+                    <div class="row" style="padding: 0px 10px;">
+                        <span style="font-size: 12px;float:left;">{$vo.discrib}</span>
+                    </div>
+                    <br/>
+                    <div class="row" style="padding: 0px 10px;"> 
+                        <div class="col-xs-8" >
+                            <table width="100%"><tr>
+                            <td><span style="color: red; font-size: 20px;float:left;">￥{$vo.price_original}</span></td>
+                            <td><span style="font-size: 12px; ">原价￥{$vo.price_high}</span></td>
+                            </tr></table>
+                        </div> 
+                        <div class="col-xs-3"><a class="btn btn-primary btn-sm" role="button">立即抢购</a></div>
+                    </div>
+                    <hr/>
+                    <div class="row" style="padding: 0px 10px;">
+                        <table width="100%">
+                        <tr><td><span style="font-size: 12px;float:left;">当前团购人数:{$vo.current_num}人</span></td>
+                        <td><span style="font-size: 12px;float:left;">剩余团购时间:4天</span></td></tr>
+                        </table>
+                    
+                    </div>  
+                </div>
+                </div>
+            </foreach>
+            </div> 
+            <div class="row">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <span style=" text-align: center;">{$page}</span>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div><!-- 仿糯米-->
+        <div class="col-xs-3"> <!-- 正在组团中的宝贝-->
+        在哪呀点对点大大大大大大大大大大大大大大大大大大等等点对点大大大大大大大大大
+        </div><!-- 正在组团中的宝贝-->
+        <div class="col-xs-1"></div>
+    </div>
+        
+</div>
+</body>
+</html>

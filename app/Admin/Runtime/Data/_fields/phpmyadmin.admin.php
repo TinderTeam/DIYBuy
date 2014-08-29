@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'admin_id', 1 => 'admin_name', 2 => 'admin_pwd', 3 => 'admin_limit', '_autoinc' => true, '_pk' => 'admin_id', '_type' => array ( 'admin_id' => 'smallint(4) unsigned', 'admin_name' => 'varchar(50)', 'admin_pwd' => 'varchar(20)', 'admin_limit' => 'int(11) unsigned', ), );?>

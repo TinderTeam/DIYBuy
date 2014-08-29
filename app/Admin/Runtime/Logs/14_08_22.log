@@ -1,0 +1,54 @@
+[ 2014-08-22T10:07:42+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:08:29+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:08:45+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:09:59+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:10:12+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:11:31+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:13:57+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:14:43+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:15:44+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:16:27+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:16:29+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:22:40+08:00 ] 127.0.0.1 /php/app/admin.php/admin/manage.html
+ERR: 无法加载模块:admin
+
+[ 2014-08-22T10:23:21+08:00 ] 127.0.0.1 /php/app/admin.php/Admin/my.css
+ERR: 非法操作:my.css
+
+[ 2014-08-22T10:29:21+08:00 ] 127.0.0.1 /php/app/admin.php/Admin/my.css
+ERR: 非法操作:my.css
+
+[ 2014-08-22T12:23:47+08:00 ] 127.0.0.1 /php/app/admin.php/Admin/manage
+ERR: Action:diaplay您所请求的方法不存在！
+
+[ 2014-08-22T16:04:49+08:00 ] 127.0.0.1 /php/app/admin.php/Admin
+ERR: 非法操作:index
+
+[ 2014-08-22T17:50:26+08:00 ] 127.0.0.1 /php/app/admin.php/Admin/content2.html
+ERR: 非法操作:content2
+
+[ 2014-08-22T17:50:30+08:00 ] 127.0.0.1 /php/app/admin.php/Admin/content2.html
+ERR: 非法操作:content2
+
