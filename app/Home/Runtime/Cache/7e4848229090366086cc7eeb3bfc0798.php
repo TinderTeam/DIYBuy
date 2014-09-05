@@ -1,0 +1,814 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/icomoon-social.css">
+        
+        <link rel="stylesheet" href="__PUBLIC__/css/leaflet.css" />
+		<!--[if lte IE 8]>
+		    <link rel="stylesheet" href="css/leaflet.ie.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="__PUBLIC__/css/main.css">
+
+        <script src="__PUBLIC__/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+
+        <!-- Navigation & Logo-->
+        <div class="mainmenu-wrapper">
+	        <div class="container">
+	        	<div class="menuextras">
+					<div class="extras">
+						<ul>
+							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>我的DIY团购</b></a></li>
+
+			        		<li><a href="login.html"><?php echo ($v1); ?></a></li>
+							<li><a href="register.html"><?php echo ($v2); ?></a></li>
+			        	</ul>
+					</div>
+		        </div>
+		        <nav id="mainmenu" class="mainmenu">
+					<div class="row">
+						<div class="col-md-3"><a href="index.html" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
+						</div>
+						<div class="col-md-5">
+							<form class="form-horizontal" role="form">
+									<div class="input-group input-group-lg">
+										<input type="text" class="form-control">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search icon-white"></i> 搜索</button>
+										</span>
+
+									</div>
+									      
+
+							</form>	
+                        <p> 热门搜索：电影 中西餐 真功夫 KTV 
+						</p>						
+						</div>
+						<div class="col-md-4" style="text-align:right">
+						<a href="http://www.hao123.com/sethome" class="logo-wrapper"><img src="__PUBLIC__/img/hao123.png" alt="Multipurpose Twitter Bootstrap Template"></a>
+						
+						</div>
+					</div>
+					
+
+				</nav>
+			</div>
+		</div>
+
+        <!-- Page Title -->
+		<div class="section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<nav id="mainmenu" class="mainmenu">
+
+					<ul>
+
+						<li class="active"><a href="index.html" >今日团购</a>
+						</li>
+						<li><a href="processing.html">组团进行时</a>
+						</li>
+						<li><a href="purchase-history.html">往期团购</a>
+						</li>
+						<li><a href="about-us.html">关于组团购物</a>
+						</li>						
+					</ul>
+					</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+				    <div class="col-md-8">
+				        <div class="col-sm-6">
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="__PUBLIC__/img/真功夫.jpg" alt=""></a>
+								</div>
+							</div>
+
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="product-details.html" >真功夫</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+									
+									<div class="col-xs-12">
+									     仅售13元，价值19元冬（香）菇鸡腿肉饭+香滑蒸蛋！节假日通用，连锁中式快餐，美味套餐，方便快捷，健康营养！
+									</div>
+									
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥13
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥19</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7 "  ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>12000</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+					    </div>
+					    
+				        <div class="col-sm-6" >
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="__PUBLIC__/img/汉拿山.jpg" alt=""></a>
+								</div>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="page-product-details.html" >汉拿山</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+							        
+									<div class="col-xs-12">
+									 仅售81元，价值100元代金券！滋滋烤肉，缤纷菜品，肉香袅袅，健康绿色，过瘾美味，舌尖上的暴风享受，味蕾中的深层跳动！
+									</div>
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥81
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥100</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="page-product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7" ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>12000</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+						</div>
+					    <div class="col-sm-6">
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="__PUBLIC__/img/佳田咖啡.jpg" alt=""></a>
+								</div>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="page-product-details.html" >佳田烘焙.咖啡</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+									
+									<div class="col-xs-12">	                                环境优雅，香浓甜蜜，绵软可口，富有营养！静享蛋糕世界的愉悦甜香，在这里可享受天然美食，无与伦比的美味，节假日通用！
+									</div>
+
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥5.96
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥56</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="page-product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7" ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>6008</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+						</div>
+				        <div class="col-sm-6">
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="__PUBLIC__/img/钱柜.jpg" alt=""></a>
+								</div>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="page-product-details.html" >钱柜 PARTY WORLD</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+
+									<div class="col-xs-12">									    仅售55元，价值77元福田店单人自助欢唱套餐！晚场欢唱3小时+单人自助餐！最低2人起用，限周日至周四使用，另付10元可升级为周五、周六通用！
+									</div>
+
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥55
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥77</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="page-product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7" ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>12000</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+						</div>
+				        <div class="col-sm-6">
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="__PUBLIC__/img/真功夫.jpg" alt=""></a>
+								</div>
+							</div>
+
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="product-details.html" >真功夫</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+									
+									<div class="col-xs-12">
+									     仅售13元，价值19元冬（香）菇鸡腿肉饭+香滑蒸蛋！节假日通用，连锁中式快餐，美味套餐，方便快捷，健康营养！
+									</div>
+									
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥13
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥19</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7 "  ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>12000</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+					    </div>
+					    
+				        <div class="col-sm-6" >
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="__PUBLIC__/img/汉拿山.jpg" alt=""></a>
+								</div>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="page-product-details.html" >汉拿山</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+							        
+									<div class="col-xs-12">
+									 仅售81元，价值100元代金券！滋滋烤肉，缤纷菜品，肉香袅袅，健康绿色，过瘾美味，舌尖上的暴风享受，味蕾中的深层跳动！
+									</div>
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥81
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥100</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="page-product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7" ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>12000</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+						</div>
+					    <div class="col-sm-6">
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="img/佳田咖啡.jpg" alt=""></a>
+								</div>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="page-product-details.html" >佳田烘焙.咖啡</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+									
+									<div class="col-xs-12">	                                环境优雅，香浓甜蜜，绵软可口，富有营养！静享蛋糕世界的愉悦甜香，在这里可享受天然美食，无与伦比的美味，节假日通用！
+									</div>
+
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥5.96
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥56</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="page-product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7" ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>6008</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+						</div>
+				        <div class="col-sm-6">
+						<!-- Product -->
+						    <div class="shop-item">
+							<!-- Product Image -->
+							<div class="portfolio-item">
+								<div class="portfolio-image" name="img">
+									<a href="product-details.html"><img src="img/钱柜.jpg" alt=""></a>
+								</div>
+							</div>
+							<!-- Product Title -->
+							<div class="title">
+								<h3><a href="page-product-details.html" >钱柜 PARTY WORLD</a></h3>
+							</div>
+							<!-- Product Available Colors-->
+							<div class="row">
+
+									<div class="col-xs-12">									    仅售55元，价值77元福田店单人自助欢唱套餐！晚场欢唱3小时+单人自助餐！最低2人起用，限周日至周四使用，另付10元可升级为周五、周六通用！
+									</div>
+
+							</div>
+
+							<!-- Add to Cart Button -->
+							<div class="actions">
+									<div class="col-xs-3 price" style="text-align:left">
+									￥55
+                                    </div>
+									<div class="col-xs-3" style="text-align:left"><span>原价</span><span>￥77</span></div>
+									<div class="col-xs-6" style="text-align:right"><a href="page-product-details.html" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+								
+							</div>
+							
+							<div class="row">
+							    <div class="col-xs-12">
+								<div class="col-xs-7" ><span>剩余</span><span>01天12小时15分55秒</span></div>
+								
+								<div class="col-xs-5" ><span>12000</span><span>人已团购</span></div>
+								</div>
+							</div>
+						    </div>
+						<!-- End Product -->
+						</div>
+						
+				   </div>  <!--page center-->
+				
+				
+				
+				
+				
+				
+				
+					
+					<!-- 正在组团中的宝贝 -->
+					<div class="col-sm-4">
+	        			<table class="table">
+    						<tr>
+    							<h2>正在组团中的宝贝</h2>
+    							
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/华美月饼.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top1</div>
+										</div>
+									</div>
+									
+    							</td>
+    							<td>
+								<p><strong>华美月饼</strong></p>
+								<p><span>参与人数：</span><span>248/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>38.5</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/火山湖影城.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top2</div>
+										</div>
+									</div>
+    							</td>
+    							<td>
+								<p><strong>火山湖影城</strong></p>
+								<p><span>参与人数：</span><span>212/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>24.8</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/华美月饼.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top3</div>
+										</div>
+									</div>
+									
+    							</td>
+    							<td>
+								<p><strong>华美月饼</strong></p>
+								<p><span>参与人数：</span><span>248/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>38.5</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/火山湖影城.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top4</div>
+										</div>
+									</div>
+    							</td>
+    							<td>
+								<p><strong>火山湖影城</strong></p>
+								<p><span>参与人数：</span><span>212/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>24.8</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/华美月饼.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top5</div>
+										</div>
+									</div>
+									
+    							</td>
+    							<td>
+								<p><strong>华美月饼</strong></p>
+								<p><span>参与人数：</span><span>248/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>38.5</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/火山湖影城.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top6</div>
+										</div>
+									</div>
+    							</td>
+    							<td>
+								<p><strong>火山湖影城</strong></p>
+								<p><span>参与人数：</span><span>212/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>24.8</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/华美月饼.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top7</div>
+										</div>
+									</div>
+									
+    							</td>
+    							<td>
+								<p><strong>华美月饼</strong></p>
+								<p><span>参与人数：</span><span>248/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>38.5</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/火山湖影城.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top8</div>
+										</div>
+									</div>
+    							</td>
+    							<td>
+								<p><strong>火山湖影城</strong></p>
+								<p><span>参与人数：</span><span>212/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>24.8</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/华美月饼.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top9</div>
+										</div>
+									</div>
+									
+    							</td>
+    							<td>
+								<p><strong>华美月饼</strong></p>
+								<p><span>参与人数：</span><span>248/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>38.5</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>
+    						<tr>
+    							<td>
+    								<div style="width: 100px; height: 100px; background-image: url(img/火山湖影城.jpg);; position: relative;" >
+										<div class="ribbon-wrapper">
+											<div class="price-ribbon ribbon-orange">Top10</div>
+										</div>
+									</div>
+    							</td>
+    							<td>
+								<p><strong>火山湖影城</strong></p>
+								
+								<p><span>参与人数：</span><span>212/260</span>
+								</p>
+    						    <p><span>组团价：</span><span>24.8</span>元
+								</p>
+								<p><a href="#" class="btn btn-green">加入组团</a></p>
+	    						</td>
+    						</tr>							
+ 
+
+						
+
+    						
+    					</table>
+						    <div   style="text-align:center">
+                                  
+    							<p><a href="processing.html" >查看更多</a></p>
+	    					</div>
+					</div>
+					<!-- End Sidebar -->
+				</div>
+			</div>
+	    </div>
+        </div>
+		
+<!--广告位-->
+		
+	    <div class="section">
+	    	<div class="container">
+			   <h2>也许你会喜欢</h2>
+				<div class="row">
+					<div class="col-md-12">
+					   				   
+						<div class="products-slider" >
+							<!-- Products Slider Item -->
+							<div class="shop-item" style="width:212px;height:270px">
+								<!-- Product Image -->
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product1.jpg" alt="Item Name"></a>
+								</div>
+								<!-- Product Title -->
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<!-- Product Price -->
+								<div class="price">
+									$999.99
+								</div>
+								<!-- Buy Button -->
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<!-- End Products Slider Item -->
+							<div class="shop-item" style="width:212px;height:270px">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product2.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item" style="width:212px;height:270px">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product3.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item" style="width:212px;height:270px">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product4.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item" style="width:212px;height:270px">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product5.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+							<div class="shop-item" style="width:212px;height:270px">
+								<div class="image">
+									<a href="page-product-details.html"><img src="img/product6.jpg" alt="Item Name"></a>
+								</div>
+								<div class="title">
+									<h3><a href="page-product-details.html">Lorem ipsum dolor</a></h3>
+								</div>
+								<div class="price">
+									$999.99
+								</div>
+								<div class="actions">
+									<a href="page-product-details.html" class="btn btn-small"><i class="icon-shopping-cart icon-white"></i> Buy</a>
+								</div>
+							</div>
+
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+	    </div>
+	    <!-- Footer -->
+	    <div class="footer">
+	    	<div class="container">
+		    	<div class="row">
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>用户帮助</h3>
+		    			<ul class="no-list-style footer-navigate-section">
+		    				<li><a href="#">常见问题</a></li>
+		    				<li><a href="#">申请退款</a></li>
+
+		    			</ul>
+		    		</div>
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>商务合作</h3>
+		    			<ul class="no-list-style footer-navigate-section">
+		    				<li><a href="#">商家入驻</a></li>
+		    				<li><a href="#">团购信息提供</a></li>
+
+		    			</ul>
+		    		</div>
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>关于我们</h3>
+		    			<ul class="no-list-style footer-navigate-section">
+		    				<li><a href="#">公司简介</a></li>
+		    				<li><a href="#">法律申明</a></li>
+							<li><a href="#">用户协议</a></li>
+
+		    			</ul>
+		    		</div>		    		
+		    		<div class="col-footer col-md-3 col-xs-6">
+		    			<h3>客服联系</h3>
+		    			<p class="contact-us-details">
+	        				<b>联系电话:</b> 400-8000-8008<br/>
+	        				<b>工作时间:</b> 每天9:00-22:00<br/>
+	        				
+	        				<b>邮箱:</b> <a href="mailto:customer@diy-tuan.com">customer@diy-tuan.com</a>
+	        			</p>
+		    		</div>
+
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<div class="footer-copyright">&copy; 2014 Fuego. All rights reserved.</div>
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>
+
+        <!-- Javascripts -->
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+        <script>window.jQuery || document.write('<script src="__PUBLIC__/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+      <!--   <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script> -->
+        <script src="__PUBLIC__/js/jquery.fitvids.js"></script>
+        <script src="__PUBLIC__/js/jquery.sequence-min.js"></script>
+        <script src="__PUBLIC__/js/jquery.bxslider.js"></script>
+        <script src="__PUBLIC__/js/main-menu.js"></script>
+        <script src="__PUBLIC__/js/template.js"></script>
+		        <!-- Javascripts -->
+
+
+    </body>
+</html>
