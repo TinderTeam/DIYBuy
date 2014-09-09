@@ -1,0 +1,54 @@
+[ 2014-08-26T13:14:19+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/zoom_img.js
+ERR: 非法操作:js
+
+[ 2014-08-26T13:14:19+08:00 ] 127.0.0.1 /php/app/index.php/Index/my.css
+ERR: 非法操作:my.css
+
+[ 2014-08-26T13:22:36+08:00 ] 127.0.0.1 /php/app/index.php/js/zoom_img.js
+ERR: 无法加载模块:js
+
+[ 2014-08-26T13:22:36+08:00 ] 127.0.0.1 /php/app/index.php/my.css
+ERR: 无法加载模块:my.css
+
+[ 2014-08-26T13:23:32+08:00 ] 113.77.121.138 //php/app/index.php/js/zoom_img.js
+ERR: 无法加载模块:js
+
+[ 2014-08-26T13:23:32+08:00 ] 113.77.121.138 //php/app/index.php/my.css
+ERR: 无法加载模块:my.css
+
+[ 2014-08-26T13:23:33+08:00 ] 119.147.146.189 //php/app/index.php/js/zoom_img.js
+ERR: 无法加载模块:js
+
+[ 2014-08-26T13:23:42+08:00 ] 112.90.11.79 //php/app/index.php/Index/js/zoom_img.js
+ERR: 非法操作:js
+
+[ 2014-08-26T13:23:52+08:00 ] 113.77.121.138 //php/app/index.php/js/zoom_img.js
+ERR: 无法加载模块:js
+
+[ 2014-08-26T13:23:52+08:00 ] 113.77.121.138 //php/app/index.php/my.css
+ERR: 无法加载模块:my.css
+
+[ 2014-08-26T13:25:11+08:00 ] 14.29.123.10 //php/app/index.php/my.css
+ERR: 无法加载模块:my.css
+
+[ 2014-08-26T13:25:11+08:00 ] 14.29.123.10 //php/app/index.php/js/zoom_img.js
+ERR: 无法加载模块:js
+
+[ 2014-08-26T13:25:53+08:00 ] 14.29.123.10 //php/app/index.php/my.css
+ERR: 无法加载模块:my.css
+
+[ 2014-08-26T13:25:53+08:00 ] 14.29.123.10 //php/app/index.php/js/zoom_img.js
+ERR: 无法加载模块:js
+
+[ 2014-08-26T14:56:49+08:00 ] 180.153.183.68 /php/app/index.php/index
+ERR: 无法加载模块:index
+
+[ 2014-08-26T16:01:55+08:00 ] 127.0.0.1 /php/app/index.php/Index/my.css
+ERR: 非法操作:my.css
+
+[ 2014-08-26T16:01:55+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/zoom_img.js
+ERR: 非法操作:js
+
+[ 2014-08-26T16:01:55+08:00 ] 127.0.0.1 /php/app/index.php/Index/my.css
+ERR: 非法操作:my.css
+

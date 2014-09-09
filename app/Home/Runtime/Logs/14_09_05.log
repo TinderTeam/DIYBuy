@@ -1,0 +1,417 @@
+[ 2014-09-05T17:31:22+08:00 ] 127.0.0.1 /php/app/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.049570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.049773s ]
+NOTIC: [8] A session had already been started - ignoring session_start() C:\Program Files\xampps\htdocs\php\app\Home\Lib\Action\IndexAction.class.php 第 8 行.
+SQL: SHOW COLUMNS FROM `diy_user` [ RunTime:0.003087s ]
+NOTIC: [8] Undefined index:  email C:\Program Files\xampps\htdocs\php\app\Home\Lib\Action\IndexAction.class.php 第 12 行.
+NOTIC: [8] Undefined index:  email C:\Program Files\xampps\htdocs\php\app\Home\Lib\Action\IndexAction.class.php 第 13 行.
+NOTIC: [8] Undefined index:  pwd C:\Program Files\xampps\htdocs\php\app\Home\Lib\Action\IndexAction.class.php 第 14 行.
+SQL: SELECT `pwd` FROM `diy_user` WHERE ( `email` = null ) LIMIT 1   [ RunTime:0.000358s ]
+
+[ 2014-09-05T17:31:47+08:00 ] 127.0.0.1 /php/app/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.011656s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011843s ]
+SQL: SHOW COLUMNS FROM `diy_product` [ RunTime:0.003202s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `diy_product` LIMIT 1   [ RunTime:0.000317s ]
+SQL: SELECT * FROM `diy_product` ORDER BY id LIMIT 0,8   [ RunTime:0.000420s ]
+NOTIC: [2] Missing argument 1 for Action::show(), called in C:\Program Files\xampps\htdocs\php\app\Home\Lib\Action\IndexAction.class.php on line 18 and defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\Action.class.php 第 107 行.
+NOTIC: [8] Undefined variable: content C:\Program Files\xampps\htdocs\php\app\Lib\Core\Action.class.php 第 108 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.123968s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.124166s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.028477s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.019122s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.015420s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.014511s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.077946s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.091389s ]
+INFO: [ view_end ] --END-- [ RunTime:0.091567s ]
+
+[ 2014-09-05T17:31:59+08:00 ] 127.0.0.1 /php/app/index.php/Index/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.090949s ]
+INFO: [ route_check ] --END-- [ RunTime:0.091131s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.011810s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011947s ]
+SQL: SHOW COLUMNS FROM `diy_product` [ RunTime:0.002681s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `diy_product` LIMIT 1   [ RunTime:0.000274s ]
+SQL: SELECT * FROM `diy_product` ORDER BY id LIMIT 0,8   [ RunTime:0.000296s ]
+NOTIC: [2] Missing argument 1 for Action::show(), called in C:\Program Files\xampps\htdocs\php\app\Home\Lib\Action\IndexAction.class.php on line 18 and defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\Action.class.php 第 107 行.
+NOTIC: [8] Undefined variable: content C:\Program Files\xampps\htdocs\php\app\Lib\Core\Action.class.php 第 108 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.097251s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.097426s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.014974s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.013547s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.016953s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.013480s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.059500s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.018070s ]
+INFO: [ view_end ] --END-- [ RunTime:0.018202s ]
+
+[ 2014-09-05T17:32:00+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/modernizr-2.6.2-respond-1.1.0.min.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.026853s ]
+INFO: [ route_check ] --END-- [ RunTime:0.027075s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.026519s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026724s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:00+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/icomoon-social.css
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.029929s ]
+INFO: [ route_check ] --END-- [ RunTime:0.030154s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.028707s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.028907s ]
+ERR: 非法操作:css
+
+[ 2014-09-05T17:32:00+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/main.css
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.032072s ]
+INFO: [ route_check ] --END-- [ RunTime:0.032298s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.023800s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.024007s ]
+ERR: 非法操作:css
+
+[ 2014-09-05T17:32:00+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/leaflet.css
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.020754s ]
+INFO: [ route_check ] --END-- [ RunTime:0.020963s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.020244s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.020454s ]
+ERR: 非法操作:css
+
+[ 2014-09-05T17:32:00+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/bootstrap.min.css
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.020468s ]
+INFO: [ route_check ] --END-- [ RunTime:0.020761s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.020408s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.020571s ]
+ERR: 非法操作:css
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.fitvids.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.028052s ]
+INFO: [ route_check ] --END-- [ RunTime:0.028284s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.028647s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.028880s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.sequence-min.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.031402s ]
+INFO: [ route_check ] --END-- [ RunTime:0.031627s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.034945s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.035159s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/main-menu.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.040723s ]
+INFO: [ route_check ] --END-- [ RunTime:0.041029s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.035024s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.035554s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/bootstrap.min.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.047059s ]
+INFO: [ route_check ] --END-- [ RunTime:0.047295s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.030497s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.030692s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/template.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.039631s ]
+INFO: [ route_check ] --END-- [ RunTime:0.039834s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.042045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.042258s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.bxslider.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.038727s ]
+INFO: [ route_check ] --END-- [ RunTime:0.038956s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.041154s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.041337s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery-1.9.1.min.js
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.035596s ]
+INFO: [ route_check ] --END-- [ RunTime:0.035827s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.037115s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.037333s ]
+ERR: 非法操作:js
+
+[ 2014-09-05T17:32:07+08:00 ] 127.0.0.1 /php/app/index.php/Index/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.014268s ]
+INFO: [ route_check ] --END-- [ RunTime:0.014420s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.014825s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015006s ]
+NOTIC: [8] Constant THEME_NAME already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 223 行.
+NOTIC: [8] Constant THEME_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 174 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.086704s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.086849s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.011728s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.015327s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.015009s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.014165s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.056735s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.014129s ]
+INFO: [ view_end ] --END-- [ RunTime:0.014312s ]
+
+[ 2014-09-05T17:32:10+08:00 ] 127.0.0.1 /php/app/index.php/Index/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.012379s ]
+INFO: [ route_check ] --END-- [ RunTime:0.012528s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.017209s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017387s ]
+NOTIC: [8] Constant THEME_NAME already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 223 行.
+NOTIC: [8] Constant THEME_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 174 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.084709s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.084851s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.011844s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.011615s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.011942s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.012176s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.047936s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.012575s ]
+INFO: [ view_end ] --END-- [ RunTime:0.012693s ]
+
+[ 2014-09-05T17:32:11+08:00 ] 127.0.0.1 /php/app/index.php/Index/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.014104s ]
+INFO: [ route_check ] --END-- [ RunTime:0.014268s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.011954s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012085s ]
+NOTIC: [8] Constant THEME_NAME already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 223 行.
+NOTIC: [8] Constant THEME_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 174 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.080488s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.080635s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.011340s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.011536s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.012910s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.011487s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.047611s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.012129s ]
+INFO: [ view_end ] --END-- [ RunTime:0.012243s ]
+
+[ 2014-09-05T17:32:12+08:00 ] 127.0.0.1 /php/app/index.php/Index/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.011952s ]
+INFO: [ route_check ] --END-- [ RunTime:0.012090s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.012042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012175s ]
+NOTIC: [8] Constant THEME_NAME already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 223 行.
+NOTIC: [8] Constant THEME_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 174 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined C:\Program Files\xampps\htdocs\php\app\Lib\Core\View.class.php 第 175 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.083838s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.084020s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.014853s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.011734s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.012874s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.011930s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.051794s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.011653s ]
+INFO: [ view_end ] --END-- [ RunTime:0.011759s ]
+
+[ 2014-09-05T17:35:26+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/modernizr-2.6.2-respond-1.1.0.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:26+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/bootstrap.min.css
+ERR: 非法操作:css
+
+[ 2014-09-05T17:35:26+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/icomoon-social.css
+ERR: 非法操作:css
+
+[ 2014-09-05T17:35:26+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/main.css
+ERR: 非法操作:css
+
+[ 2014-09-05T17:35:26+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/leaflet.css
+ERR: 非法操作:css
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/bootstrap.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/main-menu.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/template.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.sequence-min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.fitvids.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.bxslider.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:35:27+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery-1.9.1.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T17:37:36+08:00 ] 127.0.0.1 /php/app/index.php/Index/check
+ERR: 非法操作:check
+
+[ 2014-09-05T17:38:01+08:00 ] 127.0.0.1 /php/app/index.php/Index/check
+ERR: 非法操作:check
+
+[ 2014-09-05T17:38:05+08:00 ] 127.0.0.1 /php/app/index.php/css/leaflet.css
+ERR: 无法加载模块:css
+
+[ 2014-09-05T17:38:05+08:00 ] 127.0.0.1 /php/app/index.php/js/modernizr-2.6.2-respond-1.1.0.min.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:05+08:00 ] 127.0.0.1 /php/app/index.php/css/main.css
+ERR: 无法加载模块:css
+
+[ 2014-09-05T17:38:05+08:00 ] 127.0.0.1 /php/app/index.php/css/bootstrap.min.css
+ERR: 无法加载模块:css
+
+[ 2014-09-05T17:38:05+08:00 ] 127.0.0.1 /php/app/index.php/css/icomoon-social.css
+ERR: 无法加载模块:css
+
+[ 2014-09-05T17:38:06+08:00 ] 127.0.0.1 /php/app/index.php/js/jquery.fitvids.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:06+08:00 ] 127.0.0.1 /php/app/index.php/js/bootstrap.min.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:06+08:00 ] 127.0.0.1 /php/app/index.php/js/main-menu.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:06+08:00 ] 127.0.0.1 /php/app/index.php/js/jquery.sequence-min.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:06+08:00 ] 127.0.0.1 /php/app/index.php/js/template.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:06+08:00 ] 127.0.0.1 /php/app/index.php/js/jquery.bxslider.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:07+08:00 ] 127.0.0.1 /php/app/index.php/js/jquery-1.9.1.min.js
+ERR: 无法加载模块:js
+
+[ 2014-09-05T17:38:08+08:00 ] 127.0.0.1 /php/app/index.php/login.html
+ERR: 无法加载模块:login
+
+[ 2014-09-05T17:38:57+08:00 ] 127.0.0.1 /php/app/index.php/login
+ERR: 无法加载模块:login
+
+[ 2014-09-05T17:44:03+08:00 ] 127.0.0.1 /php/app/index.php/Index/logok
+ERR: 非法操作:logok
+
+[ 2014-09-05T18:15:22+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/icomoon-social.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:15:22+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/modernizr-2.6.2-respond-1.1.0.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:22+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/leaflet.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:15:22+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/main.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:15:22+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/bootstrap.min.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:15:23+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.fitvids.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:23+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/main-menu.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:23+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/bootstrap.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:23+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.sequence-min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:23+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/template.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:24+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.bxslider.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:15:24+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery-1.9.1.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:48+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/leaflet.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:24:48+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/icomoon-social.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:24:48+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/main.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:24:48+08:00 ] 127.0.0.1 /php/app/index.php/Index/css/bootstrap.min.css
+ERR: 非法操作:css
+
+[ 2014-09-05T18:24:48+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/modernizr-2.6.2-respond-1.1.0.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:49+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.sequence-min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:49+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.fitvids.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:49+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/template.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:49+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery.bxslider.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:49+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/bootstrap.min.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:49+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/main-menu.js
+ERR: 非法操作:js
+
+[ 2014-09-05T18:24:50+08:00 ] 127.0.0.1 /php/app/index.php/Index/js/jquery-1.9.1.min.js
+ERR: 非法操作:js
+
