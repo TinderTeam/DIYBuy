@@ -43,7 +43,8 @@ class ProcessingAction extends Action {
             import("ORG.Net.UploadFile");  
             //实例化上传类  
             $upload = new UploadFile();  
-            $upload->maxSize = 4145728;  
+            $upload->maxSize = 4145728; 
+            $upload->saveRule=time; 
             //设置文件上传类型  
             $upload->allowExts = array('jpg','gif','png','jpeg');  
             //设置文件上传位置  
@@ -63,15 +64,13 @@ class ProcessingAction extends Action {
             $savename = $info[0]['savename'];  
             //$savepath = $info[0]['savepath'];  
             //$aa = $savepath.$savename;  
-            //dump($aa);  
-            $img_name = $savename;//  
+            //dump($aa);   
             //dump($imgurl);  
-            $data['name'] = $_POST['name'];  
-            $data['pic1'] = $img_name;   
+            $product->name = $_POST['name'];    
             //$data['publishtime'] = date("Y-m-d H:i:s");  
-            $res = $product->add($data);//写入数据库   
+            $res = $product->add();//写入数据库   
             if ($res){  
-                $this->redirect("Admin/info","",2,"OK");  
+                $this->redirect("Processing/startGroup","",2,"OK");  
             }else{  
                 $this->redirect("Admin/login","",2,"Fuck");  
             } 

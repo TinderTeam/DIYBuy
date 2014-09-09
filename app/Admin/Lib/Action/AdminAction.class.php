@@ -105,7 +105,7 @@ class AdminAction extends Action{
             //设置文件上传位置  
             $upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
             //设置文件上传名(按照时间)  
-            //$upload->saveRule = "time";  
+            $upload->saveRule = "time";  
             if (!$upload->upload()){  
                 $this->error($upload->getErrorMsg());  
             }else{  
@@ -115,19 +115,16 @@ class AdminAction extends Action{
   
             //保存表单数据，包括上传的图片  
             $product = M("product");  
-            $product->create();  
-            $savename = $info[0]['savename'];  
+            $product->create();    
             //$savepath = $info[0]['savepath'];  
             //$aa = $savepath.$savename;  
-            //dump($aa);  
-            $img_name = $savename;//这里是设置文件的url注意使用.不是+  
+            //dump($aa);   
             //dump($imgurl);  
-            $data['name'] = $_POST['name'];  
-            $data['pic1'] = $img_name;   
+             $product->pic1 = $info[0]['savename'];   
             //$data['publishtime'] = date("Y-m-d H:i:s");  
-            $res = $product->add($data);//写入数据库   
+            $res = $product->add();//写入数据库   
             if ($res){  
-                $this->redirect("Admin/product","",0,"OK");  
+                $this->redirect("Admin/info","",2,"OK");  
             }else{  
                 $this->redirect("Admin/login","",2,"error");  
             } 

@@ -38,7 +38,7 @@
         <!-- Page Title -->
 		<div class="section-breadcrumbs">
 			<div class="container">
-            <form action="__URL__/addChk"></form>
+            <form action="__URL__/addChk" method="POST" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-12">
 					<nav id="mainmenu" class="mainmenu">
@@ -87,10 +87,7 @@
 							</div>
                         </div>
 					        
-                            <input type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
-				
-
-
+                            <input name="up0" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -99,7 +96,7 @@
 								<img src="" alt="靓照2" height="160px" id="img1">
 							</div>
 						</div>
-                         <input type="file" id="up1" onchange="viewmypic(showimg,this.form.up1);"/>
+                         <input name="up0" type="file" id="up1" onchange="viewmypic(showimg,this.form.up0);"/>
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -138,7 +135,7 @@
 								<img src="" alt="靓照6" height="160px" id="img5">
 							</div>
 						</div>
-								<input type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
+								<input name="up5" type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
 						
 					</div>
 				 
@@ -147,7 +144,7 @@
 							
 						    <div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
 						    <div class="panel-body">
-								<div><textarea name="describ" class="form-control " placeholder="请输入宝贝信息" rows="10"></textarea></div>
+								<div><textarea name="describ" class="form-control " placeholder="请输入宝贝信息" rows="5"></textarea></div>
 								
 								<div class="pull-right">
 								    <button type="button" class="btn btn-success">保存</button>
@@ -156,7 +153,7 @@
 							</div>							
 						    <div class="panel-heading"><strong>团长号令</strong><span> </span></div>
 						    <div class="panel-body">
-								<div><textarea class="form-control " placeholder="团长输入具有吸引力的口号，号召大家一起组团购买" rows="10"> </textarea></div>
+								<div><textarea class="form-control " placeholder="团长输入具有吸引力的口号，号召大家一起组团购买" rows="5"> </textarea></div>
 								
 								<div class="pull-right">
 								    <button type="button" class="btn btn-success">保存</button>
@@ -165,8 +162,8 @@
 							</div>		
                             <hr/>	
                             	<div align="center">
-								    <button type="button" class="btn btn-success">发起组团</button>
-								    <button type="button" class="btn btn-grey" href="javascript:history.go(-1);">取消组团</button>		
+								    <button type="submit" class="btn btn-success">发起组团</button>
+								    <button type="submit" class="btn btn-grey" href="javascript:history.go(-1);">取消组团</button>		
 									
 								</div>
 							<hr/>	
@@ -176,12 +173,7 @@
 				</div>
 				<!-- End Product -->
 			</div>
-				
-				
-				
-				
-				
-				
+	
 				
 					</div>
 			<!-- 正在组团中的宝贝 -->
@@ -191,8 +183,9 @@
 					
 				</div>
 			</div>
+        </form>
 	    </div>
-        </div>
+</div>
 		
 
 
