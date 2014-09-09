@@ -127,7 +127,7 @@
      
     <body> 
     <div class="wrap"> 
-      <form name="form" action="__URL__/manage" method="post"> 
+      <form name="form" action="__URL__/check" method="post"> 
         <section class="loginForm"> 
           <header> 
             <h1>DIY团管理员登陆</h1> 
@@ -135,10 +135,10 @@
           <div class="loginForm_content"> 
             <fieldset> 
               <div class="inputWrap"> 
-                <input type="text" name="admin_name" placeholder="邮箱/手机号" autofocus required> 
+                <input type="text" name="name" placeholder="邮箱/手机号" autofocus required> 
               </div> 
               <div class="inputWrap"> 
-                <input type="password" name="admin_pwd" placeholder="请输入密码" required> 
+                <input type="password" name="pwd" placeholder="请输入密码" required> 
               </div> 
             </fieldset> 
             <fieldset> 
@@ -155,9 +155,5 @@
     </div> 
     </body> 
     </html> 
-    
-    <?php
-        //session_start();     
-        //$_SESSION['username']='Jamin';
-    ?>
+ 
     

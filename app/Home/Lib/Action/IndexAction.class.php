@@ -1,14 +1,22 @@
 <?php
 // 本类由系统自动生成，仅供测试用途
 header("Content-Type:text/html; charset=UTF-8");
-class IndexAction extends Action {
+
+
+class IndexAction extends Action { 
+    
     public function index(){
+        
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
+            $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
+            $this->assign('code2',"12");
         }else{
             $this->assign('v1',"登录"); 
-            $this->assign('v2',"注册");             
+            $this->assign('code1',"21");
+            $this->assign('v2',"注册"); 
+            $this->assign('code2',"22");            
         } 
                
         //显示产品           
@@ -25,6 +33,39 @@ class IndexAction extends Action {
 	    $this->display();
     }
     
+
+    
+    public function aboutUs(){
+        if($_SESSION['email']!=""){
+            $this->assign('v1',"已登录"); 
+            $this->assign('code1',"11"); 
+            $this->assign('v2',"退出"); 
+            $this->assign('code2',"12");
+        }else{
+            $this->assign('v1',"登录"); 
+            $this->assign('code1',"21");
+            $this->assign('v2',"注册"); 
+            $this->assign('code2',"22");            
+        } 
+        $this->display();
+    }
+    
+    public function purchaseHistory(){
+        if($_SESSION['email']!=""){
+            $this->assign('v1',"已登录"); 
+            $this->assign('code1',"11"); 
+            $this->assign('v2',"退出"); 
+            $this->assign('code2',"12");
+        }else{
+            $this->assign('v1',"登录"); 
+            $this->assign('code1',"21");
+            $this->assign('v2',"注册"); 
+            $this->assign('code2',"22");            
+        } 
+        $this->display();
+    }
+    
+    
     // 登陆验证
     public function check(){
         session_start();
@@ -40,7 +81,7 @@ class IndexAction extends Action {
             
             if($pwd==$password){
                 //$this->success($_POST['admin_name']);
-                $this->redirect('Index/index','',5,'登陆成功');//页面重定向
+                $this->redirect('Index/index','',3,'登陆成功');//页面重定向
             }else{
                 $this->error('密码错误');
             }
@@ -53,7 +94,21 @@ class IndexAction extends Action {
         }
     }
     
-
+    public function insert(){        
+        $User   =   M('user');
+        if($User->create()) {
+            $result =   $User->add();
+            if($result) {
+                $this->redirect('Index/login','',3,'注册成功');//页面重定向
+            }else{
+                //$this->error('写入错误！');
+                $this->show(cao);
+            }
+        }else{
+            $this->error($User->getError());
+            //$this->show();
+        }
+    }
     
 
 }

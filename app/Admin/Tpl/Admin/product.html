@@ -102,6 +102,7 @@
 
             <hr/>
             
+            <form action="__URL__/addChk" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xs-12">
                 <div class="panel panel-primary"> 
@@ -111,8 +112,8 @@
                             <span style="">新建产品</span>
                         </div> 
                         <div class="col-xs-1" style="float: left;">
-                            <form action="" method="POST">
-                                <button type="submit" class="btn-sm btn-default">提交</button></form>
+                            
+                                <button type="submit" class="btn-sm btn-default">提交</button>
                         </div> 
                     </div>
                 </div>
@@ -149,19 +150,20 @@
                         <tr><td>宝贝描述</td></tr> 
                         <tr><td><textarea cols="140" rows="4">请输入宝贝描述</textarea></td></tr>    
                         <tr><td>上传图片<input name="imgfile" type="file" id="imgfile" size="40" onchange="viewmypic(showimg,this.form.imgfile);" /></td></tr>           
-                        <tr><td><img name="showimg" id="showimg" src="__PUBLIC__/images/try1.jpg"  style="display:block;" alt="预览图片" /></td> </tr>                 
+                        <tr><td><img id="showimg" src="__PUBLIC__/images/try1.jpg"  style="display:block;" alt="预览图片" /></td> </tr>                 
                     </table>                      
                     </p>
                   </div>
   
               </div>
             </div>
-          </div>  
+          </div>
+        </form>   
         </div>
         <div class="col-xs-1"></div> 
     </div>
     
-    
+   
 </div>
 
 

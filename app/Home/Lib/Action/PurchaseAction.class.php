@@ -4,7 +4,6 @@ header("Content-Type:text/html; charset=UTF-8");
 class PurchaseAction extends Action {
     public function productDetails(){
 
-
 	    $this->display();
     }
     

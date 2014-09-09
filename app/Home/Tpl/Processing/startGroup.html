@@ -38,6 +38,7 @@
         <!-- Page Title -->
 		<div class="section-breadcrumbs">
 			<div class="container">
+            <form action="__URL__/addChk"></form>
 				<div class="row">
 					<div class="col-md-12">
 					<nav id="mainmenu" class="mainmenu">
@@ -86,7 +87,7 @@
 							</div>
                         </div>
 					        
-                            <input type="file" id="up0" />
+                            <input type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
 				
 
 
@@ -98,7 +99,7 @@
 								<img src="" alt="靓照2" height="160px" id="img1">
 							</div>
 						</div>
-                         <input type="file" id="up1" />
+                         <input type="file" id="up1" onchange="viewmypic(showimg,this.form.up1);"/>
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -108,7 +109,7 @@
 							</div>
 
 						</div>
-							<input type="file" id="up2" />
+							<input type="file" id="up2" onchange="viewmypic(showimg,this.form.up2);"/>
 					</div>
 					<div class="clearfix"></div>
 					<div class="col-md-4 col-sm-6">
@@ -117,7 +118,7 @@
 								<img src="" alt="靓照4" height="160px" id="img3">
 							</div>
 						</div>
-								<input type="file" id="up3" />
+								<input type="file" id="up3" onchange="viewmypic(showimg,this.form.up3);"/>
 
 						
 					</div>
@@ -127,7 +128,7 @@
 								<img src="" alt="靓照5" height="160px" id="img4">
 							</div>
 						</div>
-								<input type="file" id="up4" />
+								<input type="file" id="up4" onchange="viewmypic(showimg,this.form.up4);"/>
 
 						
 					</div>
@@ -137,7 +138,7 @@
 								<img src="" alt="靓照6" height="160px" id="img5">
 							</div>
 						</div>
-								<input type="file" id="up5" />
+								<input type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
 						
 					</div>
 				 
@@ -146,7 +147,7 @@
 							
 						    <div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
 						    <div class="panel-body">
-								<div><textarea class="form-control " placeholder="请输入宝贝信息" rows="5"> </textarea></div>
+								<div><textarea name="describ" class="form-control " placeholder="请输入宝贝信息" rows="5"></textarea></div>
 								
 								<div class="pull-right">
 								    <button type="button" class="btn btn-success">保存</button>

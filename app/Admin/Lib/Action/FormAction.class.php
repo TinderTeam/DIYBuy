@@ -5,7 +5,7 @@ class FormAction extends Action {
         $Form   =   M('erp');
         // 读取数据
         $data =   $Form->find($id);
-        if($data) {
+        if($data){
             $this->data =   $data;// 模板变量赋值
         }else{
             $this->error('数据错误');

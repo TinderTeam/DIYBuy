@@ -8,23 +8,24 @@ class AdminAction extends Action{
         $time=30*60; 
         setcookie(session_name(),session_id(),time()+$time,"/");
         $admin = M('admin');
-        $_SESSION['admin_name']= $_POST['admin_name'];
-        $condition['name']=$_POST['admin_name'];
-        $password=$_POST['admin_pwd'];
+        $_SESSION['name']= $_POST['name'];
+        $condition['name']=$_POST['name'];
+        $password=$_POST['pwd'];
         $pwd = $admin->where($condition)->getField('pwd');
-        if($_SESSION['admin_name']!=""){
-        if($admin->create()){
-            
-            if($pwd==$password){
-                //$this->success($_POST['admin_name']);
-                $this->redirect('Admin/manage','',0,'为啥是乱码');//页面重定向
+        if($_SESSION['name']!=""){
+            if($admin->create()){
+                
+                if($pwd==$password){
+                    //$this->success($_POST['admin_name']);
+                    $this->redirect('Admin/manage','',2,'为啥是乱码');//页面重定向
+                }else{
+                    $this->error('密码错误');
+                }
+                
             }else{
-                $this->error('密码错误');
-            }
-            
-        }else{
-            $this->error('输入错误');
-        } 
+                //$this->error('输入错误');
+                $this->show($pwd);
+            } 
         }else{
             echo error('你还没有登陆呢！');
         }
@@ -32,7 +33,7 @@ class AdminAction extends Action{
     
     // 用分页类 实现分页查询
     public function manage(){
-        if($_SESSION['admin_name']!=""){
+        if($_SESSION['name']!=""){
             $db = M('user');
             import("ORG.Util.Page"); 
             $count = $db->count();
@@ -43,7 +44,7 @@ class AdminAction extends Action{
             $list = $db->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
             $this->assign('b',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
-            $this->display(manage);
+            $this->display();
         }else{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }       
@@ -52,13 +53,13 @@ class AdminAction extends Action{
     //退出登陆，清session
     public function logout(){
         session_start();
-        unset($_SESSION['admin_name']);
+        unset($_SESSION['name']);
         session_destroy();
         $this->redirect('Admin/login','',0,'退出登陆成功！');
     }
     
     public function product(){
-        if($_SESSION['admin_name']==""){
+        if($_SESSION['name']==""){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
             $db = M('product');
@@ -76,7 +77,7 @@ class AdminAction extends Action{
     }
     
     public function administrater(){
-        if($_SESSION['admin_name']==""){
+        if($_SESSION['name']==""){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
             $db = M('admin');
@@ -92,6 +93,45 @@ class AdminAction extends Action{
             $this->display(administrater);
         }
     }
-
+    
+    public function addChk(){  
+            //导入图片上传类  
+            import("ORG.Net.UploadFile");  
+            //实例化上传类  
+            $upload = new UploadFile();  
+            $upload->maxSize = 4145728;  
+            //设置文件上传类型  
+            $upload->allowExts = array('jpg','gif','png','jpeg');  
+            //设置文件上传位置  
+            $upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
+            //设置文件上传名(按照时间)  
+            //$upload->saveRule = "time";  
+            if (!$upload->upload()){  
+                $this->error($upload->getErrorMsg());  
+            }else{  
+                //上传成功，获取上传信息  
+                $info = $upload->getUploadFileInfo();  
+            }  
+  
+            //保存表单数据，包括上传的图片  
+            $product = M("product");  
+            $product->create();  
+            $savename = $info[0]['savename'];  
+            //$savepath = $info[0]['savepath'];  
+            //$aa = $savepath.$savename;  
+            //dump($aa);  
+            $img_name = $savename;//这里是设置文件的url注意使用.不是+  
+            //dump($imgurl);  
+            $data['name'] = $_POST['name'];  
+            $data['pic1'] = $img_name;   
+            //$data['publishtime'] = date("Y-m-d H:i:s");  
+            $res = $product->add($data);//写入数据库   
+            if ($res){  
+                $this->redirect("Admin/info","",2,"OK");  
+            }else{  
+                $this->redirect("Admin/login","",2,"Fuck");  
+            } 
+    }
+    
 }  
 ?>
