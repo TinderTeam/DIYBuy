@@ -81,7 +81,7 @@ class IndexAction extends Action {
             
             if($pwd==$password){
                 //$this->success($_POST['admin_name']);
-                $this->redirect('Index/index','',3,'登陆成功');//页面重定向
+                $this->redirect('Index/index','',0,'登陆成功');//页面重定向
             }else{
                 $this->error('密码错误');
             }

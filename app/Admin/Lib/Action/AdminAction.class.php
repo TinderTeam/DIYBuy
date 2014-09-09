@@ -17,7 +17,7 @@ class AdminAction extends Action{
                 
                 if($pwd==$password){
                     //$this->success($_POST['admin_name']);
-                    $this->redirect('Admin/manage','',2,'为啥是乱码');//页面重定向
+                    $this->redirect('Admin/manage','',0,'登录成功');//页面重定向
                 }else{
                     $this->error('密码错误');
                 }
@@ -127,9 +127,9 @@ class AdminAction extends Action{
             //$data['publishtime'] = date("Y-m-d H:i:s");  
             $res = $product->add($data);//写入数据库   
             if ($res){  
-                $this->redirect("Admin/info","",2,"OK");  
+                $this->redirect("Admin/product","",0,"OK");  
             }else{  
-                $this->redirect("Admin/login","",2,"Fuck");  
+                $this->redirect("Admin/login","",2,"error");  
             } 
     }
     
