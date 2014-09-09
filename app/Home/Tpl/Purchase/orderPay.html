@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+		<include file="./Home/Tpl/Public/css.html"/>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- Navigation & Logo-->
+        <div class="mainmenu-wrapper">
+	        <div class="container">
+	        	<div class="menuextras" >
+					<div class="extras">
+						<ul>
+							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>我的DIY团购</b></a></li>
+
+			        		<li><a href="login.html">登录</a></li>
+							<li><a href="register.html">注册</a></li>
+							<li><a href="#">退出</a></li>
+			        	</ul>
+					</div>
+		        </div>
+		        <nav id="mainmenu" class="mainmenu">
+					<div class="row">
+						<div class="col-md-3"><a href="{:U('Index/index')}" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
+						</div>
+						<div class="col-md-1">
+	
+						
+						</div>
+						<div class="col-md-8" style="text-align:right">
+						<div class="pull-right">
+							<a href="#" class="progress-btn-2"> 提交订单</a>
+							<a href="#" class="progress-btn "> 选择支付</a>
+							<a href="#" class="progress-btn-2"> 购买成功</a>
+						</div>
+						
+						</div>
+					</div>
+					
+
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="section">
+	    	<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- 订单详情 -->
+				 	    <div class="panel panel-success">
+						    <div class="panel-heading"><strong>订单号:</strong><span> 01120140904</span></div>
+						    <div class="panel-body">
+								<table class="table table-hover">
+									<tr>
+										<th>商品信息</th>
+										<th>数量</th>
+										<th>小计</th>
+									</tr>
+									<tr>
+										<td>真功夫香滑蒸蛋餐</td>
+										<td>2</td>
+										<td>26</td>
+									</tr>
+									<tr>
+										<td>汉拿山</td>
+										<td>1</td>
+										<td>81</td>
+									</tr>
+									
+
+								</table>
+					<div class="row">
+					        <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-6"></div>
+					        <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+						<table class="cart-totals">
+
+							<tr>
+								<td><b>优惠</b></td>
+								<td>-￥31.00</td>
+							</tr>
+							<tr class="cart-grand-total">
+								<td><b>应付总额</b></td>
+								<td><b>￥107.00</b></td>
+							</tr>
+						</table>								
+								
+							  </div>
+					       </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+                         <h2>选择支付方式</h2>
+						 <form role="form">
+							<div class="form-group">
+                                <div class="col-lg-1"></div>
+								<div class="col-lg-4">
+								<div class="checkbox" > 
+								<label >
+									<span style="padding-top:30px"><input type="checkbox" ></span>
+									<span><img src="__PUBLIC__/img/zhifubao.jpg" width="150" height="64" alt="paypal"></span>
+								</label>
+								</div>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Promotion Code -->
+					<div class="col-md-4  col-md-offset-0 col-sm-6 col-sm-offset-6">
+
+					</div>
+					<!-- Shipment Options -->
+					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+
+					</div>
+					
+					<!-- Shopping Cart Totals -->
+					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+
+						<!-- Action Buttons -->
+						<div class="pull-right">
+							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
+							<a href="#" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	    </div>
+
+<!--广告位-->
+<include file="./Home/Tpl/Public/ad.html"/>		
+
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
+
+<!-- Javascripts -->
+<include file="./Home/Tpl/Public/js.html"/>
+
+    </body>
+</html>

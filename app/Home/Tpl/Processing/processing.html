@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+		
+<include file="./Home/Tpl/Public/css.html"/>
+
+</head>
+
+<body>
+	<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+<!--页头-->
+<include file="./Home/Tpl/Public/head.html"/>
+
+		
+
+        <!-- Page Title -->
+		<div class="section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<nav id="mainmenu" class="mainmenu">
+
+					<ul>
+
+						<li ><a href="{:U('Index/index')}" >今日团购</a>
+						</li>
+						<li class="active"><a href="{:U('Processing/processing')}">组团进行时</a>
+						</li>
+						<li><a href="{:U('Index/purchase-history')}">往期团购</a>
+						</li>
+						<li><a href="{:U('Index/about-us')}">关于组团购物</a>
+						</li>						
+					</ul>
+					</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+					<div class="alert alert-info" role="alert" style="margin:20px 20px 30px 150px" >
+						<div class="row">
+						<div class="col-md-6">
+							
+								<p style="font-size:1.2em">组团购物优惠多多~<br/>
+			                       不如我也来发起组团？<br/>
+			                       一起来组团，体验更多精彩！
+								</p>
+							
+
+						</div>
+						<div class="col-md-6">
+							<div class="pull-right" >
+							
+						        <a href="{:U('Processing/startGroup')}" class="progress-btn" ><i class="icon-white"></i> 我要发起组团</a>
+
+						    </div>
+						</div>
+					    </div>
+					</div>
+                    </div>
+			
+					<div class="row">
+
+
+					<div class="col-md-12">
+
+					
+						<div class="panel panel-success">
+						    <div class="panel-heading"><strong>组团进行时</strong><span> </span></div>
+						    <div class="panel-body">
+
+						<table class="events-list table-striped" style="text-align:center">
+							<tr class="success">
+	    						<td class="event-venue tablehead">发布时间</td>
+	    						<td class="event-venue hidden-xs tablehead">产品标题</td>
+	    						<td class="event-venue hidden-xs tablehead">参团人数</td>
+	    						<td class="event-price hidden-xs tablehead">状态</td>
+	    						<td class="event-price hidden-xs tablehead">组团到期倒计时</td>
+								<td class="event-price hidden-xs tablehead">团长编号</td>
+	    					</tr>
+	    					<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后8小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>
+								<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后10小时</td>
+								<td class="event-price hidden-xs" >*****789</td>
+	    					</tr>
+								<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后14小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>
+								<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后24小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>
+							<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后24小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>
+							<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后24小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>
+							<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后24小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>
+							<tr>
+	    						<td><div class="event-date"> 2014-9-2</div></td>
+	    						<td>
+	    							某某商品团购开始.
+	    						</td>
+	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i> 30/50</td>
+	    						<td class="event-price hidden-xs">进行中</td>
+	    						<td class="event-price hidden-xs">最后24小时</td>
+								<td class="event-price hidden-xs">*****789</td>
+	    					</tr>							
+	    				</table>
+						<div align="center">
+						<ul class="pagination">
+						  <li><a href="#">&laquo;</a></li>
+						  <li><a href="#">1</a></li>
+						  <li><a href="#">2</a></li>
+						  <li><a href="#">3</a></li>
+						  <li><a href="#">4</a></li>
+						  <li><a href="#">5</a></li>
+						  <li><a href="#">&raquo;</a></li>
+						</ul>
+						</div>
+						   </div>
+						</div>  <!-- panel-->
+					
+				</div>
+				<!-- End Product -->
+			</div>
+				
+				
+				
+					</div>
+					<!-- 正在组团中的宝贝 -->
+					<div class="col-sm-4">
+						<include file="./Home/Tpl/Public/siderbar.html"/>	
+                                  
+ 
+					</div>
+					
+				</div>
+			</div>
+		</div>
+<!--广告位-->
+<include file="./Home/Tpl/Public/ad.html"/>		
+
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
+
+<!-- Javascripts -->
+<include file="./Home/Tpl/Public/js.html"/>
+		        
+
+
+
+    </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+<include file="./Home/Tpl/Public/css.html"/>
+		
+
+    <script src="http://jquery.decadework.com/js/jquery-1.9.1.min.js" type="text/javascript"></script>		
+    <script>
+        $(function () {
+            $("#up0").uploadPreview({ Img: "img0"});
+			$("#up1").uploadPreview({ Img: "img1"});
+			$("#up2").uploadPreview({ Img: "img2"});
+			$("#up3").uploadPreview({ Img: "img3"});
+			$("#up4").uploadPreview({ Img: "img4"});
+			$("#up5").uploadPreview({ Img: "img5"});
+        });
+    </script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+<!--页头-->
+<include file="./Home/Tpl/Public/head.html"/>
+
+
+        <!-- Page Title -->
+		<div class="section-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<nav id="mainmenu" class="mainmenu">
+
+					<ul>
+
+						<li ><a href="{:U('Index/index')}" >今日团购</a>
+						</li>
+						<li class="active"><a href="{:U('Processing/processing')}">组团进行时</a>
+						</li>
+						<li><a href="{:U('Index/purchase-history')}">往期团购</a>
+						</li>
+						<li><a href="{:U('Index/about-us')}">关于组团购物</a>
+						</li>						
+					</ul>
+					</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+				<div class="col-md-8">
+
+			
+					<div class="row">
+
+					<div class="col-md-12">
+				
+					<h2>上传组团信息</h2>				
+
+							
+
+						<div class="panel panel-success">
+						    <div class="panel-heading"><strong>宝贝靓照</strong><span> </span></div>
+						    <div class="panel-body">
+								<div class="row">
+				
+					<div class="col-md-4 col-sm-6">
+						
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="" alt="靓照1" height="160px" id="img0">
+							</div>
+                        </div>
+					        
+                            <input type="file" id="up0" />
+				
+
+
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="" alt="靓照2" height="160px" id="img1">
+							</div>
+						</div>
+                         <input type="file" id="up1" />
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="" alt="靓照3" height="160px" id="img2">
+							</div>
+
+						</div>
+							<input type="file" id="up2" />
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="" alt="靓照4" height="160px" id="img3">
+							</div>
+						</div>
+								<input type="file" id="up3" />
+
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="" alt="靓照5" height="160px" id="img4">
+							</div>
+						</div>
+								<input type="file" id="up4" />
+
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="" alt="靓照6" height="160px" id="img5">
+							</div>
+						</div>
+								<input type="file" id="up5" />
+						
+					</div>
+				 
+								</div>
+							</div>
+							
+						    <div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
+						    <div class="panel-body">
+								<div><textarea class="form-control " placeholder="请输入宝贝信息" rows="5"> </textarea></div>
+								
+								<div class="pull-right">
+								    <button type="button" class="btn btn-success">保存</button>
+								    <button type="button" class="btn btn-danger">编辑</button>
+								</div>
+							</div>							
+						    <div class="panel-heading"><strong>团长号令</strong><span> </span></div>
+						    <div class="panel-body">
+								<div><textarea class="form-control " placeholder="团长输入具有吸引力的口号，号召大家一起组团购买" rows="5"> </textarea></div>
+								
+								<div class="pull-right">
+								    <button type="button" class="btn btn-success">保存</button>
+								    <button type="button" class="btn btn-danger">编辑</button>
+								</div>
+							</div>		
+                            <hr/>	
+                            	<div align="center">
+								    <button type="button" class="btn btn-success">发起组团</button>
+								    <button type="button" class="btn btn-grey" href="javascript:history.go(-1);">取消组团</button>		
+									
+								</div>
+							<hr/>	
+						</div>
+
+					
+				</div>
+				<!-- End Product -->
+			</div>
+				
+				
+				
+				
+				
+				
+				
+					</div>
+			<!-- 正在组团中的宝贝 -->
+					<div class="col-sm-4">
+							<include file="./Home/Tpl/Public/siderbar.html"/>	
+					</div>
+					
+				</div>
+			</div>
+	    </div>
+        </div>
+		
+
+
+
+<!--广告位-->
+<include file="./Home/Tpl/Public/ad.html"/>		
+
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
+
+<!-- Javascripts -->
+<include file="./Home/Tpl/Public/js.html"/>
+		
+
+
+    </body>
+</html>
