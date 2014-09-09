@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+		<include file="./Home/Tpl/Public/css.html"/>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- Navigation & Logo-->
+        <div class="mainmenu-wrapper">
+	        <div class="container">
+	        	<div class="menuextras" >
+					<div class="extras">
+						<ul>
+							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>我的DIY团购</b></a></li>
+
+			        		<li><a href="login.html">登录</a></li>
+							<li><a href="register.html">注册</a></li>
+							<li><a href="#">退出</a></li>
+			        	</ul>
+					</div>
+		        </div>
+		        <nav id="mainmenu" class="mainmenu">
+					<div class="row">
+						<div class="col-md-3"><a href="{:U('Index/index')}" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
+						</div>
+						<div class="col-md-1">
+	
+						
+						</div>
+						<div class="col-md-8" style="text-align:right">
+						<div class="pull-right">
+							<a href="#" class="progress-btn"> 提交订单</a>
+							<a href="#" class="progress-btn-2 "> 选择支付</a>
+							<a href="#" class="progress-btn-2"> 购买成功</a>
+						</div>
+						
+						</div>
+					</div>
+					
+
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="section">
+	    	<div class="container">
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Shopping Cart Items -->
+						
+							
+						   
+						    
+						<table class="shopping-cart table">
+							<!-- Shopping Cart Item -->
+							<tr class="success">
+								<th style="text-align:center;width:430px">商品信息</th>
+								<th style="text-align:center;width:180px">优惠券单价</th>
+								<th style="text-align:center;width:180px">优惠券数量</th>
+								<th style="text-align:center;width:180px">小计</th>
+								<th style="text-align:center;width:180px">操作</th>
+							</tr>
+							<tr>
+								<!-- Shopping Cart Item Image -->
+								<td >
+									
+								    <span class="image pull-left " ><a href="product-details.html"><img src="__PUBLIC__/img/真功夫.jpg" alt="Item Name"></a></span>
+								    
+									<span ><p class="cart-item-title"><a href="page-product-details.html"><strong>真功夫</strong></a></p>
+
+									<p class="feature">仅售13元，价值19元冬（香）菇鸡腿肉饭+香滑蒸蛋！节假日通用，连锁中式快餐，美味套餐，方便快捷，健康营养！
+									</p></span>
+									
+								</td>
+								<!-- Shopping Cart Item Description & Features -->
+								<td class="price" name="price" >
+                                 ￥13.00
+								</td>
+								<!-- Shopping Cart Item Quantity -->
+								<td class="quantity" align="center">
+								   <form class="form-horizontal" role="form">
+									<div class="input-group input-group-sm" style="width:120px">
+										<span class="input-group-btn">
+											<button class="btn btn-grey" type="button"  onClick="javascript:this.form.amount.value--;"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
+										</span>									
+										<input type="text" class="form-control" value="2"  style="text-align:center" name="amount">
+										<span class="input-group-btn">
+											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
+										</span>
+
+									</div>
+									</form>	      
+
+							     
+
+									
+								</td>
+								<!-- Shopping Cart Item Price -->
+								<td class="price" name="smallTotal">￥26.00</td>
+								<!-- Shopping Cart Item Actions -->
+								<td class="actions"  style="text-align:center">
+									<a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-trash"></i> 删除</a>
+									
+								</td>
+							</tr>
+							<tr>
+								<!-- Shopping Cart Item Image -->
+								<td >
+									
+								    <span class="image pull-left " ><a href="product-details.html"><img src="__PUBLIC__/img/汉拿山.jpg" alt="Item Name"></a></span>
+								    
+									<span ><p class="cart-item-title"><a href="page-product-details.html"><strong>汉拿山</strong></a></p>
+
+									<p class="feature">仅售81元，价值100元代金券！滋滋烤肉，缤纷菜品，肉香袅袅，健康绿色，过瘾美味，舌尖上的暴风享受，味蕾中的深层跳动！
+									</p></span>
+									
+								</td>
+								<!-- Shopping Cart Item Description & Features -->
+								<td class="price" name="price" >
+                                 ￥81.00
+								</td>
+								<!-- Shopping Cart Item Quantity -->
+								<td class="quantity" align="center">
+								   
+									<div class="input-group input-group-sm" style="width:120px">
+										<span class="input-group-btn">
+											<button class="btn btn-grey" type="button"  onClick="javascript:this.form.amount.value--;"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
+										</span>									
+										<input type="text" class="form-control" value="1"  style="text-align:center" name="amount">
+										<span class="input-group-btn">
+											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
+										</span>
+
+									</div>
+									      
+
+							     
+
+									
+								</td>
+								<!-- Shopping Cart Item Price -->
+								<td class="price" name="smallTotal">￥81.00</td>
+								<!-- Shopping Cart Item Actions -->
+								<td class="actions"  style="text-align:center">
+									<a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-trash"></i> 删除</a>
+									
+								</td>
+							</tr>
+							<!-- End Shopping Cart Item -->
+							
+						</table>
+						<!-- End Shopping Cart Items -->
+						
+						
+					</div>
+				</div>
+				<div class="row">
+					<!-- Promotion Code -->
+					<div class="col-md-4  col-md-offset-0 col-sm-6 col-sm-offset-6">
+
+					</div>
+					<!-- Shipment Options -->
+					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+
+					</div>
+					
+					<!-- Shopping Cart Totals -->
+					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
+						<table class="cart-totals">
+
+							<tr>
+								<td><b>优惠</b></td>
+								<td>- ￥15.00</td>
+							</tr>
+							<tr class="cart-grand-total">
+								<td><b>应付总额</b></td>
+								<td><b>￥45.00</b></td>
+							</tr>
+						</table>
+						<!-- Action Buttons -->
+						<div class="pull-right">
+							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
+							<a href="{:U('Purchase/orderPay')}" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 提交订单</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!--广告位-->
+<include file="./Home/Tpl/Public/ad.html"/>		
+
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
+
+<!-- Javascripts -->
+<include file="./Home/Tpl/Public/js.html"/>
+
+    </body>
+</html>
