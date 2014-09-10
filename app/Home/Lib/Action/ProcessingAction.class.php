@@ -74,7 +74,44 @@ class ProcessingAction extends Action {
             }else{  
                 $this->redirect("Admin/login","",2,"Fuck");  
             } 
+			
     }  
+	
+	public function search()
+	{
+
+        $db = M('product');
+        import("ORG.Util.Page"); 
+	
+		//mysql_query("set names utf8");
+
+		if(isset($_POST['key'])){						//判断查询的关键字是否存在
+			$key=$_POST['key'];
+		}else if(isset($_GET['key'])){
+			$key=$_GET['key'];
+		}
+
+		if($key!=''){
+			$map="name like('%".$key."%') ";	
+			$list = $db->where($map)->select();
+			$this->assign('searchInfo',$list);				// 赋值数据集
+			$count = $db->where($map)->count(); 		// 查询满足要求的总记录数
+			$Page = new Page($count,8,'key='.$key); 	// 实例化分页类 传入总记录数、每页显示的记录数和查询的关键字
+			$show = $Page->show(); 						// 分页显示输出
+			$this->assign('page',$show);   				// 赋值分页输出	
+			$this->display('search'); 			       // 输出模板
+		
+		}else{	
+
+			echo "<script>alert('请输入关键信息!');history.back();</script>";
+			
+		}
+										
+		
+
+
+		
+	}
 
 }
 ?>
