@@ -4,8 +4,17 @@ header("Content-Type:text/html; charset=UTF-8");
 class ProcessingAction extends Action {
     
     public function startGroup(){
-
-
+        if($_SESSION['email']!=""){
+            $this->assign('v1',"已登录"); 
+            $this->assign('code1',"11"); 
+            $this->assign('v2',"退出"); 
+            $this->assign('code2',"12");
+        }else{
+            $this->assign('v1',"登录"); 
+            $this->assign('code1',"21");
+            $this->assign('v2',"注册"); 
+            $this->assign('code2',"22");            
+        }
 	    $this->display();
     }
     
@@ -44,7 +53,7 @@ class ProcessingAction extends Action {
             //实例化上传类  
             $upload = new UploadFile();  
             $upload->maxSize = 4145728; 
-            $upload->saveRule=time; 
+            //$upload->saveRule=time; 
             //设置文件上传类型  
             $upload->allowExts = array('jpg','gif','png','jpeg');  
             //设置文件上传位置  
@@ -61,7 +70,12 @@ class ProcessingAction extends Action {
             //保存表单数据，包括上传的图片  
             $product = M("product");  
             $product->create();  
-            $savename = $info[0]['savename'];  
+            $product->pic1 = $info[0]['savename']; 
+            $product->pic2 = $info[1]['savename']; 
+            $product->pic3 = $info[2]['savename'];
+            $product->pic4 = $info[3]['savename'];
+            $product->pic5 = $info[4]['savename'];
+            $product->pic6 = $info[5]['savename'];
             //$savepath = $info[0]['savepath'];  
             //$aa = $savepath.$savename;  
             //dump($aa);   
@@ -74,7 +88,6 @@ class ProcessingAction extends Action {
             }else{  
                 $this->redirect("Admin/login","",2,"Fuck");  
             } 
-			
     }  
 	
 	public function search()

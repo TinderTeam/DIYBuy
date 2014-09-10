@@ -71,12 +71,25 @@
 					<div class="col-md-12">
 				
 					<h2>上传组团信息</h2>				
-
-							
-
-						<div class="panel panel-success">
-						    <div class="panel-heading"><strong>宝贝靓照</strong><span> </span></div>
-						    <div class="panel-body">
+					 
+					<div class="panel panel-success">
+						<div class="panel-heading"><strong>产品信息</strong><span> </span></div>
+								<table class="table">
+								  <tr>
+									  <td style=" text-align: center;">产品名称</td>
+									  <td style=" text-align: center;">原价</td>
+									  <td style=" text-align: center;">团购价</td>
+									  <td style=" text-align: center;">到期时间</td>
+								  </tr>
+								  <tr>
+									  <td style=" text-align: center;"><input name="name" type="text" class="form-control" id="userName" placeholder="请输入用产品标题"></td>
+									  <td style=" text-align: center;"><input name="price_original" type="text" class="form-control" id="userName" placeholder="请输入产品原价"></td>
+									  <td style=" text-align: center;"><input name="price_high" type="text" class="form-control" id="userName" placeholder="请输入用团购价"></td>
+									  <td style=" text-align: center;"><input name="time_end" type="text" class="form-control" id="userName" placeholder="到期时间(XXXX-XX-XX)"></td>
+								  </tr>
+								</table>
+						<div class="panel-heading"><strong>宝贝靓照</strong><span> </span></div>
+							<div class="panel-body">
 								<div class="row">
 				
 					<div class="col-md-4 col-sm-6">
@@ -87,7 +100,7 @@
 							</div>
                         </div>
 					        
-                            <input name="up0" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
+                            <input name="img[]" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -96,7 +109,7 @@
 								<img src="" alt="靓照2" height="160px" id="img1">
 							</div>
 						</div>
-                         <input name="up0" type="file" id="up1" onchange="viewmypic(showimg,this.form.up0);"/>
+                         <input name="img[]" type="file" id="up1" onchange="viewmypic(showimg,this.form.up0);"/>
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -106,7 +119,7 @@
 							</div>
 
 						</div>
-							<input type="file" id="up2" onchange="viewmypic(showimg,this.form.up2);"/>
+							<input name="img[]" type="file" id="up2" onchange="viewmypic(showimg,this.form.up2);"/>
 					</div>
 					<div class="clearfix"></div>
 					<div class="col-md-4 col-sm-6">
@@ -115,7 +128,7 @@
 								<img src="" alt="靓照4" height="160px" id="img3">
 							</div>
 						</div>
-								<input type="file" id="up3" onchange="viewmypic(showimg,this.form.up3);"/>
+								<input name="img[]" type="file" id="up3" onchange="viewmypic(showimg,this.form.up3);"/>
 
 						
 					</div>
@@ -125,7 +138,7 @@
 								<img src="" alt="靓照5" height="160px" id="img4">
 							</div>
 						</div>
-								<input type="file" id="up4" onchange="viewmypic(showimg,this.form.up4);"/>
+								<input name="img[]" type="file" id="up4" onchange="viewmypic(showimg,this.form.up4);"/>
 
 						
 					</div>
@@ -135,7 +148,7 @@
 								<img src="" alt="靓照6" height="160px" id="img5">
 							</div>
 						</div>
-								<input name="up5" type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
+								<input name="img[]" type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
 						
 					</div>
 				 
@@ -144,7 +157,7 @@
 							
 						    <div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
 						    <div class="panel-body">
-								<div><textarea name="describ" class="form-control " placeholder="请输入宝贝信息" rows="5"></textarea></div>
+								<div><textarea name="describ" class="form-control " placeholder="请输入宝贝信息" rows="10"></textarea></div>
 								
 								<div class="pull-right">
 								    <button type="button" class="btn btn-success">保存</button>
@@ -153,7 +166,7 @@
 							</div>							
 						    <div class="panel-heading"><strong>团长号令</strong><span> </span></div>
 						    <div class="panel-body">
-								<div><textarea class="form-control " placeholder="团长输入具有吸引力的口号，号召大家一起组团购买" rows="5"> </textarea></div>
+								<div><textarea class="form-control " placeholder="团长输入具有吸引力的口号，号召大家一起组团购买" rows="10"> </textarea></div>
 								
 								<div class="pull-right">
 								    <button type="button" class="btn btn-success">保存</button>
