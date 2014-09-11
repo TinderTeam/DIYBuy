@@ -4,6 +4,7 @@ header("Content-Type:text/html; charset=UTF-8");
 class ProcessingAction extends Action {
     
     public function startGroup(){
+	require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -20,6 +21,7 @@ class ProcessingAction extends Action {
     
 
    public function processing(){
+   require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -92,7 +94,7 @@ class ProcessingAction extends Action {
 	
 	public function search()
 	{
-
+		require './home/Lib/Action/Public.php';
         $db = M('product');
         import("ORG.Util.Page"); 
 	
@@ -127,6 +129,7 @@ class ProcessingAction extends Action {
 	}
 		public function groupDetails()
 		{
+			require './home/Lib/Action/Public.php';
 			$db = M('product');
 			$select=$db->where('id='.$_GET['id'])->select();
 			$this->assign('groupInfo',$select); 

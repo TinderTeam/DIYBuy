@@ -3,7 +3,7 @@
 header("Content-Type:text/html; charset=UTF-8");
 class PurchaseAction extends Action {
     public function productDetails(){
-
+		require './home/Lib/Action/Public.php';
 	    $this->display();
     }
     
