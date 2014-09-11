@@ -136,16 +136,15 @@ class ProcessingAction extends Action {
 	    public function join()
 		{
 			$db = M('product');
-			//$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
-			$db->setInc('current_num','id='.$_GET['id'])
-			//$currentNum = $presentNum+1;
-			//$data['current_num']=$currentNum;
-			//$db->where('id='.$_GET['id'])->data($data)->save();
-			
+			$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
 
-			//$this->display(processing);  	
-            $this->redirect('Index/index','',1,'加入成功!');
-
+			$data['current_num']=$presentNum+1;
+			$result=$db->where('id='.$_GET['id'])->save($data);
+	
+		if($result)
+			{
+				$this->redirect('Processing/processing','',0,'加入成功!');
+			}
 		}
 }
 ?>
