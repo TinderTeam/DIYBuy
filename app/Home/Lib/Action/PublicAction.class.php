@@ -76,6 +76,8 @@ class PublicAction extends Action {
                 $this->redirect("Admin/login","",2,"Fuck");  
             } 
     }
+	
+
     
 
 }

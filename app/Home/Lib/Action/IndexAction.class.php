@@ -6,7 +6,7 @@ header("Content-Type:text/html; charset=UTF-8");
 class IndexAction extends Action { 
     
     public function index(){
-        
+        require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -24,18 +24,26 @@ class IndexAction extends Action {
         import("ORG.Util.Page"); 
         $count = $db->count();
         //$count = $user->where($condition)->count();
-        $Page = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数
-        $show = $Page->show(); 
+        $Page1 = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page1->show(); 
                                                                
-        $list = $db->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
-        $this->assign('productinfo',$list); // 赋值数据集
+        $list1 = $db->order('id')->limit($Page1->firstRow.','.$Page1->listRows)->select();
+        $this->assign('productinfo',$list1); // 赋值数据集
         $this->assign('page',$show); // 赋值分页输出
+		
+
+				
+		
+		
+		
+		
 	    $this->display();
     }
     
 
     
     public function aboutUs(){
+		require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -47,10 +55,12 @@ class IndexAction extends Action {
             $this->assign('v2',"注册"); 
             $this->assign('code2',"22");            
         } 
+		
         $this->display();
     }
     
     public function purchaseHistory(){
+		require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -122,7 +132,7 @@ class IndexAction extends Action {
     }
     	public function search()
 	{
-
+		require './home/Lib/Action/Public.php';
         $db = M('product');
         import("ORG.Util.Page"); 
 	
@@ -155,6 +165,7 @@ class IndexAction extends Action {
 
 		
 	}
+<<<<<<< HEAD
 	public function productsDetails()
 	{
 		$db = M('product');
@@ -162,6 +173,11 @@ class IndexAction extends Action {
 		$this->assign('purchaseInfo',$select); 
 		$this->display('Purchase/productDetails');
 	}
+=======
+	
+	
+	
+>>>>>>> e17fc9802b895ca7fa4c02762827d2a89619bde7
 
 }
 ?>

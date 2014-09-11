@@ -1,12 +1,14 @@
 <!-- 右侧宝贝显示 -->
-	        			<table class="table">
+	        		 	
+						<table class="table">
     						<tr>
     							<h2>正在组团中的宝贝</h2>
     							
     						</tr>
+					<foreach name='siderbarInfo' item='v4' >		
     						<tr>
     							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/华美月饼.jpg);; position: relative;" >
+    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/Uploads/{$v4.pic1});; position: relative;" >
 										<div class="ribbon-wrapper">
 											<div class="price-ribbon ribbon-orange">Top1</div>
 										</div>
@@ -14,181 +16,24 @@
 									
     							</td>
     							<td>
-								<p><strong>华美月饼</strong></p>
-								<p><span>参与人数：</span><span>248/260</span>
+								<p><strong>{$v4.name}</strong></p>
+								<p><span>参与人数：</span><span>{$v4.current_num}/{$v4.total_num}</span>
 								</p>
-    						    <p><span>组团价：</span><span>38.5</span>元
+    						    <p><span>组团价：</span><span>{$v4.price_high}</span>元
 								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
+								<p><a href="__APP__/Processing/groupDetails?id={$v4.id}" class="btn btn-green">加入组团</a></p>
 	    						</td>
     						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/火山湖影城.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top2</div>
-										</div>
-									</div>
-    							</td>
-    							<td>
-								<p><strong>火山湖影城</strong></p>
-								<p><span>参与人数：</span><span>212/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>24.8</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/华美月饼.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top3</div>
-										</div>
-									</div>
-									
-    							</td>
-    							<td>
-								<p><strong>华美月饼</strong></p>
-								<p><span>参与人数：</span><span>248/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>38.5</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/火山湖影城.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top4</div>
-										</div>
-									</div>
-    							</td>
-    							<td>
-								<p><strong>火山湖影城</strong></p>
-								<p><span>参与人数：</span><span>212/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>24.8</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/华美月饼.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top5</div>
-										</div>
-									</div>
-									
-    							</td>
-    							<td>
-								<p><strong>华美月饼</strong></p>
-								<p><span>参与人数：</span><span>248/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>38.5</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/火山湖影城.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top6</div>
-										</div>
-									</div>
-    							</td>
-    							<td>
-								<p><strong>火山湖影城</strong></p>
-								<p><span>参与人数：</span><span>212/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>24.8</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/华美月饼.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top7</div>
-										</div>
-									</div>
-									
-    							</td>
-    							<td>
-								<p><strong>华美月饼</strong></p>
-								<p><span>参与人数：</span><span>248/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>38.5</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/火山湖影城.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top8</div>
-										</div>
-									</div>
-    							</td>
-    							<td>
-								<p><strong>火山湖影城</strong></p>
-								<p><span>参与人数：</span><span>212/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>24.8</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/华美月饼.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top9</div>
-										</div>
-									</div>
-									
-    							</td>
-    							<td>
-								<p><strong>华美月饼</strong></p>
-								<p><span>参与人数：</span><span>248/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>38.5</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>
-    						<tr>
-    							<td>
-    								<div style="width: 100px; height: 100px; background-image: url(__PUBLIC__/img/火山湖影城.jpg);; position: relative;" >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top10</div>
-										</div>
-									</div>
-    							</td>
-    							<td>
-								<p><strong>火山湖影城</strong></p>
-								
-								<p><span>参与人数：</span><span>212/260</span>
-								</p>
-    						    <p><span>组团价：</span><span>24.8</span>元
-								</p>
-								<p><a href="#" class="btn btn-green">加入组团</a></p>
-	    						</td>
-    						</tr>							
+						
  
 
 						
-
+                    </foreach>
     						
     					</table>
 						    <div   style="text-align:center">
                                   
-    							<p><a href="processing.html" >查看更多</a></p>
+    							<p><a href="__APP__/Processing/processing" >查看更多</a></p>
 	    					</div>
 					
 
