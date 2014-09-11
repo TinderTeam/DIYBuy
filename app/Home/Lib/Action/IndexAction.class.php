@@ -168,6 +168,7 @@ class IndexAction extends Action {
 
 	public function productsDetails()
 	{
+		require './home/Lib/Action/Public.php';
 		$db = M('product');
 		$select=$db->where('id='.$_GET['id'])->select();
 		$this->assign('purchaseInfo',$select); 
