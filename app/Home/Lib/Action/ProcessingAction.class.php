@@ -120,11 +120,32 @@ class ProcessingAction extends Action {
 			
 		}
 										
-		
+
 
 
 		
 	}
+		public function groupDetails()
+		{
+			$db = M('product');
+			$select=$db->where('id='.$_GET['id'])->select();
+			$this->assign('groupInfo',$select); 
+			$this->display(groupDetails);
+			
+		}
+	    public function join()
+		{
+			$db = M('product');
+			//$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
+			$db->setInc('current_num','id='.$_GET['id'])
+			//$currentNum = $presentNum+1;
+			//$data['current_num']=$currentNum;
+			//$db->where('id='.$_GET['id'])->data($data)->save();
+			
 
+			//$this->display(processing);  	
+            $this->redirect('Index/index','',1,'加入成功!');
+
+		}
 }
 ?>

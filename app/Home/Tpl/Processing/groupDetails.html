@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+<include file="./Home/Tpl/Public/css.html"/>
+
+<!--图片特效-->
+		
+<link rel="stylesheet" href="__PUBLIC__/css/lightbox.css" media="screen"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+<script src="__PUBLIC__/js/lightbox-2.6.min.js"></script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+<!--页头-->
+<include file="./Home/Tpl/Public/head.html"/>
+
+
+        <!-- Page Title -->
+		<div class="section-breadcrumbs">
+			<div class="container">
+            
+				<div class="row">
+					<div class="col-md-12">
+					<nav id="mainmenu" class="mainmenu">
+
+					<ul>
+
+						<li ><a href="__APP__/Index/index" >今日团购</a>
+						</li>
+						<li class="active"><a href="__APP__/Processing/processing">组团进行时</a>
+						</li>
+						<li><a href="__APP__/Index/purchaseHistory">往期团购</a>
+						</li>
+						<li><a href="__APP__/Index/aboutUs">关于组团购物</a>
+						</li>							
+					</ul>
+					</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+				<div class="col-md-8">
+
+			<form id ="formGD" name="formGD" method="post" action="__URL__/Processing">
+					<div class="row">
+
+					<div class="col-md-12">
+				
+						<h2>组团宝贝信息</h2>				
+					<foreach name='groupInfo' item='v1'>
+						<div class="panel panel-success">
+						<div class="panel-heading"><strong>产品信息</strong><span> </span></div>
+								<table class="table">
+								  <tr>
+									  <td style=" text-align: center;">产品名称</td>
+									  <td style=" text-align: center;">原价</td>
+									  <td style=" text-align: center;">团购价</td>
+									  <td style=" text-align: center;">到期时间</td>
+								  </tr>
+								
+								  <tr>
+									  <td style=" text-align: center;">{$v1.name}</td>
+									  <td style=" text-align: center;">{$v1.price_original}</td>
+									  <td style=" text-align: center;">{$v1.price_high}</td>
+									  <td style=" text-align: center;">{$v1.time_end}</td>
+								  </tr>
+								</table>
+						<div class="panel-heading"><strong>宝贝靓照</strong><span> </span></div>
+							<div class="panel-body">
+								<div class="row">
+				
+					<div class="col-md-4 col-sm-6">
+						
+						<div class="shop-item" style="height:140px">
+														
+							  <a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic1}" data-lightbox="example-1">
+			                  <img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic1}" alt="靓照1" /></a>
+						   
+                        </div>
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="shop-item" style="height:140px">
+														
+							  <a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic2}" data-lightbox="example-2">
+			                  <img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic2}" alt="靓照2" /></a>
+						   
+                        </div>
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="shop-item" style="height:140px">
+														
+							  <a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic3}" data-lightbox="example-3">
+			                  <img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic3}" alt="靓照3" /></a>
+						   
+                        </div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="col-md-4 col-sm-6">
+						<div class="shop-item" style="height:140px">
+														
+							  <a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic4}" data-lightbox="example-4">
+			                  <img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic4}" alt="靓照4" /></a>
+						   
+                        </div>
+
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="shop-item" style="height:140px">
+														
+							  <a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic5}" data-lightbox="example-5">
+			                  <img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic5}" alt="靓照5" /></a>
+						   
+                        </div>
+
+						
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="shop-item" style="height:140px">
+														
+							  <a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic6}" data-lightbox="example-6">
+			                  <img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic6}" alt="靓照6" /></a>
+						   
+                        </div>
+						
+					</div>
+				 
+								</div>
+							</div>
+							
+						    <div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
+						    <div class="panel-body">
+								<div>{$v1.describ}</div>
+								
+
+							</div>							
+						    <div class="panel-heading"><strong>团长号令</strong><span> </span></div>
+						    <div class="panel-body">
+								<div>{$v1.comment}</div>
+								
+
+							</div>
+
+							
+                            <hr/>	
+                            <div align="center">
+								    <button type="submit" class="btn btn-success" href="__URL__/join?id={$v1.id}">加入组团</button>
+								    <button type="submit" class="btn btn-grey" href="__URL__/processing">返回</button>			
+							</div>
+<hr/>						
+						</div>
+				</foreach>
+					
+					</div>
+				<!-- End Product -->
+					</div>
+	
+		</form>		
+				</div>
+			<!-- 正在组团中的宝贝 -->
+				<div class="col-sm-4">
+							<include file="./Home/Tpl/Public/siderbar.html"/>	
+					</div>
+					
+				</div>
+			</div>
+        
+	    </div>
+
+		
+
+
+
+<!--广告位-->
+<include file="./Home/Tpl/Public/ad.html"/>		
+
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
+
+<!-- Javascripts -->
+<include file="./Home/Tpl/Public/js.html"/>
+		
+
+
+    </body>
+</html>

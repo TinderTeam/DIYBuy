@@ -35,13 +35,13 @@
 
 					<ul>
 
-						<li ><a href="{:U('Index/index')}" >今日团购</a>
+						<li ><a href="__APP__/Index/index" >今日团购</a>
 						</li>
-						<li class="active"><a href="{:U('Processing/processing')}">组团进行时</a>
+						<li class="active"><a href="__APP__/Processing/processing">组团进行时</a>
 						</li>
-						<li><a href="{:U('Index/purchaseHistory')}">往期团购</a>
+						<li><a href="__APP__/Index/purchaseHistory">往期团购</a>
 						</li>
-						<li><a href="{:U('Index/aboutUs')}">关于组团购物</a>
+						<li><a href="__APP__/Index/aboutUs">关于组团购物</a>
 						</li>						
 					</ul>
 					</nav>
@@ -80,9 +80,9 @@
 			
 					<div class="row">
 
-
+                 <form id ="formP" name="formP" method="post" action="__URL__/groupDetails">
 					<div class="col-md-12">
-
+						
 					
 						<div class="panel panel-success">
 						    <div class="panel-heading"><strong>组团进行时</strong><span> </span></div>
@@ -101,7 +101,7 @@
                             <tr class="content">
 	    						<td><div class="event-date">{$v4.time_start}</div></td>
 	    						<td>
-	    							{$v4.name}
+	    							<a href="__URL__/groupDetails?id={$v4.id}">{$v4.name}</a>
 	    						</td>
 	    						<td class="event-venue hidden-xs"><i class="icon-map-marker"></i>{$v4.current_num}/{$v4.total_num}</td>
 	    						<td class="event-price hidden-xs">{$v4.status}</td>
@@ -117,7 +117,9 @@
 						   </div>
 						</div>  <!-- panel-->
 					
-				</div>
+					
+				    </div>
+				</form>
 				<!-- End Product -->
 			</div>
 				
