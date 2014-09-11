@@ -32,10 +32,10 @@ $this->assign(array(
         $show = $Page2->show(); 
 
 		
-		$list2 = $db->where('status='.'"组团中"')->order('total_num-current_num asc,id asc')->limit($Page2->firstRow.','.$Page2->listRows)->select();
+		$list2 = $db->where('status='.'"组团中"')->order('total_num-current_num asc,id asc')->limit(10)->select();
                                                                
         //$list2 = $db->where('status='.'"组团中"')->order('id asc')->limit($Page2->firstRow.','.$Page2->listRows)->select();
         $this->assign('siderbarInfo',$list2); // 赋值数据集
-        $this->assign('page2',$show); // 赋值分页输出
+        //$this->assign('page2',$show); // 赋值分页输出
 	   	
 ?>

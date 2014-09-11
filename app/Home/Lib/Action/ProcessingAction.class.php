@@ -39,7 +39,7 @@ class ProcessingAction extends Action {
         import("ORG.Util.Page"); 
         $count = $db->count();
         //$count = $user->where($condition)->count();
-        $Page = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数
+        $Page = new Page($count,10);  // 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show(); 
                                                                
         $list = $db->order("time_start desc")->limit($Page->firstRow.','.$Page->listRows)->select();
