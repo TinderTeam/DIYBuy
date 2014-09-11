@@ -58,7 +58,8 @@
 
 		<div class="section">
 	    	<div class="container">
-
+								<form class="form-horizontal" role="form">
+								<foreach name='orderInfo' item='v1'>
 				<div class="row">
 					<div class="col-md-12">
 						<!-- Shopping Cart Items -->
@@ -69,98 +70,48 @@
 						<table class="shopping-cart table">
 							<!-- Shopping Cart Item -->
 							<tr class="success">
-								<th style="text-align:center;width:430px">商品信息</th>
-								<th style="text-align:center;width:180px">优惠券单价</th>
-								<th style="text-align:center;width:180px">优惠券数量</th>
-								<th style="text-align:center;width:180px">小计</th>
-								<th style="text-align:center;width:180px">操作</th>
+								<th style="text-align:center;width:700px">商品信息</th>
+								<th style="text-align:center;width:220px">优惠券单价</th>
+								<th style="text-align:center;width:220px">优惠券数量</th>
+
 							</tr>
 							<tr>
 								<!-- Shopping Cart Item Image -->
+
 								<td >
+									<div class="row">
+									<div class="col-md-2"></div>
+								    <div class="image  col-md-4" ><a href="product-details.html"><img src="__PUBLIC__/Uploads/{$v1.pic1}" alt="Item Name"></a></div>
+								    <div class="col-md-1"></div>
+									<div class="col-md-5 " ><p class="cart-item-title"><a href="page-product-details.html"><strong>{$v1.name}</strong></a></p>
 									
-								    <span class="image pull-left " ><a href="product-details.html"><img src="__PUBLIC__/img/真功夫.jpg" alt="Item Name"></a></span>
-								    
-									<span ><p class="cart-item-title"><a href="page-product-details.html"><strong>真功夫</strong></a></p>
-
-									<p class="feature">仅售13元，价值19元冬（香）菇鸡腿肉饭+香滑蒸蛋！节假日通用，连锁中式快餐，美味套餐，方便快捷，健康营养！
-									</p></span>
-									
-								</td>
-								<!-- Shopping Cart Item Description & Features -->
-								<td class="price" name="price" >
-                                 ￥13.00
-								</td>
-								<!-- Shopping Cart Item Quantity -->
-								<td class="quantity" align="center">
-								   <form class="form-horizontal" role="form">
-									<div class="input-group input-group-sm" style="width:120px">
-										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button"  onClick="javascript:this.form.amount.value--;"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
-										</span>									
-										<input type="text" class="form-control" value="2"  style="text-align:center" name="amount">
-										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
-										</span>
-
+									<p class="feature">{$v1.describ}</p>
 									</div>
-									</form>	      
-
-							     
-
-									
-								</td>
-								<!-- Shopping Cart Item Price -->
-								<td class="price" name="smallTotal">￥26.00</td>
-								<!-- Shopping Cart Item Actions -->
-								<td class="actions"  style="text-align:center">
-									<a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-trash"></i> 删除</a>
-									
-								</td>
-							</tr>
-							<tr>
-								<!-- Shopping Cart Item Image -->
-								<td >
-									
-								    <span class="image pull-left " ><a href="product-details.html"><img src="__PUBLIC__/img/汉拿山.jpg" alt="Item Name"></a></span>
-								    
-									<span ><p class="cart-item-title"><a href="page-product-details.html"><strong>汉拿山</strong></a></p>
-
-									<p class="feature">仅售81元，价值100元代金券！滋滋烤肉，缤纷菜品，肉香袅袅，健康绿色，过瘾美味，舌尖上的暴风享受，味蕾中的深层跳动！
-									</p></span>
+									</div>
 									
 								</td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td class="price" name="price" >
-                                 ￥81.00
+                                 ￥{$v1.price_high}
 								</td>
 								<!-- Shopping Cart Item Quantity -->
 								<td class="quantity" align="center">
 								   
 									<div class="input-group input-group-sm" style="width:120px">
 										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button"  onClick="javascript:this.form.amount.value--;"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
+											<button class="btn btn-grey" type="button"  onClick="javascript:if(this.form.amount.value>1)this.form.amount.value--;document.getElementById('sum').innerText = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
 										</span>									
 										<input type="text" class="form-control" value="1"  style="text-align:center" name="amount">
 										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
+											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;document.getElementById('sum').innerText = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
 										</span>
 
 									</div>
-									      
-
-							     
-
-									
+									     
 								</td>
-								<!-- Shopping Cart Item Price -->
-								<td class="price" name="smallTotal">￥81.00</td>
-								<!-- Shopping Cart Item Actions -->
-								<td class="actions"  style="text-align:center">
-									<a href="#" class="btn btn-grey"><i class="glyphicon glyphicon-trash"></i> 删除</a>
-									
-								</td>
+								
 							</tr>
+							
 							<!-- End Shopping Cart Item -->
 							
 						</table>
@@ -183,13 +134,9 @@
 					<div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
 						<table class="cart-totals">
 
-							<tr>
-								<td><b>优惠</b></td>
-								<td>- ￥15.00</td>
-							</tr>
 							<tr class="cart-grand-total">
 								<td><b>应付总额</b></td>
-								<td><b>￥45.00</b></td>
+								<td><b>￥<label id="sum" >{$v1.price_high}</label></b></td>
 							</tr>
 						</table>
 						<!-- Action Buttons -->
@@ -199,6 +146,9 @@
 						</div>
 					</div>
 				</div>
+				
+					</foreach>
+				</form>	
 			</div>
 		</div>
 

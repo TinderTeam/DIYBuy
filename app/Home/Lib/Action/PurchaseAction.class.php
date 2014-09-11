@@ -18,7 +18,13 @@ class PurchaseAction extends Action {
 
 	    $this->display();
     }
-    
+	
+    public function generateOrder(){
+		$db = M('product');
+		$select=$db->where('id='.$_GET['id'])->select();
+		$this->assign('orderInfo',$select); 
+		$this->display('orderList');
+    }
 
 }
 ?>

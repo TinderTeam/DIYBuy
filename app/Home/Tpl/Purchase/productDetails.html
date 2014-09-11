@@ -63,14 +63,14 @@
 					<div class="col-md-8">
 
 			   <h2>产品详情</h2>
+			   <foreach name='purchaseInfo' item='v1'>
 				<div class="row">
 					<!-- Image Column -->
 					<div class="col-sm-6">
 						<div class="shop-item" style="height:230px" >
 							<div >
-					
-			<a class="example-image-link" href="__PUBLIC__/img/真功夫.jpg" data-lightbox="example-1">
-			<img class="example-image" src="__PUBLIC__/img/真功夫.jpg" alt="thumb-1" /></a>
+							<a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic1}" data-lightbox="example-1">
+							<img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic1}" alt="thumb-1" /></a>
 							</div>
 						</div>
 					</div>
@@ -78,27 +78,27 @@
 					<!-- Project Info Column -->
 					<div class="portfolio-item-description col-sm-6">
 
-						<h3>真功夫</h3>
+						<h3>{$v1.name}</h3>
 						
 						<p id="goods_brief">
-					     仅售13元，价值19元冬（香）菇鸡腿肉饭+香滑蒸蛋！节假日通用，连锁中式快餐，美味套餐，方便快捷，健康营养！
+					     {$v1.describ}
 						</p>
 						<hr/>
 						<p class="product-details ">
-	    			        <span class="price" id="promote_price">￥13</span>
+	    			        <span class="price" id="promote_price">￥{$v1.price_high}</span>
 	    				
-							<span class="price-was">￥19</span> 
+							<span class="price-was">￥{$v1.price_original}</span> 
 
 						</p>
 						
 						
 						<ul class="no-list-style">
-							<li><b>当前状态:</b> 组团中</li>
+							<li><b>当前状态:</b>{$v1.status}</li>
 							<li><b>剩余时间:</b> 01天12小时15分55秒</li>
-							<li><b>参团人数:</b> 248/260</li>
+							<li><b>参团人数:</b> {$v1.current_num}/{$v1.total_num}</li>
 
 						</ul>
-						<div class="row"><span class="col-xs-6"><a href="{:U('Purchase/orderList')}" class="btn">立即抢团</a></li>
+						<div class="row"><span class="col-xs-6"><a href="__APP__/Purchase/generateOrder?id={$v1.id}" class="btn">立即抢团</a>
 						</span>
 						
 <span class="bdsharebuttonbox col-xs-6 pull-right"><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></span></div>
@@ -117,47 +117,41 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 					<div class="col-md-4 col-sm-6">
 						<div class="portfolio-item">
 							<div class="portfolio-image" name="img">
-								<a href="#"><img src="__PUBLIC__/img/真功夫1.jpg" alt="Project Name"></a>
+								<a href="#"><img src="__PUBLIC__/Uploads/{$v1.pic2}" alt="Project Name"></a>
 							</div>
 							<div class="portfolio-info-fade">
-								<ul>
+								<!--<ul>
 									<li class="portfolio-project-name">蒸鸡蛋</li>
-									
-									
-									
-								</ul>
+								</ul>-->
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6">
 						<div class="portfolio-item">
 							<div class="portfolio-image" name="img">
-								<a href="#"><img src="__PUBLIC__/img/真功夫2.jpg" alt="Project Name"></a>
+								<a href="#"><img src="__PUBLIC__/Uploads/{$v1.pic3}" alt="Project Name"></a>
 							</div>
 							<div class="portfolio-info-fade">
-								<ul>
+								<!--<ul>
 									<li class="portfolio-project-name">香菇鸡腿</li>
-									
-
-								</ul>
+								</ul>-->
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6">
 						<div class="portfolio-item">
 							<div class="portfolio-image" name="img">
-								<a href="#"><img src="__PUBLIC__/img/真功夫3.jpg" alt="Project Name"></a>
+								<a href="#"><img src="__PUBLIC__/Uploads/{$v1.pic4}" alt="Project Name"></a>
 							</div>
 							<div class="portfolio-info-fade">
-								<ul>
+								<!--<ul><ul>
 									<li class="portfolio-project-name">套餐</li>
-									
-
-								</ul>
+								</ul>-->
 							</div>
 						</div>
 					</div>
 				</div>
+				</foreach>
 				<!-- End Related Projects -->
 					</div><!-- page center-->
 					
