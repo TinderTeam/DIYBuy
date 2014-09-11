@@ -165,7 +165,7 @@ class IndexAction extends Action {
 
 		
 	}
-<<<<<<< HEAD
+
 	public function productsDetails()
 	{
 		$db = M('product');
@@ -173,11 +173,7 @@ class IndexAction extends Action {
 		$this->assign('purchaseInfo',$select); 
 		$this->display('Purchase/productDetails');
 	}
-=======
-	
-	
-	
->>>>>>> e17fc9802b895ca7fa4c02762827d2a89619bde7
+
 
 }
 ?>
