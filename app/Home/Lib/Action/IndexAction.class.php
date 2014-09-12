@@ -8,11 +8,10 @@ class IndexAction extends Action {
     public function index(){
         require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
-	$db = M('user');
-	$condition['email']=$_SESSION['email'];
-	$name = $User->where($condition)->getField('name');
-        $this->assign('v1',"$name"); 
-            $this->assign('v1',"已登录"); 
+		$db = M('user');
+		$condition['email']=$_SESSION['email'];
+		$n= $db->where($condition)->getField('name');
+			$this->assign('v1',"$n"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
@@ -34,6 +33,10 @@ class IndexAction extends Action {
         $this->assign('page',$show); // 赋值分页输出
 	$this->display();
     }
+	
+	public function login(){
+		$this->display();
+	}
     
 
     
@@ -42,7 +45,7 @@ class IndexAction extends Action {
         if($_SESSION['email']!=""){
 			$db = M('user');
 			$condition['email']=$_SESSION['email'];
-			$name = $User->where($condition)->getField('name');
+			$name = $db->where($condition)->getField('name');
             $this->assign('v1',"$name"); 
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -63,7 +66,7 @@ class IndexAction extends Action {
         if($_SESSION['email']!=""){
 			$db = M('user');
 			$condition['email']=$_SESSION['email'];
-			$name = $User->where($condition)->getField('name');
+			$name = $db->where($condition)->getField('name');
             $this->assign('v1',"$name"); 
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -98,7 +101,7 @@ class IndexAction extends Action {
         $_SESSION['email']= $_POST['email'];
         $condition['email']=$_POST['email'];
         $password=$_POST['pwd'];
-        $pwd = $User->where($condition)->getField('pwd');
+        $pwd = $db->where($condition)->getField('pwd');
         if($_SESSION['email']!=""){
         if($User->create()){
             
