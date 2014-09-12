@@ -101,7 +101,7 @@ class IndexAction extends Action {
         $_SESSION['email']= $_POST['email'];
         $condition['email']=$_POST['email'];
         $password=$_POST['pwd'];
-        $pwd = $db->where($condition)->getField('pwd');
+        $pwd = $User->where($condition)->getField('pwd');
         if($_SESSION['email']!=""){
         if($User->create()){
             
