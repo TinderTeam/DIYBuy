@@ -5,10 +5,15 @@
 	        <div class="container">
 	        	<div class="menuextras">
 					<div class="extras">
-						<ul>
-							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>我的DIY团购</b></a></li>
-
-			        		<li><a href="__APP__/Public/select1/code1/{$code1}">{$v1}</a></li>
+						<ul >
+							<li class="dropdown"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"  data-toggle="dropdown"><b>我的DIY团购</b></a>
+									<ul class="dropdown-menu" role="menu">
+										<li role="menuitem"><a href="#">账户设置</a></li>
+										<li role="menuitem"><a href="#">我的订单</a></li>
+										<li role="menuitem"><a href="#">我发起的组团</a></li>
+									</ul>
+							</li>
+							<li><a href="__APP__/Public/select1/code1/{$code1}">{$v1}</a></li>
 							<li><a href="__APP__/Public/select2/code2/{$code2}">{$v2}</a></li>
 			        	</ul>
 					</div>
