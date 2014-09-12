@@ -39,6 +39,10 @@ class AdminAction extends Action{
     public function productInfo(){
         
         if($_SESSION['name']!=""){
+			$db = M('product');
+			$condition['id']=$_POST['botton1'];
+			$audit=$db->where($condition)->select();
+			$this->assign('audit',$audit); // 赋值数据集
             $this->display();
         }else{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
@@ -87,7 +91,7 @@ class AdminAction extends Action{
             $list = $db->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
             $this->assign('productlist',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
-            $this->display(product);
+            $this->display();
         }
     }
     
@@ -105,6 +109,14 @@ class AdminAction extends Action{
             $list = $db->order('Id')->limit($Page->firstRow.','.$Page->listRows)->select();
             $this->assign('adlist',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
+            $this->display();
+        }
+    }
+	
+    public function upload(){
+        if($_SESSION['name']==""){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
             $this->display();
         }
     }
@@ -212,10 +224,15 @@ class AdminAction extends Action{
     }
     
     public function deletProduct(){
-        $User = M("product"); // 实例化product对象
-        $User->where('id=5')->delete(); // 删除id为5的用户数据
-        $User->delete('1,2,5'); // 删除主键为1,2和5的用户数据
-        $User->where('status=0')->delete(); //删除所有状态为0的用户数据
+        $product = M("product"); // 实例化product对象
+		$condition['id']=$_POST['botton'];
+		if($product->where($condition)->delete()){// 删除id为5的用户数据
+			$this->success("删除成功！");
+		}else{
+			$this->error("删除失败！");
+		}
+        //$product->delete('1,2,5'); // 删除主键为1,2和5的用户数据
+        //$product->where('status=0')->delete(); //删除所有状态为0的用户数据
     }
     
     public function update(){
