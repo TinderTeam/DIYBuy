@@ -3,14 +3,11 @@
 header("Content-Type:text/html; charset=UTF-8");
 class PurchaseAction extends Action {
     public function productDetails(){
-		require './home/Lib/Action/Public.php';
-	    $this->display();
-    }
-    
-    public function orderList(){
-
-
-	    $this->display();
+	require './home/Lib/Action/Public.php';
+		$db = M('product');
+		$select=$db->where('id='.$_GET['id'])->select();
+		$this->assign('purchaseInfo',$select); 
+		$this->display();
     }
     
     public function orderPay(){
@@ -30,14 +27,7 @@ class PurchaseAction extends Action {
 			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
         }
 
-	    $this->display();
-    }
-	
-
-
-    public function orderPay(){
-
-		$orderID=$_POST['orderID'];
+	    $orderID=$_POST['orderID'];
 		$db = M('product');
 		$select=$db->where('id='.$orderID)->select();
 		$this->assign('payInfo',$select); 
