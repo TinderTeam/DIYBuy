@@ -58,8 +58,8 @@
 
 		<div class="section">
 	    	<div class="container">
-								<form class="form-horizontal" role="form">
-								<foreach name='orderInfo' item='v1'>
+			<form class="form-horizontal" role="form" action="__URL__/orderSubmit" method="POST" name="form">
+			<foreach name='orderInfo' item='v1'>
 				<div class="row">
 					<div class="col-md-12">
 						<!-- Shopping Cart Items -->
@@ -70,7 +70,8 @@
 						<table class="shopping-cart table">
 							<!-- Shopping Cart Item -->
 							<tr class="success">
-								<th style="text-align:center;width:700px">商品信息</th>
+								<th style="text-align:center;width:300px">商品图片</th>
+								<th style="text-align:center;width:400px">商品描述</th>
 								<th style="text-align:center;width:220px">优惠券单价</th>
 								<th style="text-align:center;width:220px">优惠券数量</th>
 
@@ -80,19 +81,21 @@
 
 								<td >
 									<div class="row">
-									<div class="col-md-2"></div>
-								    <div class="image  col-md-4" ><a href="product-details.html"><img src="__PUBLIC__/Uploads/{$v1.pic1}" alt="Item Name"></a></div>
-								    <div class="col-md-1"></div>
-									<div class="col-md-5 " ><p class="cart-item-title"><a href="page-product-details.html"><strong>{$v1.name}</strong></a></p>
-									
-									<p class="feature">{$v1.describ}</p>
-									</div>
+										<div class="col-md-3"></div>
+										<div class="image col-md-4" ><a href="product-details.html"><img src="__PUBLIC__/Uploads/{$v1.pic1}" alt="Item Name"></a></div>
 									</div>
 									
 								</td>
+								<td >
+									
+									<div class="col-md-12">
+										<p class="cart-item-title"><a href="page-product-details.html"><strong>{$v1.name}</strong></a></p>
+										<p class="feature">{$v1.describ}</p>
+									</div>
+								</td>
 								<!-- Shopping Cart Item Description & Features -->
 								<td class="price" name="price" >
-                                 ￥{$v1.price_high}
+									￥{$v1.price_high}
 								</td>
 								<!-- Shopping Cart Item Quantity -->
 								<td class="quantity" align="center">
@@ -100,8 +103,9 @@
 									<div class="input-group input-group-sm" style="width:120px">
 										<span class="input-group-btn">
 											<button class="btn btn-grey" type="button"  onClick="javascript:if(this.form.amount.value>1)this.form.amount.value--;document.getElementById('sum').innerText = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
-										</span>									
-										<input type="text" class="form-control" value="1"  style="text-align:center" name="amount">
+										</span>	
+										<input type="text" class="form-control" value="{$v1.id}" style="display:none;" name="orderID"/>
+										<input type="text" class="form-control" value="1"  style="text-align:center" readonly = "true" name="amount"/>
 										<span class="input-group-btn">
 											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;document.getElementById('sum').innerText = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
 										</span>
@@ -136,13 +140,14 @@
 
 							<tr class="cart-grand-total">
 								<td><b>应付总额</b></td>
-								<td><b>￥<label id="sum" >{$v1.price_high}</label></b></td>
+								<td><b>￥<label id="sum" name="sumMoney">{$v1.price_high}</label></b></td>
 							</tr>
 						</table>
 						<!-- Action Buttons -->
 						<div class="pull-right">
-							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
-							<a href="{:U('Purchase/orderPay')}" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 提交订单</a>
+							<a href="javascript:history.go(-1);" class="btn btn-green"> 返回上一步</a>
+							<button type="submit" class="btn btn-green" ><strong>提交订单</strong></button>
+			
 						</div>
 					</div>
 				</div>

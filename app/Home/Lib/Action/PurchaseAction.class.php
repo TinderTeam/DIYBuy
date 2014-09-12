@@ -25,6 +25,18 @@ class PurchaseAction extends Action {
 		$this->assign('orderInfo',$select); 
 		$this->display('orderList');
     }
+	
+	public function orderSubmit(){
+		$orderID=$_POST['orderID'];
+		$db = M('product');
+		$select=$db->where('id='.$orderID)->select();
+		$this->assign('payInfo',$select); 
+		$amount=$_POST['amount'];
+		$this->assign('amount',$amount);
+		$sumMoney=$amount*$db->where('id='.$orderID)->getField('price_high');
+		$this->assign('sumMoney',$sumMoney);
+		$this->display('orderPay');
+    }
 
 }
 ?>
