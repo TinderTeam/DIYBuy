@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Lang" content="en">
+<meta http-equiv="Reply-to" content="@.com">
+<meta name="generator" content="PhpED 8.0">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="creation-date" content="09/06/2012">
+<meta name="revisit-after" content="15 days">
+<title>DIY团购网站后台管理系统</title>
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.css" type="text/css"/>  
+</head>
+<body> 
+
+<div id="Container">  <!--页面容器--> 
+    <hr/>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-7">
+            <ul class="nav nav-pills nav-justified" role="tablist">
+              <li role="presentation" ><a href="__URL__/manage">会员管理</a></li> 
+              <li role="presentation" class="active"><a href="__URL__/ad">广告管理</a></li>
+              <li role="presentation"><a href="__URL__/product">产品管理</a></li>
+              <li role="presentation"><a href="__URL__/upload">上传产品</a></li>
+            </ul>
+
+        </div>
+        <div class="col-xs-1">
+            <p class="text-justify" style="padding-top: 10px;">用户:{$Think.session.name}</p>
+        </div>
+        
+        <div class="col-xs-3">
+        <form action="__URL__/logout" method="POST">
+            <button type="submit" class="btn-sm btn-primary">退出登陆</button></form>
+        </div>        
+    </div>
+    <hr/>
+    
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">    
+            
+            <div class="row"> <!--添加管理员-->
+                <div class="col-xs-12">
+                <div class="panel panel-primary">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading">广告信息</div>
+
+                  <!-- Table -->
+                  <table class="table">
+                  <tr><td style=" text-align: center;">ID</td><td style=" text-align: center;">广告位置</td>
+				  <td style=" text-align: center;">广告名</td><td style=" text-align: center;">链接</td>
+				  <td style=" text-align: center;">价格</td> <td style=" text-align: center;">图片预览</td>
+                  <td style=" text-align: center;">备注</td>
+                  </tr>
+				  
+                  <foreach name='adlist' item='vo' >                                        
+                  <tr class="content">
+				  <td style=" text-align: center;">{$vo.Id}</td>
+                  <td style=" text-align: center;">{$vo.position}</td>
+                  <td style=" text-align: center;">{$vo.name}</td>
+                  <td style=" text-align: center;">{$vo.url}</td>
+				  <td style=" text-align: center;">{$vo.price}</td>
+                  <td style=" text-align: center;"><img src="__PUBLIC__/Uploads/{$vo.imgname}" alt="图片预览" height="60px" width="100px"></td>
+                  <td style=" text-align: center;">{$vo.note}</td>             
+				  </foreach>
+                  </table> 
+                </div>
+                </div>
+                
+            </div> <!--显示广告-->
+   
+            <div class="row"> <!--添加广告-->
+                <div class="col-xs-12">
+                <div class="panel panel-primary">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading">上传广告</div>
+
+                  <!-- Table -->
+                  <form action="__URL__/editChk" method="POST" enctype="multipart/form-data"> 
+                  <table class="table">
+                  <tr><td style=" text-align: center;">ID</td><td style=" text-align: center;">广告名</td>
+                  <td style=" text-align: center;">链接</td><td style=" text-align: center;">价格</td>
+                  <td style=" text-align: center;">上传图片</td><td style=" text-align: center;">备注</td>
+                  <td style=" text-align: center;">操作</td>
+                  </tr>
+				  
+                  <tr class="content">
+                  <td style=" text-align: center; "><input size="2" type="text" class="form-control" name="Id" placeholder="1~6"></td>
+                  <td style=" text-align: center;"><input type="text" class="form-control" name="name" placeholder="输入广告名"></td>
+                  <td style=" text-align: center;"><input type="text" class="form-control" name="url" placeholder="输入广告链接"></td>
+				  <td style=" text-align: center;"><input size="2" type="text" class="form-control" name="price" placeholder="价格"></td>
+                  <td style=" text-align: center;">
+                  <input name="img" type="file" id="img" size="20" onchange="viewmypic(showimg,this.form.img);"/>
+                  </td>
+                  <td style=" text-align: center;"><input type="text" class="form-control" name="note" placeholder="备注"></td> 
+                  <td style=" text-align: center;">
+                        <button name="button" type="submit" class="btn-sm btn-default">保存</button>
+                  </td></tr> 
+				  
+				  </table>
+				  </form>
+				</div>
+				</div>
+			</div>	<!--添加广告-->	
+            
+        </div>
+        </div>
+        <div class="col-xs-1"></div>
+        
+
+    </div>
+    
+    
+</div>
+
+
+</body>
+</html>

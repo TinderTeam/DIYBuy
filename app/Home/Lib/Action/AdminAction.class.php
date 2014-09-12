@@ -91,7 +91,7 @@ class AdminAction extends Action{
         }
     }
     
-    public function administrater(){
+    public function ad(){
         if($_SESSION['name']==""){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
@@ -102,7 +102,7 @@ class AdminAction extends Action{
             $Page = new Page($count,6);                     // 实例化分页类 传入总记录数和每页显示的记录数
             $show = $Page->show(); 
                                                            
-            $list = $db->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
+            $list = $db->order('Id')->limit($Page->firstRow.','.$Page->listRows)->select();
             $this->assign('adlist',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
             $this->display();
@@ -120,7 +120,7 @@ class AdminAction extends Action{
             //设置文件上传位置  
             $upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
             //设置文件上传名(按照时间)  
-            $upload->saveRule = "time";  
+            //$upload->saveRule = "time";  
             if (!$upload->upload()){  
                 $this->error($upload->getErrorMsg());  
             }else{  
@@ -134,7 +134,7 @@ class AdminAction extends Action{
             //$data['publishtime'] = date("Y-m-d H:i:s");  
             $res = $product->add();//写入数据库   
             if ($res){  
-                $this->redirect("Admin/info","",2,"OK");  
+                $this->redirect("Admin/upload","",2,"OK");  
             }else{  
                 $this->redirect("Admin/login","",2,"error");  
             } 
@@ -152,7 +152,7 @@ class AdminAction extends Action{
             //设置文件上传位置  
             $upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
             //设置文件上传名(按照时间)  
-            $upload->saveRule = "time";  
+            //$upload->saveRule = "time";  
             if (!$upload->upload()){  
                 $this->error($upload->getErrorMsg());  
             }else{  
@@ -163,29 +163,26 @@ class AdminAction extends Action{
             //保存表单数据，包括上传的图片  
             //保存表单数据，包括上传的图片  
             $ad   =   M('ad');
-            $ad->find(1);
-            $ad->imgname = $info[0]['savename'];
+            $condition['Id']=$_POST['Id'];
+            $data['imgname']=$info[0]['savename'];
              
-            $ad->Id = $__POST__['botton'];
             
             if($ad->create()){
-                $result =   $ad->save($ad);
+                $result =   $ad->save();
                 if($result) {
+		if($ad->where($condition)->save($data)){
                     $this->success('操作成功！');
                     //$this->redirect("Admin/administrater","",1,"OK");
+					} else{
+						$this->error('写入2B错误！');
+					}
                 }else{
-                    $this->show('写入错误！');
+                    $this->error('写入错误！');
                     //$this->error("保存错误！"); 
                 }
             }else{
                 $this->error($ad->getError());
-            }   
-            //$savepath = $info[0]['savepath'];  
-            //$aa = $savepath.$savename;  
-            //dump($aa);   
-            //dump($imgurl);  
-    
-            //$data['publishtime'] = date("Y-m-d H:i:s");    
+            }      
     }
 	
     public function read($id=0){

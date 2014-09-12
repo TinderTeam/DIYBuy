@@ -8,6 +8,10 @@ class IndexAction extends Action {
     public function index(){
         require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
+	$db = M('user');
+	$condition['email']=$_SESSION['email'];
+	$name = $User->where($condition)->getField('name');
+        $this->assign('v1',"$name"); 
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
@@ -36,6 +40,10 @@ class IndexAction extends Action {
     public function aboutUs(){
 		require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
+			$db = M('user');
+			$condition['email']=$_SESSION['email'];
+			$name = $User->where($condition)->getField('name');
+            $this->assign('v1',"$name"); 
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
@@ -53,6 +61,10 @@ class IndexAction extends Action {
     public function purchaseHistory(){
 		require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
+			$db = M('user');
+			$condition['email']=$_SESSION['email'];
+			$name = $User->where($condition)->getField('name');
+            $this->assign('v1',"$name"); 
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
@@ -74,7 +86,6 @@ class IndexAction extends Action {
 	$show = $historyPage->show(); 
 	$this->assign('showPage',$show); // 赋值分页输出
         $this->display();
-		
     }
     
     

@@ -11,10 +11,7 @@ class ProcessingAction extends Action {
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
         }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
+		$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
         }
 	    $this->display();
     }
