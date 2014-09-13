@@ -69,7 +69,6 @@
                     <hr/>		
 
 							
-                    <form action="__URL__/addChk" method="POST" enctype="multipart/form-data">
                     
                     <div class="panel panel-primary">
                         <div class="panel-heading">产品信息<span> </span></div>
@@ -82,11 +81,11 @@
                                       <td style=" text-align: center;">团购人数</td>
                                   </tr>
                                   <tr>
-                                      <td style=" text-align: center;"><input name="name" type="text" class="form-control" id="userName" placeholder="请输入用产品标题"></td>
-                                      <td style=" text-align: center;"><input name="price_original" type="text" class="form-control" id="userName" placeholder="请输入产品原价"></td>
-                                      <td style=" text-align: center;"><input name="price_high" type="text" class="form-control" id="userName" placeholder="请输入用团购价"></td>
-                                      <td style=" text-align: center;"><input name="time_end" type="text" class="form-control" id="userName" placeholder="到期时间(XXXX-XX-XX)"></td>
-                                      <td style=" text-align: center;"><input name="time_end" type="text" class="form-control" id="userName" placeholder="请输入团购人数"></td>
+                                      <td style=" text-align: center;">{$audit[0].name}</td>
+                                      <td style=" text-align: center;">{$audit[0].price_original}</td>
+                                      <td style=" text-align: center;">{$audit[0].price_high}</td>
+                                      <td style=" text-align: center;">{$audit[0].time_end}</td>
+                                      <td style=" text-align: center;"><input size="1" name="total_num" type="text" class="form-control" id="userName" placeholder="请输入团购人数"></td>
                                   </tr>
                                 </table>        
                         <hr/>
@@ -104,7 +103,7 @@
 							</div>
                         </div>
 					        
-                            <input name="img[]" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
+                            <img src="__PUBLIC__/Uploads/{$audit[0].pic1}" alt="图片预览" height="160px" width="200px">
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -113,7 +112,7 @@
 								<img src="" alt="靓照2" height="160px" id="img1">
 							</div>
 						</div>
-                         <input name="img[]" type="file" id="up1" onchange="viewmypic(showimg,this.form.up1);"/>
+                         <img src="__PUBLIC__/Uploads/{$audit[0].pic2}" alt="图片预览" height="160px" width="200px">
 						
 					</div>
 					<div class="col-md-4 col-sm-6">
@@ -123,7 +122,7 @@
 							</div>
 
 						</div>
-							<input name="img[]" type="file" id="up2" onchange="viewmypic(showimg,this.form.up2);"/>
+							<img src="__PUBLIC__/Uploads/{$audit[0].pic3}" alt="图片预览" height="160px" width="200px">
 					</div>
 					<div class="clearfix"></div>
 					<div class="col-md-4 col-sm-6">
@@ -132,7 +131,7 @@
 								<img src="" alt="靓照4" height="160px" id="img3">
 							</div>
 						</div>
-								<input name="img[]" type="file" id="up3" onchange="viewmypic(showimg,this.form.up3);"/>
+								<img src="__PUBLIC__/Uploads/{$audit[0].pic4}" alt="图片预览" height="160px" width="200px">
 
 						
 					</div>
@@ -142,7 +141,7 @@
 								<img src="" alt="靓照5" height="160px" id="img4">
 							</div>
 						</div>
-								<input name="img[]" type="file" id="up4" onchange="viewmypic(showimg,this.form.up4);"/>
+								<img src="__PUBLIC__/Uploads/{$audit[0].pic5}" alt="图片预览" height="160px" width="200px">
 
 						
 					</div>
@@ -152,7 +151,7 @@
 								<img src="" alt="靓照6" height="160px" id="img5">
 							</div>
 						</div>
-								<input name="img[]" type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
+								<img src="__PUBLIC__/Uploads/{$audit[0].pic6}" alt="图片预览" height="160px" width="200px">
 						
 					</div>
 				 
@@ -162,28 +161,20 @@
                             
 						    <div class="panel-heading">宝贝简介<span> </span></div>
 						    <div class="panel-body">
-								<div><textarea name="describ" class="form-control " placeholder="请输入宝贝信息" rows="5"></textarea></div>
+								<div>{$audit[0].describ}</div>
 								
-								<div class="pull-right">
-								    <button type="button" class="btn btn-primary">保存</button>
-								    <button type="button" class="btn btn-danger">编辑</button>
-								</div>
 							</div>
                             <hr/>
                             							
 						    <div class="panel-heading">团长号令<span> </span></div>
 						    <div class="panel-body">
-								<div><textarea class="form-control " placeholder="团长输入具有吸引力的口号，号召大家一起组团购买" rows="5"> </textarea></div>
+								<div>{$audit[0].comment}</div>
 								
-								<div class="pull-right">
-								    <button type="button" class="btn btn-primary">保存</button>
-								    <button type="button" class="btn btn-danger">编辑</button>
-								</div>
 							</div>		
                             <hr/>	
                             	<div align="center">
-								    <button type="submit" class="btn btn-primary">发起组团</button>
-								    <button type="submit" class="btn btn-grey" href="javascript:history.go(-1);">取消组团</button>		
+								    <button type="submit" class="btn btn-primary">通过</button>
+								    <button type="submit" class="btn btn-grey" href="javascript:history.go(-1);">驳回</button>		
 									
 								</div>
 							<hr/>	
@@ -198,7 +189,6 @@
 					</div>
 				</div>
 			</div>
-        </form>
 	    </div>
 			
 

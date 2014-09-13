@@ -47,7 +47,6 @@ class IndexAction extends Action {
 			$condition['email']=$_SESSION['email'];
 			$name = $db->where($condition)->getField('name');
             $this->assign('v1',"$name"); 
-            $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
@@ -67,8 +66,7 @@ class IndexAction extends Action {
 			$db = M('user');
 			$condition['email']=$_SESSION['email'];
 			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('v1',"已登录"); 
+            $this->assign('v1',"$name");  
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
@@ -100,7 +98,14 @@ class IndexAction extends Action {
         $User = M('user');
         $_SESSION['email']= $_POST['email'];
         $condition['email']=$_POST['email'];
-        $password=$_POST['pwd'];
+		if($_POST['pwd']!=""){
+			$password=$_POST['pwd'];
+		}else{
+			unset($_SESSION['eamil']);
+			session_destroy();
+			$this->error('密码没填！！');
+		}
+        
         $pwd = $User->where($condition)->getField('pwd');
         if($_SESSION['email']!=""){
         if($User->create()){
@@ -109,6 +114,8 @@ class IndexAction extends Action {
                 //$this->success($_POST['admin_name']);
                 $this->redirect('Index/index','',0,'登陆成功');//页面重定向
             }else{
+				unset($_SESSION['eamil']);
+				session_destroy();
                 $this->error('密码错误');
             }
             
@@ -135,7 +142,7 @@ class IndexAction extends Action {
             //$this->show();
         }
     }
-    	public function search()
+    public function search()
 	{
 		require './home/Lib/Action/Public.php';
         $db = M('product');

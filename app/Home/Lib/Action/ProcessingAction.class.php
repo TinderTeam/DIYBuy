@@ -6,7 +6,10 @@ class ProcessingAction extends Action {
     public function startGroup(){
 	require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
-            $this->assign('v1',"已登录"); 
+	$db = M('user');
+	$condition['email']=$_SESSION['email'];
+	$name = $db->where($condition)->getField('name');
+            $this->assign('v1',"$name"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
@@ -20,7 +23,10 @@ class ProcessingAction extends Action {
    public function processing(){
    require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
-            $this->assign('v1',"已登录"); 
+			$db = M('user');
+			$condition['email']=$_SESSION['email'];
+			$name = $db->where($condition)->getField('name');
+            $this->assign('v1',"$name"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
@@ -124,13 +130,25 @@ class ProcessingAction extends Action {
 
 		
 	}
-		public function groupDetails()
+	public function groupDetails()
 		{
-			require './home/Lib/Action/Public.php';
+		require './home/Lib/Action/Public.php';
+        if($_SESSION['email']!=""){
+			$db = M('user');
+			$condition['email']=$_SESSION['email'];
+			$name = $db->where($condition)->getField('name');
+            $this->assign('v1',"$name"); 
+            $this->assign('code1',"11"); 
+            $this->assign('v2',"退出"); 
+            $this->assign('code2',"12");
 			$db = M('product');
 			$select=$db->where('id='.$_GET['id'])->select();
 			$this->assign('groupInfo',$select); 
-			$this->display(groupDetails);
+			$this->display();
+        }else{
+		$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+        }
+
 			
 		}
 	    public function join()

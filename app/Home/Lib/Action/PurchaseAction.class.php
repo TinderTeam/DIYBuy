@@ -42,15 +42,7 @@ class PurchaseAction extends Action {
 			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
         }
 
-	    $orderID=$_POST['orderID'];
-		$db = M('product');
-		$select=$db->where('id='.$orderID)->select();
-		$this->assign('payInfo',$select); 
-		$amount=$_POST['amount'];
-		$this->assign('amount',$amount);
-		$sumMoney=$amount*$db->where('id='.$orderID)->getField('price_high');
-		$this->assign('sumMoney',$sumMoney);
-	    	$this->display();
+
     }
 	
     public function orderList(){
