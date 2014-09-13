@@ -102,12 +102,12 @@
 								   
 									<div class="input-group input-group-sm" style="width:120px">
 										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button"  onClick="javascript:if(this.form.amount.value>1)this.form.amount.value--;document.getElementById('sum').innerText = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
+											<button class="btn btn-grey" type="button"  onClick="javascript:if(this.form.amount.value>1)this.form.amount.value--;document.getElementById('sum').innerHTML = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
 										</span>	
 										<input type="text" class="form-control" value="{$v1.id}" style="display:none;" name="orderID"/>
 										<input type="text" class="form-control" value="1"  style="text-align:center" readonly = "true" name="amount"/>
 										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;document.getElementById('sum').innerText = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
+											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;document.getElementById('sum').innerHTML = (this.form.amount.value*{$v1.price_high}).toFixed(2);"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
 										</span>
 
 									</div>

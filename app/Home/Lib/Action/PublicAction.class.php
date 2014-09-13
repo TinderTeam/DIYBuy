@@ -76,6 +76,18 @@ class PublicAction extends Action {
                 $this->redirect("Admin/login","",2,"Fuck");  
             } 
     }
+	public function ad(){
+       
+	    $db = M('ad');
+        import("ORG.Util.Page"); 
+        $count = $db->where('position="页尾"')->count();
+        $Page = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数                                                     
+        $list = $db->where('position="页尾"')->order('Id desc')->limit($Page1->firstRow.','.$Page1->listRows)->select();
+        $this->assign('adinfo',$list); // 赋值数据集
+		$show = $Page->show(); 
+        $this->assign('page',$show); // 赋值分页输出
+		$this->display();
+    }
 	
 
     
