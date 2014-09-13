@@ -62,10 +62,6 @@
 				<div class="row">
 					<div class="col-md-12">
 						<!-- Shopping Cart Items -->
-						
-							
-						   
-						    
 						<table class="shopping-cart table">
 							<!-- Shopping Cart Item -->
 							<tr class="success">
@@ -73,20 +69,16 @@
 								<th style="text-align:center;width:400px">商品描述</th>
 								<th style="text-align:center;width:220px">优惠券单价</th>
 								<th style="text-align:center;width:220px">优惠券数量</th>
-
 							</tr>
+							<!-- Shopping Cart Item Image -->
 							<tr>
-								<!-- Shopping Cart Item Image -->
-
 								<td >
 									<div class="row">
 										<div class="col-md-3"></div>
 										<div class="image col-md-4" ><a href="product-details.html"><img src="__PUBLIC__/Uploads/{$orderInfo[0].pic1}" alt="Item Name"></a></div>
 									</div>
-									
 								</td>
 								<td >
-									
 									<div class="col-md-12">
 										<p class="cart-item-title"><a href="page-product-details.html"><strong>{$orderInfo[0].name}</strong></a></p>
 										<p class="feature">{$orderInfo[0].describ}</p>
@@ -101,26 +93,20 @@
 								   
 									<div class="input-group input-group-sm" style="width:120px">
 										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button"  onClick="javascript:if(this.form.amount.value>1)this.form.amount.value--;document.getElementById('sum').innerText = (this.form.amount.value*{$orderInfo[0].price_high}).toFixed(2);"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
+											<button class="btn btn-grey" type="button"  onClick="javascript:if(this.form.amount.value>1)this.form.amount.value--;document.getElementById('sum').innerHTML = (this.form.amount.value*{$orderInfo[0].price_high}).toFixed(2);"><i class="glyphicon glyphicon-minus icon-white"></i> </button>
 										</span>	
 										<input type="text" class="form-control" value="{$orderInfo[0].id}" style="display:none;" name="orderID"/>
 										<input type="text" class="form-control" value="1"  style="text-align:center" readonly = "true" name="amount"/>
 										<span class="input-group-btn">
-											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;document.getElementById('sum').innerText = (this.form.amount.value*{$orderInfo[0].price_high}).toFixed(2);"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
+											<button class="btn btn-grey" type="button" onClick="javascript:this.form.amount.value++;document.getElementById('sum').innerHTML = (this.form.amount.value*{$orderInfo[0].price_high}).toFixed(2);"><i class="glyphicon glyphicon-plus icon-white"></i> </button>
 										</span>
 
 									</div>
-									     
 								</td>
-								
 							</tr>
-							
 							<!-- End Shopping Cart Item -->
-							
 						</table>
 						<!-- End Shopping Cart Items -->
-						
-						
 					</div>
 				</div>
 				<div class="row">
@@ -150,9 +136,7 @@
 						</div>
 					</div>
 				</div>
-				
-					</foreach>
-				</form>	
+			</form>	
 			</div>
 		</div>
 

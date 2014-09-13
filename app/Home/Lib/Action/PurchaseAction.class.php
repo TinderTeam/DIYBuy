@@ -20,7 +20,7 @@ class PurchaseAction extends Action {
         }
 		
 		$db = M('product');
-		$select=$db->where('id='.$_GET['id'])->select();
+		$select=$db->where('id='.$_POST['buttonDetails'])->select();
 		$this->assign('purchaseInfo',$select); 
 		$this->display();
     }
@@ -34,15 +34,20 @@ class PurchaseAction extends Action {
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
+			$orderID=$_POST['orderID'];
 			$db = M('product');
-			$select=$db->where('id='.$_GET['id'])->select();
-			$this->assign('orderInfo',$select); 
-			$this->display('orderList');
+			$select=$db->where('id='.$orderID)->select();
+			$this->assign('payInfo',$select); 
+			$amount=$_POST['amount'];
+			$this->assign('amount',$amount);
+			$sumMoney=$amount*$db->where('id='.$orderID)->getField('price_high');
+			$this->assign('sumMoney',$sumMoney);
+	    	$this->display();
         }else{
 			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
         }
 
-
+	    
     }
 	
     public function orderList(){
@@ -61,7 +66,7 @@ class PurchaseAction extends Action {
             $this->assign('code2',"22");            
         }
 		$db = M('product');
-		$select=$db->where('id='.$_GET['id'])->select();
+		$select=$db->where('id='.$_POST['buttonBuy'])->select();
 		$this->assign('orderInfo',$select); 
 		$this->display();
     }

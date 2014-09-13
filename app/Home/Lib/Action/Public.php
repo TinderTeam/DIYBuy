@@ -1,12 +1,12 @@
 <?php
 
-	    $db = M('product');
+	    $dbSider = M('product');
         import("ORG.Util.Page"); 
-        $count = $db->count();
-		$Page2 = new Page($count,10);  // 实例化分页类 传入总记录数和每页显示的记录数
-        $show = $Page2->show(); 
-		$list2 = $db->where('status='.'"组团中"')->order('total_num-current_num asc,id asc')->limit(10)->select();                                                      
-        $this->assign('siderbarInfo',$list2); // 赋值数据集
+        $countSider = $dbSider->count();
+		$PageSider = new Page($countSider,10);  // 实例化分页类 传入总记录数和每页显示的记录数
+        $showSider = $PageSider->show(); 
+		$listSider = $dbSider->where('status='.'"组团中"')->order('total_num-current_num asc,id asc')->limit(10)->select();                                                      
+        $this->assign('siderbarInfo',$listSider); // 赋值数据集
 		
 		
 		

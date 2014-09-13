@@ -48,77 +48,60 @@
 	    	<div class="container">
 				<div class="row">
 				    <div class="col-md-8">
-                    <table class="table">
-                      <foreach name='productinfo' item='v3' >
-                      <tr class="content">
-				        <div class="col-sm-6">
-						<!-- Product -->
-						    <div class="shop-item">
-							<!-- Product Image -->
-							<div class="portfolio-item">
-								<div class="portfolio-image" name="img">
-									<a href="__APP__/Purchase/productDetails?id={$v3.id}"><img src="__PUBLIC__/Uploads/{$v3.pic1}" alt=""></a>
-								</div>
-							</div>
+						<form class="form-horizontal"  action="__APP__/Purchase/productDetails" method="POST" name="form">
+							<table class="table">
+							  <foreach name='productinfo' item='v3' >
+								<tr class="content">
+									<div class="col-sm-6">
+										<!-- Product -->
+										<div class="shop-item">
+											<!-- Product Image -->
+											<div class="portfolio-item">
+												<div class="portfolio-image" name="img">
+													<a><img src="__PUBLIC__/Uploads/{$v3.pic1}" alt=""></a>
+												</div>
+											</div>
+											<!-- Product Title -->
+											<div class="title">
+												<h3><a href="productDetails.html" >{$v3.name}</a></h3>
+											</div>
+											<!-- Product Available Colors-->
+											<div class="row">
+													<div class="col-xs-12">
+														 {$v3.describ}
+													</div>
+											</div>
 
-							<!-- Product Title -->
-							<div class="title">
-								<h3><a href="productDetails.html" >{$v3.name}</a></h3>
-							</div>
-							<!-- Product Available Colors-->
-							<div class="row">
-									
-									<div class="col-xs-12">
-									     {$v3.describ}
+											<!-- Add to Cart Button -->
+											<div class="actions">
+													<div class="col-xs-4 price" style="text-align:left">
+													￥{$v3.price_high}
+													</div>
+													<div class="col-xs-4" style="text-align:left"><span>原价</span><span>￥{$v3.price_original}</span></div>
+													<button type="submit" name="buttonDetails" value="{$v3.id}" class="btn btn-green" ><strong>查看详情</strong></button>
+											</div>
+										
+											<div class="row">
+												<div class="col-xs-7 pull-left"  ><span>剩余</span><span id="timer_{$key}"></span></div>
+												<input id='end_date_{$key}' value="{$v3.time_end}" style="display:none;"/>
+												<div class="col-xs-5 pull-left " ><span>{$v3.current_num}/{$v3.total_num}</span><span>人已团</span></div>
+											</div>
+										</div>
+										<!-- End Product -->
 									</div>
-									
-							</div>
+								</tr>
+							  </foreach>
+							</table>
+							<tr class="content">
+								<td colspan="7" style=" text-align: center;" ><span>{$page}</span></td>
+							</tr>
+						</form>
+					</div>  
+					<!--page center-->
 
-							<!-- Add to Cart Button -->
-							<div class="actions">
-									<div class="col-xs-4 price" style="text-align:left">
-									￥{$v3.price_high}
-                                    </div>
-									<div class="col-xs-4" style="text-align:left"><span>原价</span><span>￥{$v3.price_original}</span></div>
-									<div class="col-xs-4" style="text-align:left"><a href="__APP__/Purchase/productDetails?id={$v3.id}" target="_blank" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i>查看详情</a></div>
-								
-							</div>
-							
-							<div class="row">
-							   
-								
-
-								<div class="col-xs-7 pull-left"  ><span>剩余</span><span id="timer_{$key}"></span></div>
-								<input id='end_date_{$key}' value="{$v3.time_end}" style="display:none;"/>
-
-								
-								<div class="col-xs-5 pull-left " ><span>{$v3.current_num}/{$v3.total_num}</span><span>人已团</span></div>
-
-							</div>
-						    </div>
-						<!-- End Product -->
-					    </div>
-                        </tr>
-                      </foreach>
-                      <tr class="content">
-                        <td colspan="7" style=" text-align: center;" ><span>{$page}</span></td>
-                      </tr>
-                      
-                      </table>
-				   </div>  <!--page center-->
-				
-				
-				
-				
-				
-				
-				
-					
-			<!-- 正在组团中的宝贝 -->
+					<!-- 正在组团中的宝贝 -->
 					<div class="col-sm-4">
 						<include file="./Home/Tpl/Public/siderbar.html"/>	
-                                  
-
 					</div>
 				
 				</div>

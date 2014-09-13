@@ -35,9 +35,7 @@
 				<div class="row">
 					<div class="col-md-12">
 					<nav id="mainmenu" class="mainmenu">
-
 					<ul>
-
 						<li ><a href="__APP__/Index/index" >今日团购</a>
 						</li>
 						<li ><a href="__APP__/Processing/processing">组团进行时</a>
@@ -55,112 +53,101 @@
 
 		
         <!-- Page Title -->
-
-        
         <div class="section">
 	    	<div class="container">
-			   <div class="row">
+				<div class="row">
 					<div class="col-md-8">
-
-			   <h2>产品详情</h2>
-			   <foreach name='purchaseInfo' item='v1'>
-				<div class="row">
-					<!-- Image Column -->
-					<div class="col-sm-6">
-						<div class="shop-item" style="height:230px" >
-							<div >
-							<a class="example-image-link" href="__PUBLIC__/Uploads/{$v1.pic1}" data-lightbox="example-1">
-							<img class="example-image" src="__PUBLIC__/Uploads/{$v1.pic1}" alt="thumb-1" /></a>
+					<form class="form-horizontal" role="form" action="__APP__/Purchase/orderList" method="POST" name="form">
+						<h2>产品详情</h2>
+						<div class="row">
+							<!-- Image Column -->
+							<div class="col-sm-6">
+								<div class="shop-item" style="height:230px" >
+									<div >
+									<a class="example-image-link" href="__PUBLIC__/Uploads/{$purchaseInfo[0].pic1}" data-lightbox="example-1">
+									<img class="example-image" src="__PUBLIC__/Uploads/{$purchaseInfo[0].pic1}" alt="thumb-1" />
+									</a>
+									</div>
+								</div>
+							</div>
+							<!-- End Image Column -->
+							<!-- Project Info Column -->
+							<div class="portfolio-item-description col-sm-6">
+								<h3>{$purchaseInfo[0].name}</h3>						
+								<p id="goods_brief">
+									{$purchaseInfo[0].describ}
+								</p>
+								<hr/>
+								<p class="product-details ">
+									<span class="price" id="promote_price">￥{$purchaseInfo[0].price_high}</span>
+									<span class="price-was">￥{$purchaseInfo[0].price_original}</span> 
+								</p>
+								<ul class="no-list-style">
+									<li><b>当前状态:</b>{$purchaseInfo[0].status}</li>
+									<li><b>剩余时间:</b> 01天12小时15分55秒</li>
+									<li><b>参团人数:</b> {$purchaseInfo[0].current_num}/{$purchaseInfo[0].total_num}</li>
+								</ul>
+								<div class="row">
+									<span class="col-xs-6">
+										<button type="submit" name="buttonBuy" value="{$purchaseInfo[0].id}" class="btn btn-green" ><strong>立即抢团</strong></button>
+									</span>
+									<span class="bdsharebuttonbox col-xs-6 pull-right">
+										<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+										<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+										<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+										<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+										<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+									</span>
+								</div>
+								<script>
+									window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","renren","tqq","bdxc","kaixin001","tqf","tieba","douban","tsohu","bdhome","sqq","thx","qq","ibaidu","taobao","hi","baidu","sohu","t163","qy","meilishuo","mogujie","diandian","huaban","leho","share189","duitang","hx","tfh","fx","youdao","sdo","qingbiji","ifeng","people","xinhua","ff","mail","kanshou","isohu","yaolan","wealink","xg","ty","iguba","fbook","twi","deli","s51","s139","linkedin","print"],"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["tsina","tqq","renren","weixin","qzone"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","tqq","renren","weixin","qzone"]}};
+									window._bd_share_config.common.bdText=document.getElementById("goods_brief").innerText;
+									with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+								</script>
+							</div>
+							<!-- End Project Info Column -->
+						</div>
+						<!-- Related Projects -->
+						<h2>团单详情</h2>
+						<div class="row">
+							<div class="col-md-4 col-sm-6">
+								<div class="portfolio-item">
+									<div class="portfolio-image" name="img">
+										<a href="#"><img src="__PUBLIC__/Uploads/{$purchaseInfo[0].pic2}" alt="Project Name"></a>
+									</div>
+									<div class="portfolio-info-fade">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="portfolio-item">
+									<div class="portfolio-image" name="img">
+										<a href="#"><img src="__PUBLIC__/Uploads/{$purchaseInfo[0].pic3}" alt="Project Name"></a>
+									</div>
+									<div class="portfolio-info-fade">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="portfolio-item">
+									<div class="portfolio-image" name="img">
+										<a href="#"><img src="__PUBLIC__/Uploads/{$purchaseInfo[0].pic4}" alt="Project Name"></a>
+									</div>
+									<div class="portfolio-info-fade">
+									</div>
+								</div>
 							</div>
 						</div>
+						<!-- End Related Projects -->
+					</form>	
 					</div>
-					<!-- End Image Column -->
-					<!-- Project Info Column -->
-					<div class="portfolio-item-description col-sm-6">
-
-						<h3>{$v1.name}</h3>
-						
-						<p id="goods_brief">
-					     {$v1.describ}
-						</p>
-						<hr/>
-						<p class="product-details ">
-	    			        <span class="price" id="promote_price">￥{$v1.price_high}</span>
-	    				
-							<span class="price-was">￥{$v1.price_original}</span> 
-
-						</p>
-						
-						
-						<ul class="no-list-style">
-							<li><b>当前状态:</b>{$v1.status}</li>
-							<li><b>剩余时间:</b> 01天12小时15分55秒</li>
-							<li><b>参团人数:</b> {$v1.current_num}/{$v1.total_num}</li>
-
-						</ul>
-						<div class="row"><span class="col-xs-6"><a href="__APP__/Purchase/orderList?id={$v1.id}" target="_blank" class="btn">立即抢团</a>
-						</span>
-						
-<span class="bdsharebuttonbox col-xs-6 pull-right"><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></span></div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","renren","tqq","bdxc","kaixin001","tqf","tieba","douban","tsohu","bdhome","sqq","thx","qq","ibaidu","taobao","hi","baidu","sohu","t163","qy","meilishuo","mogujie","diandian","huaban","leho","share189","duitang","hx","tfh","fx","youdao","sdo","qingbiji","ifeng","people","xinhua","ff","mail","kanshou","isohu","yaolan","wealink","xg","ty","iguba","fbook","twi","deli","s51","s139","linkedin","print"],"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["tsina","tqq","renren","weixin","qzone"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","tqq","renren","weixin","qzone"]}};
-window._bd_share_config.common.bdText=document.getElementById("goods_brief").innerText;
-with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-			
-					</div>
-					<!-- End Project Info Column -->
-				</div>
-				<!-- Related Projects -->
-				<h2>团单详情</h2>
-				<div class="row">
-					<div class="col-md-4 col-sm-6">
-						<div class="portfolio-item">
-							<div class="portfolio-image" name="img">
-								<a href="#"><img src="__PUBLIC__/Uploads/{$v1.pic2}" alt="Project Name"></a>
-							</div>
-							<div class="portfolio-info-fade">
-								<!--<ul>
-									<li class="portfolio-project-name">蒸鸡蛋</li>
-								</ul>-->
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="portfolio-item">
-							<div class="portfolio-image" name="img">
-								<a href="#"><img src="__PUBLIC__/Uploads/{$v1.pic3}" alt="Project Name"></a>
-							</div>
-							<div class="portfolio-info-fade">
-								<!--<ul>
-									<li class="portfolio-project-name">香菇鸡腿</li>
-								</ul>-->
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="portfolio-item">
-							<div class="portfolio-image" name="img">
-								<a href="#"><img src="__PUBLIC__/Uploads/{$v1.pic4}" alt="Project Name"></a>
-							</div>
-							<div class="portfolio-info-fade">
-								<!--<ul><ul>
-									<li class="portfolio-project-name">套餐</li>
-								</ul>-->
-							</div>
-						</div>
-					</div>
-				</div>
-				</foreach>
-				<!-- End Related Projects -->
-					</div><!-- page center-->
-					
-				<!-- 正在组团中的宝贝 -->
+					<!-- page center-->
+					<!-- 正在组团中的宝贝 -->
 					<div class="col-sm-4">
 						<include file="./Home/Tpl/Public/siderbar.html"/>	
 					</div>
 					
-			   </div>
+				</div>
 			</div>
 		</div>
 		
