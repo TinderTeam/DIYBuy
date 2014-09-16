@@ -20,7 +20,16 @@
 		<link rel="stylesheet" href="__PUBLIC__/css/main.css">
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.css"> -->
 
-        <script src="__PUBLIC__/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <include file="./Home/Tpl/Public/js.html"/>
+		 <script>
+			$(document).ready(function(){
+					$("#registerForm").validate({ 
+						SubmitHandler:function(){ 
+						alert( "success"); 
+						});
+						}
+			});
+		 </script> 
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -60,11 +69,11 @@
 				 	    <div class="panel panel-success">
 						    <div class="panel-heading"><strong>会员注册</strong></div>
 						    <div class="panel-body">
-						    <form role="form" action="__URL__/insert" method="POST">
+						    <form id="registerForm" action="__URL__/insert" method="POST">
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">用户名</label>
 										<div class="col-sm-7">
-											<input name="name" type="text" class="form-control"  placeholder="" style="margin-bottom:20px">
+											<input id="name" name="name" type="text" class="form-control required"  placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
@@ -72,21 +81,21 @@
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">注册邮箱</label>
 										<div class="col-sm-7">
-											<input name="email" type="email" class="form-control"  placeholder="" style="margin-bottom:20px">
+											<input id="email" name="email" type="email" class="form-control "  placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">请您输入密码</label>
 										<div class="col-sm-7">
-											<input name="pwd" type="password" class="form-control"  placeholder="" style="margin-bottom:20px">
+											<input id="pwd" name="pwd" type="password" class="form-control {required:true,minlength:5}"  placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">再次确认密码</label>
 										<div class="col-sm-7">
-											<input name="pwd_check" type="password" class="form-control"  placeholder="" style="margin-bottom:20px">
+											<input id="pwd_check" name="pwd_check" type="password" class="form-control required" equalTo="#pwd" placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>	
@@ -94,7 +103,7 @@
 										<div class="col-sm-3" ></div>
 										<div class="col-sm-7 checkbox">
 											    <label>
-													<input type="checkbox"><a href="#">我已阅读相关用户协议</a>
+													<input id="checkbox" name="checkbox" type="checkbox" required><a href="#">我已阅读相关用户协议</a>
 												</label>
 									    </div>
 										<div class="col-sm-2" ></div>
@@ -183,16 +192,7 @@
 		    </div>
 	    </div>
 
-        <!-- Javascripts -->
-        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-        <script>window.jQuery || document.write('<script src="__PUBLIC__/js/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="__PUBLIC__/js/bootstrap.min.js"></script>
-        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-        <script src="__PUBLIC__/js/jquery.fitvids.js"></script>
-        <script src="__PUBLIC__/js/jquery.sequence-min.js"></script>
-        <script src="__PUBLIC__/js/jquery.bxslider.js"></script>
-        <script src="__PUBLIC__/js/main-menu.js"></script>
-        <script src="__PUBLIC__/js/template.js"></script>
+
 
     </body>
 </html>

