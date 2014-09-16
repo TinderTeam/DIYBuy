@@ -43,12 +43,53 @@ class AdminAction extends Action{
 			$condition['id']=$_POST['botton1'];
 			$audit=$db->where($condition)->select();
 			$this->assign('audit',$audit); // 赋值数据集
+			$this->assign('pass',"pass");
+			$this->assign('reject',"reject");
             $this->display();
         }else{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
-        }  
-        
+        }      
     }
+	
+	public function audit($num=3){
+		    if($_SESSION['name']!=""){
+            $db = M('product');
+            if($num==1){
+				$condition['id']=$_POST['button1'];
+				$data['status']="组团中";
+				$data['total_num']=$_POST['total_num'];
+				if($db->create()){
+					if($db->where($condition)->save($data)){
+					$this->redirect('Admin/product','',0,'哇塞，成功了啊');//页面重定向
+					//$this->redirect("Admin/administrater","",1,"OK");
+					} else{
+						$this->error('写入2B错误！');
+					}
+				}else{
+					$this->error('写入错误！');
+					//$this->error("保存错误！"); 
+				}
+			}else if($num==2){
+				$condition['id']=$_POST['button2'];
+				$data['status']="不通过";
+				if($db->create()){
+					if($db->where($condition)->save($data)){
+					$this->redirect('Admin/product','',0,'哇塞，又成功了啊');//页面重定向
+					//$this->redirect("Admin/administrater","",1,"OK");
+					} else{
+						$this->error('写入2B错误！');
+					}
+				}else{
+					$this->error('写入错误！');
+					//$this->error("保存错误！");
+				}
+            $this->display();
+			}
+        }else{
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        } 
+	}
+	
     
     // 用分页类 实现分页查询
     public function manage(){
@@ -83,14 +124,25 @@ class AdminAction extends Action{
         }else{
             $db = M('product');
             import("ORG.Util.Page"); 
+			$condition['status']="待审核";
             $count = $db->count();
+			$count2= $db->where($condition)->count();
             //$count = $user->where($condition)->count();
             $Page = new Page($count,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
             $show = $Page->show(); 
-                                                           
+			
+            $Page2 = new Page($count2,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+            $show2 = $Page2->show(); 
+                                                                                               
             $list = $db->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
+			$list2 = $db->order('id')->where($condition)->limit($Page->firstRow.','.$Page->listRows)->select();
+			
             $this->assign('productlist',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
+
+            $this->assign('productlist2',$list2); // 赋值数据集
+            $this->assign('page2',$show2); // 赋值分页输出
+			
             $this->display();
         }
     }
@@ -182,7 +234,7 @@ class AdminAction extends Action{
             if($ad->create()){
                 $result =   $ad->save();
                 if($result) {
-		if($ad->where($condition)->save($data)){
+					if($ad->where($condition)->save($data)){
                     $this->success('操作成功！');
                     //$this->redirect("Admin/administrater","",1,"OK");
 					} else{
@@ -225,7 +277,7 @@ class AdminAction extends Action{
     
     public function deletProduct(){
         $product = M("product"); // 实例化product对象
-		$condition['id']=$_POST['botton'];
+		$condition['id']=$_POST['button'];
 		if($product->where($condition)->delete()){// 删除id为5的用户数据
 			$this->success("删除成功！");
 		}else{

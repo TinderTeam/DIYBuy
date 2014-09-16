@@ -85,7 +85,7 @@
               <td style=" text-align: center;">{$vo.time_end}</td>
               <td style=" text-align: center;">{$vo.note}</td>
               <td style=" text-align: center;">
-                <button name="botton" value="{$vo.id}" type="submit" class="btn-sm btn-default">删除</button>
+                <button name="button" value="{$vo.id}" type="submit" class="btn-sm btn-default">删除</button>
               </td>
               </tr>
                </foreach>
@@ -124,7 +124,7 @@
               <td style=" text-align: center;"></td>
               </tr>
                   
-              <foreach name='productlist' item='vo' >
+              <foreach name='productlist2' item='vo' >
               <tr class="content">
               <td style="width: 80px; text-align: center;">{$vo.id}</td>
               <td style=" text-align: center;">{$vo.name}</td>
@@ -139,7 +139,7 @@
                </foreach>
               
               <tr class="content">
-                <td colspan="11" style=" text-align: center;" ><span>{$page}</span></td>
+                <td colspan="11" style=" text-align: center;" ><span>{$page2}</span></td>
               </tr>
               
               </table>

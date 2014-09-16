@@ -41,8 +41,9 @@
 			<div class="container">
             
 		</div>
-        
+        <form action="" method="POST" >
         <div class="section">
+		</form>
 	    	<div class="container">
 				<div class="row">
 				<div class="col-md-12">
@@ -173,8 +174,8 @@
 							</div>		
                             <hr/>	
                             	<div align="center">
-								    <button type="submit" class="btn btn-primary">通过</button>
-								    <button type="submit" class="btn btn-grey" href="javascript:history.go(-1);">驳回</button>		
+								    <button name="button1" type="submit" value="{$audit[0].id}" class="btn btn-primary" onclick="javascript:this.form.action='__APP__/Admin/audit?num=1';">通过</button>
+								    <button name="button2" type="submit" value="{$audit[0].id}" class="btn btn-grey" onclick="javascript:this.form.action='__APP__/Admin/audit?num=2';">驳回</button>		
 									
 								</div>
 							<hr/>	
