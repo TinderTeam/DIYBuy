@@ -56,33 +56,27 @@
 				 	    <div class="panel panel-success">
 						    
 						    <div class="panel-body">
-						    <form role="form">
+						    <form class="form-horizontal" role="form" action="__APP__/User/modifyPassword" method="POST" name="form">
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">用户名</label>
 										<div class="col-sm-7">
-											<input type="text" class="form-control"  placeholder="" style="margin-bottom:20px">
+											<input type="text" class="form-control" readonly = "true" name = "userName" value = "{$email}" style="margin-bottom:20px"/>
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
 								
 								<div class="form-group">
-										<label class="col-sm-3 control-label" style="text-align:right">注册邮箱</label>
+										<label class="col-sm-3 control-label" style="text-align:right">输入新密码</label>
 										<div class="col-sm-7">
-											<label type="email" class="form-control"  placeholder="" style="margin-bottom:20px">admin123@diy-tuan.com</label>
+											<input type="password" class="form-control"  name = "pwd" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
-								<div class="form-group">
-										<label class="col-sm-3 control-label" style="text-align:right">输入新密码</label>
-										<div class="col-sm-7">
-											<input type="password" class="form-control"  placeholder="" style="margin-bottom:20px">
-									    </div>
-										<div class="col-sm-2" ></div>
-								</div>								
+								
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">确认新密码</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control"  placeholder="" style="margin-bottom:20px">
+											<input type="password" class="form-control"  name = "pwd2" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
@@ -123,8 +117,6 @@
 				</div>
 			</div>        
 
-<!--广告位-->
-<include file="./Home/Tpl/Public/ad.html"/>		
 
 <!--页脚-->
 <include file="./Home/Tpl/Public/footer.html"/>
