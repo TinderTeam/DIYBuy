@@ -2,7 +2,7 @@
 // 本类由系统自动生成，仅供测试用途
 header("Content-Type:text/html; charset=UTF-8");
 class PurchaseAction extends Action {
-    public function productDetails(){
+    public function productDetails($id=0){
 	require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
 			$db = M('user');
@@ -20,7 +20,15 @@ class PurchaseAction extends Action {
         }
 		
 		$db = M('product');
-		$select=$db->where('id='.$_POST['buttonDetails'])->select();
+		if($_POST['buttonDetails']!="")
+		{
+			$select=$db->where('id='.$_POST['buttonDetails'])->select();	//今天团购跳转使用
+		}
+		else
+		{
+			$condition['id']=$id;
+			$select=$db->where($condition)->select();	//订单页面跳转使用
+		}
 		$this->assign('purchaseInfo',$select); 
 		$this->display();
     }
