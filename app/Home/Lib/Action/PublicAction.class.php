@@ -2,7 +2,7 @@
 // 本类由系统自动生成，仅供测试用途
 header("Content-Type:text/html; charset=UTF-8");
 class PublicAction extends Action {
-    public function head(){
+    /* public function head(){
         if($_SESSION['email']!=""){
             $this->assign('v1',"已登录"); 
             $this->assign('code1',"11"); 
@@ -36,7 +36,7 @@ class PublicAction extends Action {
             session_destroy();
             $this->redirect('Index/index','',0,'退出登陆。。。');//页面重定向  
         }  
-    }
+    } */
     
     public function addChk(){  
             //导入图片上传类  

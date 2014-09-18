@@ -4,21 +4,7 @@ header("Content-Type:text/html; charset=UTF-8");
 class PurchaseAction extends Action {
     public function productDetails($id=0){
 	require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        }
-		
+        	
 		$db = M('product');
 		if($_POST['buttonDetails']!="")
 		{
@@ -34,13 +20,6 @@ class PurchaseAction extends Action {
     }
     public function orderPay(){        
         if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
 			
 			$db = M('product');
 			$Order = M('order');
@@ -72,20 +51,7 @@ class PurchaseAction extends Action {
     }
     
     public function orderList(){
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        }
+    
 		$db = M('product');
 		$select=$db->where('id='.$_POST['buttonBuy'])->select();
 		$this->assign('orderInfo',$select); 

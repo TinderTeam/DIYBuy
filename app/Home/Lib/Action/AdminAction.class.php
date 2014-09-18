@@ -40,7 +40,7 @@ class AdminAction extends Action{
         
         if($_SESSION['name']!=""){
 			$db = M('product');
-			$condition['id']=$_POST['botton1'];
+			$condition['id']=$_POST['button1'];
 			$audit=$db->where($condition)->select();
 			$this->assign('audit',$audit); // 赋值数据集
 			$this->assign('pass',"pass");
@@ -94,8 +94,9 @@ class AdminAction extends Action{
     // 用分页类 实现分页查询
     public function manage(){
         if($_SESSION['name']!=""){
-            $db = M('user');
-            import("ORG.Util.Page"); 
+            
+			$db = M('user');
+            import("ORG.Util.Page");
             $count = $db->count();
             //$count = $user->where($condition)->count();
             $Page = new Page($count,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
@@ -109,6 +110,28 @@ class AdminAction extends Action{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }       
     }
+	public function accountChange(){
+	
+		if($_SESSION['name']!=""){
+				
+			$user = M('user');
+			$condition['id']=$_POST['button'];
+			$data['account']=$_POST['accountchanged'];
+			if($user->where($condition)->save($data))
+			{
+				$this->redirect("__APP__/Admin/manage","",0,"修改成功"); 
+				//$this->success('操作成功！');
+				//$this->redirect("Admin/administrater","",1,"OK");
+			} 
+			else
+			{
+				$this->display('manage');
+			}
+        }else{
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        } 
+
+	}
     
     //退出登陆，清session
     public function logout(){
@@ -201,7 +224,61 @@ class AdminAction extends Action{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }      
     }
-    
+    public function releaseSubmit(){
+	
+		if($_SESSION['name']!=""){
+				
+			import("ORG.Net.UploadFile");  
+            //实例化上传类  
+            $upload = new UploadFile();  
+            $upload->maxSize = 4145728; 
+            //$upload->saveRule=time; 
+            //设置文件上传类型  
+            $upload->allowExts = array('jpg','gif','png','jpeg');  
+            //设置文件上传位置  
+            $upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
+            //设置文件上传名(按照时间)  
+            //$upload->saveRule = "time";  
+            if (!$upload->upload()){
+                $this->error($upload->getErrorMsg());  
+            }else{
+                //上传成功，获取上传信息  
+            $info = $upload->getUploadFileInfo();
+            } 
+
+			$product = M('product');
+			$condition['id']=$_POST['button'];
+			
+			$data['name']=$_POST['name'];
+			$data['total_num']=$_POST['total_num'];
+			$data['price_orginal']=$_POST['price_orginal'];
+			$data['price_high']=$_POST['price_high'];
+			$data['price_low']=$_POST['price_low'];
+			$data['time_end']=$_POST['time_end'];
+			$data['status']=$_POST['status'];
+			$data['pic1'] = $info[0]['savename'];
+			$data['pic2'] = $info[1]['savename'];
+			$data['pic3'] = $info[2]['savename'];
+			$data['pic4'] = $info[3]['savename'];
+			$data['pic5'] = $info[4]['savename'];
+			$data['pic6'] = $info[5]['savename'];
+			$data['time_start']=date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
+
+			if($product->where($condition)->save($data))
+			{
+				$this->redirect("__APP__/Admin/productRelease","",0,"修改成功"); 
+				//$this->success('操作成功！');
+				//$this->redirect("Admin/administrater","",1,"OK");
+			} 
+			else
+			{
+				$this->display('productRelease');
+			}
+        }else{
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        } 
+
+	}
     public function addChk(){  
             //导入图片上传类  
             import("ORG.Net.UploadFile");  

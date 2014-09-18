@@ -7,21 +7,7 @@ class IndexAction extends Action {
     
     public function index(){
         require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-		$db = M('user');
-		$condition['email']=$_SESSION['email'];
-		$n= $db->where($condition)->getField('name');
-		$this->assign('v1',"$n"); 
-		$this->assign('code1',"11"); 
-		$this->assign('v2',"退出"); 
-		$this->assign('code2',"12");
-	}else{
-		$this->assign('v1',"登录"); 
-		$this->assign('code1',"21");
-		$this->assign('v2',"注册"); 
-		$this->assign('code2',"22");            
-    } 
-		
+        	
         //显示产品           
         $db = M('product');
         import("ORG.Util.Page"); 
@@ -37,45 +23,20 @@ class IndexAction extends Action {
 	public function login(){	
 		$this->display();
 	}
-    
+    public function logout(){	
+		session_destroy();
+		$this->redirect('Index/index');
+	}
 
     
     public function aboutUs(){
 		require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        } 
-		
         $this->display();
     }
     
     public function purchaseHistory(){
 		require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name");  
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        }
+
 		//显示产品           
 		
 		$db = M('product');
@@ -128,7 +89,7 @@ class IndexAction extends Action {
     }
     
     public function insert(){        
-        $User   =   M('user');
+        $User = M('user');
 		$name=$_POST['name'];
 		$pwd=$_POST['pwd'];
         if($User->create()) {

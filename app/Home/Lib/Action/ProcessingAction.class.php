@@ -5,16 +5,9 @@ class ProcessingAction extends Action {
     
     public function startGroup(){
 	require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-		$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+        if($_SESSION['email']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆");
         }
 	    $this->display();
     }
@@ -22,21 +15,7 @@ class ProcessingAction extends Action {
 
    public function processing(){
    require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        }
-         
+                 
         //显示产品           
         $db = M('product');
         import("ORG.Util.Page"); 
@@ -122,35 +101,20 @@ class ProcessingAction extends Action {
 			echo "<script>alert('请输入关键信息!');history.back();</script>";
 			
 		}
-										
-
-
-
-		
 	}
-	public function groupDetails()
-		{
+	public function groupDetails(){
+	
 		require './home/Lib/Action/Public.php';
-        if($_SESSION['email']!=""){
-			$db = M('user');
-			$condition['email']=$_SESSION['email'];
-			$name = $db->where($condition)->getField('name');
-            $this->assign('v1',"$name"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-			$db = M('product');
-			$select=$db->where('id='.$_GET['id'])->select();
-			$this->assign('groupInfo',$select); 
-			$this->display();
-        }else{
-		$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
-        }
-
 			
-		}
-	    public function join()
-		{
+		$db = M('product');
+		$select=$db->where('id='.$_GET['id'])->select();
+		$this->assign('groupInfo',$select); 
+		$this->display();
+	
+	}
+	public function join(){
+	
+		if($_SESSION['email']!=""){
 			$db = M('product');
 			$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
 			$totalNum = $db->where('id='.$_GET['id'])->getField('total_num');
@@ -160,13 +124,15 @@ class ProcessingAction extends Action {
 				$data['status']="议价中";
 			}
 			$result=$db->where('id='.$_GET['id'])->save($data);
-			
-			
-	
+
 			if($result)
 			{
 				$this->redirect('Processing/processing','',0,'加入成功!');
 			}
+		}else{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
 		}
+		
+	}
 }
 ?>

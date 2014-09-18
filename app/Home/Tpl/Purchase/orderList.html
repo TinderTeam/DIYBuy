@@ -23,11 +23,32 @@
 	        <div class="container">
 	        	<div class="menuextras" >
 					<div class="extras">
-						<ul>
-							<li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>我的DIY团购</b></a></li>
-
-			        		<li><a href="__APP__/Public/select1/code1/{$code1}">{$v1}</a></li>
-							<li><a href="__APP__/Public/select2/code2/{$code2}">{$v2}</a></li>
+						<ul >
+							<?php				
+								if(empty($_SESSION['email'])){								
+									$login='false';	
+								}else{
+									$login='true';
+									$db=new Model('user');
+									$condition['email']=$_SESSION['email'];	
+									$userName = $db->where($condition)->getField('name');
+								}
+							?>
+							<if condition="$login eq 'false'">
+								<li > <a href="__APP__/Index/login"> <span>用户登陆</span> </a> </li>
+								<li > <a href="__APP__/Index/register"> <span>免费注册</span> </a> </li>	
+								
+							<else/>
+								<li class="dropdown"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 
+								<a href="page-shopping-cart.html"  data-toggle="dropdown"><b>{$userName}</b></a>
+									<ul class="dropdown-menu" role="menu">
+										<li role="menuitem"><a href="__APP__/User/accountModify">账户设置</a></li>
+										<li role="menuitem"><a href="__APP__/User/myOrder">我的订单</a></li>
+										<li role="menuitem"><a href="__APP__/User/myGroup">我的组团</a></li>
+									</ul>
+								</li>
+								<li class="J_browser_fav"> <a href="__APP__/Index/logout"> <span>退出</span> </a> </li>		
+							</if>
 			        	</ul>
 					</div>
 		        </div>
