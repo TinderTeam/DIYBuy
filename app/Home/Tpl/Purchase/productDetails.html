@@ -79,10 +79,13 @@
 								</p>
 								<hr/>
 								<p class="product-details ">
-									<span class="price" id="promote_price">￥{$purchaseInfo[0].price_high}</span>
-									<span class="price-was">￥{$purchaseInfo[0].price_original}</span> 
+									<span  style="font-size:30px;color:orange;"class="price" id="promote_price">优惠券价格：￥{$purchaseInfo[0].price_low}</span>
 								</p>
 								<ul class="no-list-style">
+									<li><b>组团价格:</b>
+									<span >￥{$purchaseInfo[0].price_high}</span>
+									<span style="text-decoration:line-through;" >￥{$purchaseInfo[0].price_original}</span>
+									</li>
 									<li><b>当前状态:</b>{$purchaseInfo[0].status}</li>
 									<li><b>剩余时间:</b> 01天12小时15分55秒</li>
 									<li><b>参团人数:</b> {$purchaseInfo[0].current_num}/{$purchaseInfo[0].total_num}</li>

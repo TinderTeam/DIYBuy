@@ -29,7 +29,8 @@
               <li role="presentation" ><a href="__URL__/manage">会员管理</a></li> 
               <li role="presentation"><a href="__URL__/ad">广告管理</a></li>
               <li role="presentation" class="active"><a href="__URL__/product">产品管理</a></li>
-              <li role="presentation"><a href="__URL__/upload">上传产品</a></li>
+              <li role="presentation"><a href="__URL__/upload">产品上传</a></li>
+			  <li role="presentation"><a href="__URL__/productRelease">产品发布</a></li>
             </ul>
 
         </div>
@@ -96,58 +97,7 @@
               
               </table>
 			  </form>
-            </div>
-
-            <hr/>
-            
-            <form action="__APP__/Admin/productInfo" method="POST" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-xs-12">
-                <div class="panel panel-primary"> 
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-11" style="float: left; padding-top: 5px;">
-                            <span style="">待审核产品</span>
-                        </div> 
-                    </div>
-                </div>
-
-                  <!-- Table -->
-                  <table class="table">
-              <tr>
-              <td style="width: 80px; text-align: center;">ID</td>
-              <td style=" text-align: center;">产品标题</td>
-              <td style=" text-align: center;">原价</td>
-              <td style=" text-align: center;">团购价</td>
-              <td style=" text-align: center;">到期时间</td>
-              <td style=" text-align: center;">备注</td>
-              <td style=" text-align: center;"></td>
-              </tr>
-                  
-              <foreach name='productlist2' item='vo' >
-              <tr class="content">
-              <td style="width: 80px; text-align: center;">{$vo.id}</td>
-              <td style=" text-align: center;">{$vo.name}</td>
-              <td style=" text-align: center;">{$vo.price_original}</td>
-              <td style=" text-align: center;">{$vo.price_high}</td>
-              <td style=" text-align: center;">{$vo.time_end}</td>
-              <td style=" text-align: center;">{$vo.note}</td>
-              <td style=" text-align: center;">
-                <button name="botton1" value="{$vo.id}" type="submit" class="btn-sm btn-default">审核</button></form>
-              </td>
-              </tr>
-               </foreach>
-              
-              <tr class="content">
-                <td colspan="11" style=" text-align: center;" ><span>{$page2}</span></td>
-              </tr>
-              
-              </table>
-  
-              </div>
-            </div>
-          </div>
-        </form>   
+            </div>  
         </div>
         <div class="col-xs-1"></div> 
     </div>

@@ -123,25 +123,15 @@ class AdminAction extends Action{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
             $db = M('product');
-            import("ORG.Util.Page"); 
-			$condition['status']="待审核";
-            $count = $db->count();
-			$count2= $db->where($condition)->count();
-            //$count = $user->where($condition)->count();
-            $Page = new Page($count,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
-            $show = $Page->show(); 
-			
-            $Page2 = new Page($count2,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
-            $show2 = $Page2->show(); 
-                                                                                               
-            $list = $db->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
-			$list2 = $db->order('id')->where($condition)->limit($Page->firstRow.','.$Page->listRows)->select();
-			
-            $this->assign('productlist',$list); // 赋值数据集
-            $this->assign('page',$show); // 赋值分页输出
+            import("ORG.Util.Page");
 
-            $this->assign('productlist2',$list2); // 赋值数据集
-            $this->assign('page2',$show2); // 赋值分页输出
+			// 产品管理页面数据读取
+			$count = $db->where('status="组团成功" OR status="组团失败"')->count();
+			$Page = new Page($count,8);                     
+            $show = $Page->show(); 
+			$list = $db->where('status="组团成功" OR status="组团失败"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
+			$this->assign('productlist',$list); // 赋值数据集
+            $this->assign('page',$show); // 赋值分页输出
 			
             $this->display();
         }
@@ -172,6 +162,45 @@ class AdminAction extends Action{
             $this->display();
         }
     }
+	public function productRelease(){
+		if($_SESSION['name']==""){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
+            $db = M('product');
+            import("ORG.Util.Page");
+
+			// 产品管理页面数据读取
+			$count = $db->where('status="议价成功"')->count();
+			$Page = new Page($count,4);                     
+            $show = $Page->show(); 
+			$list = $db->where('status="议价成功"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
+			$this->assign('productlist',$list); // 赋值数据集
+            $this->assign('page',$show); // 赋值分页输出
+			
+			// 产品审核页面数据读取
+			$condition2['status']="待审核";
+			$count2= $db->where($condition2)->count();
+            $Page2 = new Page($count2,4);                     // 实例化分页类 传入总记录数和每页显示的记录数
+            $show2 = $Page2->show(); 
+			$list2 = $db->order('id')->where($condition2)->limit($Page->firstRow.','.$Page->listRows)->select();
+            $this->assign('productlist2',$list2); // 赋值数据集
+            $this->assign('page2',$show2); // 赋值分页输出
+			
+            $this->display();
+        }
+    }
+	 public function releaseToGroup(){
+        		
+        if($_SESSION['name']!=""){
+			$productRelease = M('product');
+			$condition['id']=$_POST['button'];
+			$releaseProduct=$productRelease->where($condition)->select();
+			$this->assign('releaseProduct',$releaseProduct); // 赋值数据集
+            $this->display();
+        }else{
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }      
+    }
     
     public function addChk(){  
             //导入图片上传类  
@@ -192,13 +221,13 @@ class AdminAction extends Action{
                 $info = $upload->getUploadFileInfo();  
             }  
   
-            $product   =   M('product');
-
-             $product->pic1 = $info[0]['savename'];   
-            //$data['publishtime'] = date("Y-m-d H:i:s");  
-            $res = $product->add();//写入数据库   
+            $product = M('product');
+			$product->create();  
+            $product->pic1 = $info[0]['savename']; 
+			$product->time_start = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
+            $res = $product->add();//写入数据库      
             if ($res){  
-                $this->redirect("Admin/upload","",2,"OK");  
+                $this->redirect("Admin/upload","",0,"OK");  
             }else{  
                 $this->redirect("Admin/login","",2,"error");  
             } 

@@ -56,10 +56,9 @@
 	    	<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<foreach name='payInfo' item='v1'>
 						<!-- 订单详情 -->
 				 	    <div class="panel panel-success">
-						    <div class="panel-heading"><strong>订单号:</strong><span> 01120140904</span></div>
+						    <div class="panel-heading"><strong>订单号:</strong><span> {$orderID}</span></div>
 						    <div class="panel-body">
 								<table class="table table-hover">
 									<tr>
@@ -68,7 +67,7 @@
 										<th>小计</th>
 									</tr>
 									<tr>
-										<td>{$v1.name}</td>
+										<td>{$productName}</td>
 										<td>{$amount}</td>
 										<td>{$sumMoney}</td>
 									</tr>						
@@ -89,7 +88,6 @@
 					       </div>
 						</div>
 					</div>
-				</foreach>
 				</div>
 				<div class="row">
 					<div class="col-md-12">

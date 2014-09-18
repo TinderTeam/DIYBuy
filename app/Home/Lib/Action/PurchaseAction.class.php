@@ -32,8 +32,7 @@ class PurchaseAction extends Action {
 		$this->assign('purchaseInfo',$select); 
 		$this->display();
     }
-    
-    public function orderPay(){
+    public function orderPay(){        
         if($_SESSION['email']!=""){
 			$db = M('user');
 			$condition['email']=$_SESSION['email'];
@@ -42,22 +41,36 @@ class PurchaseAction extends Action {
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
             $this->assign('code2',"12");
-			$orderID=$_POST['orderID'];
+			
 			$db = M('product');
-			$select=$db->where('id='.$orderID)->select();
-			$this->assign('payInfo',$select); 
-			$amount=$_POST['amount'];
-			$this->assign('amount',$amount);
-			$sumMoney=$amount*$db->where('id='.$orderID)->getField('price_high');
-			$this->assign('sumMoney',$sumMoney);
-	    	$this->display();
+			$Order = M('order');
+			$productID=$_POST['productID'];
+			$data['productID'] = $productID;
+			$productName=$db->where('id='.$productID)->getField('name');
+			$data['productName'] = $productName;
+			$quantity=$_POST['amount'];
+			$data['quantity'] = $quantity;
+			$totalPrices=$quantity*$db->where('id='.$productID)->getField('price_low');
+			$data['totalPrices'] = $totalPrices;
+			$user=$_SESSION['email'];
+			$data['user'] = $user;
+			$Order->add($data);				//新建订单信息存入数据库
+
+			$newOrder = M('order');
+			$orderID = $newOrder->where('user='.$user AND 'productID='.$productID)->max('Id');
+			$this->assign('orderID',$orderID);
+			$this->assign('productName',$productName);					
+			$this->assign('amount',$quantity);
+			$this->assign('sumMoney',$totalPrices);
+			$this->display();
+
+			
         }else{
 			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
         }
-
-	    
+		
     }
-	
+    
     public function orderList(){
         if($_SESSION['email']!=""){
 			$db = M('user');

@@ -94,7 +94,7 @@
 								</td>
 								<td class="actions"  style="text-align:center;vertical-align: middle">
 								<?php
-									$statusList= array('组团中','议价中','议价成功');
+									$statusList= array('议价中','议价成功');
 									for($i=0;$i<count($statusList);$i++)
 									{
 										if($v1['status']==$statusList[$i])
@@ -106,7 +106,7 @@
 								<if condition="$statusFlag eq 1 ">
 									<select class="form-control" id = "select_{$v1.id}">
 										<?php
-											$optionList= array('组团中','议价中','议价成功','议价失败');
+											$optionList= array('议价中','议价成功','议价失败');
 											$status=$v1['status'];
 										?>
 										<foreach name='optionList' item='option'  >

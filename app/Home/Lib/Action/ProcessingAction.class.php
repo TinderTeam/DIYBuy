@@ -6,9 +6,9 @@ class ProcessingAction extends Action {
     public function startGroup(){
 	require './home/Lib/Action/Public.php';
         if($_SESSION['email']!=""){
-	$db = M('user');
-	$condition['email']=$_SESSION['email'];
-	$name = $db->where($condition)->getField('name');
+			$db = M('user');
+			$condition['email']=$_SESSION['email'];
+			$name = $db->where($condition)->getField('name');
             $this->assign('v1',"$name"); 
             $this->assign('code1',"11"); 
             $this->assign('v2',"退出"); 
@@ -81,17 +81,15 @@ class ProcessingAction extends Action {
             $product->pic4 = $info[3]['savename'];
             $product->pic5 = $info[4]['savename'];
             $product->pic6 = $info[5]['savename'];
-            //$savepath = $info[0]['savepath'];  
-            //$aa = $savepath.$savename;  
-            //dump($aa);   
-            //dump($imgurl);  
-            $product->name = $_POST['name'];    
-            //$data['publishtime'] = date("Y-m-d H:i:s");  
+
+			$product->time_start = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
+            $product->sponsor = $_SESSION['email'];
+ 
             $res = $product->add();//写入数据库   
             if ($res){  
-                $this->redirect("Processing/startGroup","",2,"OK");  
+                $this->redirect("Processing/processing","",0,"OK");  
             }else{  
-                $this->redirect("Admin/login","",2,"Fuck");  
+                $this->redirect("Admin/login","",2,"Error");  
             } 
     }  
 	
@@ -155,11 +153,17 @@ class ProcessingAction extends Action {
 		{
 			$db = M('product');
 			$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
-
+			$totalNum = $db->where('id='.$_GET['id'])->getField('total_num');
 			$data['current_num']=$presentNum+1;
+			if(($presentNum+1)==$totalNum)
+			{
+				$data['status']="议价中";
+			}
 			$result=$db->where('id='.$_GET['id'])->save($data);
+			
+			
 	
-		if($result)
+			if($result)
 			{
 				$this->redirect('Processing/processing','',0,'加入成功!');
 			}

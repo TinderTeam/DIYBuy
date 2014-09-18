@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-xs-1"></div>
                         <div class="col-xs-6">
-                        <h3 style="margin-top: 5px;">组团信息审核</h3>
+                        <h3 style="margin-top: 5px;">组团信息发布</h3>
                         </div>
                         <div class="col-xs-2">
                             <p class="text-justify" style="padding-top: 10px;">用户:{$Think.session.name}</p>
@@ -82,10 +82,10 @@
                                       <td style=" text-align: center;">团购人数</td>
                                   </tr>
                                   <tr>
-                                      <td style=" text-align: center;">{$audit[0].name}</td>
-                                      <td style=" text-align: center;">{$audit[0].price_original}</td>
-                                      <td style=" text-align: center;">{$audit[0].price_high}</td>
-                                      <td style=" text-align: center;">{$audit[0].time_end}</td>
+                                      <td style=" text-align: center;">{$releaseProduct[0].name}</td>
+                                      <td style=" text-align: center;">{$releaseProduct[0].price_original}</td>
+                                      <td style=" text-align: center;">{$releaseProduct[0].price_high}</td>
+                                      <td style=" text-align: center;">{$releaseProduct[0].time_end}</td>
                                       <td style=" text-align: center;"><input size="1" name="total_num" type="text" class="form-control" id="userName" placeholder="请输入团购人数"></td>
                                   </tr>
                                 </table>        
@@ -98,38 +98,38 @@
 					
 					<div class="col-md-4 col-sm-6">
 						<div class="shop-item" style="height:220px">
-								<img src="__PUBLIC__/Uploads/{$audit[0].pic1}" alt="靓照1" height="200px" width="320px">
+								<img src="__PUBLIC__/Uploads/{$releaseProduct[0].pic1}" alt="靓照1" height="200px" width="320px">
                         </div>
 					</div>
 					
 					<div class="col-md-4 col-sm-6">
 						<div class="shop-item" style="height:220px">
-								<img src="__PUBLIC__/Uploads/{$audit[0].pic2}" alt="靓照2" height="200px" width="320px">
+								<img src="__PUBLIC__/Uploads/{$releaseProduct[0].pic2}" alt="靓照2" height="200px" width="320px">
 						</div>
 					</div>
 					
 					<div class="col-md-4 col-sm-6">
 						<div class="shop-item" style="height:220px">
-								<img src="__PUBLIC__/Uploads/{$audit[0].pic3}" alt="靓照3" height="200px" width="320px">
+								<img src="__PUBLIC__/Uploads/{$releaseProduct[0].pic3}" alt="靓照3" height="200px" width="320px">
 						</div>	
 					</div>
 					
 					<div class="clearfix"></div>
 					<div class="col-md-4 col-sm-6">
 						<div class="shop-item" style="height:220px">
-								<img src="__PUBLIC__/Uploads/{$audit[0].pic4}" alt="靓照4" height="200px" width="320px">
+								<img src="__PUBLIC__/Uploads/{$releaseProduct[0].pic4}" alt="靓照4" height="200px" width="320px">
 						</div>
 					</div>
 					
 					<div class="col-md-4 col-sm-6">
 						<div class="shop-item" style="height:220px">
-								<img src="__PUBLIC__/Uploads/{$audit[0].pic5}" alt="靓照5" height="200px" width="320px">
+								<img src="__PUBLIC__/Uploads/{$releaseProduct[0].pic5}" alt="靓照5" height="200px" width="320px">
 						</div>
 					</div>
 					
 					<div class="col-md-4 col-sm-6">
 						<div class="shop-item" style="height:220px">
-								<img src="__PUBLIC__/Uploads/{$audit[0].pic6}" alt="靓照6" height="200px" width="320px">
+								<img src="__PUBLIC__/Uploads/{$releaseProduct[0].pic6}" alt="靓照6" height="200px" width="320px">
 						</div>
 					</div>
 				 
@@ -139,20 +139,20 @@
                             
 						    <div class="panel-heading">宝贝简介<span> </span></div>
 						    <div class="panel-body">
-								<div>{$audit[0].describ}</div>
+								<div>{$releaseProduct[0].describ}</div>
 								
 							</div>
                             <hr/>
                             							
 						    <div class="panel-heading">团长号令<span> </span></div>
 						    <div class="panel-body">
-								<div>{$audit[0].comment}</div>
+								<div>{$releaseProduct[0].comment}</div>
 								
 							</div>		
                             <hr/>	
                             	<div align="center">
-								    <button name="button1" type="submit" value="{$audit[0].id}" class="btn btn-primary" onclick="javascript:this.form.action='__APP__/Admin/audit?num=1';">通过</button>
-								    <button name="button2" type="submit" value="{$audit[0].id}" class="btn btn-grey" onclick="javascript:this.form.action='__APP__/Admin/audit?num=2';">驳回</button>		
+								    <button name="button1" type="submit" value="{$releaseProduct[0].id}" class="btn btn-primary" onclick="javascript:this.form.action='__APP__/Admin/audit?num=1';">通过</button>
+								    <button name="button2" type="submit" value="{$releaseProduct[0].id}" class="btn btn-grey" onclick="javascript:this.form.action='__APP__/Admin/audit?num=2';">取消</button>		
 									
 								</div>
 							<hr/>	
