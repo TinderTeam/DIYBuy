@@ -4,6 +4,10 @@ header("Content-Type:text/html; charset=UTF-8");
 class UserAction extends Action {
     public function accountModify(){
 		$name=$_SESSION['name'];
+		$condition['name']=$_SESSION['name'];
+		$user = M('user');
+		$account = $user->where($condition)->getField('account');
+		$this->assign('account',$account);
 		$this->assign('name',$name);
 	    $this->display();
     }

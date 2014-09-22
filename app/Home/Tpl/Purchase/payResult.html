@@ -23,12 +23,12 @@
 					<div class="extras">
 						<ul >
 							<?php				
-								if(empty($_SESSION['email'])){								
+								if(empty($_SESSION['name'])){								
 									$login='false';	
 								}else{
 									$login='true';
 									$db=new Model('user');
-									$condition['email']=$_SESSION['email'];	
+									$condition['name']=$_SESSION['name'];	
 									$userName = $db->where($condition)->getField('name');
 								}
 							?>
@@ -52,7 +52,7 @@
 		        </div>
 		        <nav class="mainmenu">
 					<div class="row">
-						<div class="col-md-3"><a href="{:U('Index/index')}" target="_blank" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
+						<div class="col-md-3"><a href="__APP__/Index/index" target="_blank" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
 						</div>
 						<div class="col-md-1">
 	
@@ -85,14 +85,14 @@
 								<table class="table table-hover">
 									<tr>
 										<th>订单号</th>
-										<th>商品信息</th>
+										<th>商品名称</th>
 										<th>支付积分</th>
 										
 									</tr>
 									<tr>
-										<td>12222</td>
-										<td>aaaaaaaaaaaaaa</td>
-										<td>200</td>
+										<td>{$orderID}</td>
+										<td>{$productName}</td>
+										<td>{$sumMoney}</td>
 									</tr>						
 								</table>
 					<div class="row">
@@ -103,7 +103,7 @@
 							
 								<tr class="cart-grand-total">
 								<td><b>积分余额</b></td>
-								<td><b>3000</b></td>
+								<td><b>{$finalAccount}</b></td>
 								</tr>
 								</table>								
 								
@@ -128,8 +128,7 @@
 
 						<!-- Action Buttons -->
 						<div class="pull-right">
-							
-							<a href="#" class="btn" style="font-size:1.5em;"><i class="icon-white"></i>确 认</a>
+							<a href="__APP__/Index/index" class="btn" style="font-size:1.5em;"><i class="icon-white"></i>确 认</a>
 						</div>
 					</div>
 				</div>

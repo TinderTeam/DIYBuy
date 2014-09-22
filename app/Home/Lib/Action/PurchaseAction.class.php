@@ -20,7 +20,6 @@ class PurchaseAction extends Action {
     }
     public function orderPay(){        
         if($_SESSION['name']!=""){
-			
 			$db = M('product');
 			$Order = M('order');
 			$productID=$_POST['productID'];
@@ -30,6 +29,7 @@ class PurchaseAction extends Action {
 			$quantity=$_POST['amount'];
 			$data['quantity'] = $quantity;
 			$totalPrices=$quantity*$db->where('id='.$productID)->getField('price_low');
+			$totalPrices = number_format($totalPrices, 2, '.','');
 			$data['totalPrices'] = $totalPrices;
 			$user=$_SESSION['name'];
 			$data['user'] = $user;
@@ -60,6 +60,37 @@ class PurchaseAction extends Action {
 		$db = M('product');
 		$select=$db->where('id='.$_POST['buttonBuy'])->select();
 		$this->assign('orderInfo',$select); 
+		$this->display();
+    }
+	public function payResult(){
+		$dbOrder = M('order');
+		$orderID = $_POST['orderID'];
+		$condition['Id'] = $orderID;
+		$orderData['status']="已付款";
+		$updateOrder=$dbOrder->where($condition)->save($orderData);	//更新订单状态
+		$productID=$dbOrder->where($condition)->getField('productID');
+		
+		
+		$dbUser = M('user');
+		$condition1['name'] = $_SESSION['name'];
+		$account = $_POST['account'];
+		$sumMoney = $_POST['sumMoney'];
+		$finalAccount = $account-$sumMoney;
+		$finalAccount = number_format($finalAccount, 2, '.','');
+		$userData['account'] = $finalAccount;
+		$updateUser=$dbUser->where($condition1)->save($userData);	//更新用户帐户余额
+		
+		$product = M('product');
+		$condition2['id'] = $productID;
+		$productName = $product->where($condition2)->getField('name');
+		$currentNum = $product->where($condition2)->getField('current_num');
+		$productData['current_num'] = $currentNum+$_POST['amount'];
+		$updateProduct=$product->where($condition2)->save($productData);	//更新参团人数
+		
+		$this->assign('orderID',$orderID); 
+		$this->assign('productName',$productName);
+		$this->assign('sumMoney',$sumMoney);
+		$this->assign('finalAccount',$finalAccount);
 		$this->display();
     }
 

@@ -40,7 +40,7 @@
 								<li class="dropdown"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 
 								<a href="page-shopping-cart.html"  data-toggle="dropdown"><b>{$userName}</b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li role="menuitem"><a href="__APP__/User/accountModify" target="_blank">账户设置</a></li>
+										<li role="menuitem"><a href="__APP__/User/accountModify" target="_blank">我的账户</a></li>
 										<li role="menuitem"><a href="__APP__/User/myOrder" target="_blank">我的订单</a></li>
 										<li role="menuitem"><a href="__APP__/User/myGroup" target="_blank">我的组团</a></li>
 									</ul>
@@ -76,11 +76,15 @@
 
 		<div class="section">
 	    	<div class="container">
+			<form class="form-horizontal" id="orderPayForm" action="__APP__/Purchase/payResult" target="_blank" method="POST" name="orderPayForm">
 				<div class="row">
 					<div class="col-md-12">
 						<!-- 订单详情 -->
 				 	    <div class="panel panel-success">
-						    <div class="panel-heading"><strong>订单号:</strong><span> {$orderID}</span></div>
+						    <div class="panel-heading" ><strong>订单号:</strong>
+								<input type="text" value="{$orderID}" style="display:none;" name="orderID"/>
+								<span > {$orderID}</span>
+							</div>
 						    <div class="panel-body">
 								<table class="table table-hover">
 									<tr>
@@ -90,8 +94,10 @@
 									</tr>
 									<tr>
 										<td>{$productName}</td>
+										<input type="text" value="{$amount}" style="display:none;" name="amount"/>
 										<td>{$amount}</td>
-										<td>{$sumMoney}</td>
+										<input type="text" value="{$sumMoney}" style="display:none;" name="sumMoney"/>
+										<td >{$sumMoney}</td>
 									</tr>						
 								</table>
 					<div class="row">
@@ -102,7 +108,7 @@
 							
 							<tr class="cart-grand-total">
 								<td><b>应付总额</b></td>
-								<td>￥<span id="targetSum">{$sumMoney}</span></td>
+								<td>￥<span id="targetSum" name="sumMoney">{$sumMoney}</span></td>
 							</tr>
 						</table>								
 								
@@ -114,16 +120,12 @@
 				<div class="row">
 					<div class="col-md-12">
                          <h2></h2>
-						 <form role="form">
 							<div class="form-group">
 								<div class="col-md-8">
-
-								<h4>我的账户余额：<span id="remainSum">{$account}</span></h4>
-                                
+								<h4>我的账户余额：<span id="remainSum" name="account" >{$account}</span></h4>
+								<input type="text" value="{$account}" style="display:none;" name="account"/>
 								</div>
 							</div>
-
-						</form>
 					</div>
 				</div>
 				<div class="row">
@@ -143,28 +145,32 @@
 						<div class="pull-right">
 							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
 							<button type="submit" class="btn" onclick="checkAccount()"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</button>
-							<script type="text/javascript">
-							   function checkAccount(){
-							   var remain=document.getElementById("remainSum").innerHTML;						  
-							   var target=document.getElementById("targetSum").innerHTML;
-
-								if(remain<target){
-											document.getElementById("modalMsg").innerHTML="账户余额不足，请进行充值！";
-											document.getElementById("modalJump").href="__APP__/User/accountModify";
-											$('#errorModal').modal('show');
-											}else{
-											 window.location.href="payResult.html"; 
-										}
-							   }
-							</script>
 						</div>
 					</div>
 				</div>
 			</div>
+		</form>
 		</div>
 
 
-	    </div>	
+	    </div>
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header  alert alert-danger">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">操作失败</h4>
+      </div>
+      <div class="modal-body" id="modalMsg" align="center" style="font-size:1.5em;">
+        
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-default" target="_blank" id="modalJump">确定</a>
+
+      </div>
+    </div>
+  </div>
+</div>		
 
 <!--页脚-->
 <include file="./Home/Tpl/Public/footer.html"/>
@@ -172,5 +178,22 @@
 <!-- Javascripts -->
 <include file="./Home/Tpl/Public/js.html"/>
 
+<script type="text/javascript">
+	function checkAccount(){
+	var remain=parseFloat(document.getElementById("remainSum").innerHTML);						  
+	var target=parseFloat(document.getElementById("targetSum").innerHTML);
+		if(remain<target)
+		{
+			document.getElementById("modalMsg").innerHTML="账户余额不足，请进行充值！";
+			document.getElementById("modalJump").href="__APP__/User/accountModify";
+			$('#errorModal').modal('show');
+		}else
+		{
+			 <!-- orderPayForm.submit(); -->
+			document.getElementById('orderPayForm').submit();
+			 <!-- window.location.href="payResult.html"; --> 
+		}
+   }
+</script>
     </body>
 </html>

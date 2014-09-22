@@ -77,9 +77,9 @@ class IndexAction extends Action {
 				
 				if($pwd==$password){
 					//$this->success($_POST['admin_name']);
-					$this->assign("jumpUrl","index");
-					$this->success("您已成功登录");
-					//$this->redirect('Index/index','',0,'登陆成功');//页面重定向
+					//$this->assign("jumpUrl","index");
+					//$this->success("您已成功登录");
+					$this->redirect('Index/index','',0,'登陆成功');//页面重定向
 				}else{
 					unset($_SESSION['name']);
 					session_destroy();
