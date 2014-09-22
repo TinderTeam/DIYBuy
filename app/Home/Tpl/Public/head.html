@@ -17,16 +17,16 @@
 								}
 							?>
 							<if condition="$login eq 'false'">
-								<li > <a href="__APP__/Index/login"> <span>用户登陆</span> </a> </li>
-								<li > <a href="__APP__/Index/register"> <span>免费注册</span> </a> </li>	
+								<li > <a href="__APP__/Index/login" target="_blank"> <span style="font-weight:bold;">用户登陆</span> </a> </li>
+								<li > <a href="__APP__/Index/register" target="_blank"> <span style="font-weight:bold;">免费注册</span> </a> </li>	
 								
 							<else/>
 								<li class="dropdown"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 
 								<a href="page-shopping-cart.html"  data-toggle="dropdown"><b>{$userName}</b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li role="menuitem"><a href="__APP__/User/accountModify">账户设置</a></li>
-										<li role="menuitem"><a href="__APP__/User/myOrder">我的订单</a></li>
-										<li role="menuitem"><a href="__APP__/User/myGroup">我的组团</a></li>
+										<li role="menuitem"><a href="__APP__/User/accountModify" target="_blank">账户设置</a></li>
+										<li role="menuitem"><a href="__APP__/User/myOrder" target="_blank">我的订单</a></li>
+										<li role="menuitem"><a href="__APP__/User/myGroup" target="_blank">我的组团</a></li>
 									</ul>
 								</li>
 								<li class="J_browser_fav"> <a href="__APP__/Index/logout"> <span>退出</span> </a> </li>		
@@ -34,9 +34,9 @@
 			        	</ul>
 					</div>
 		        </div>
-		        <nav id="mainmenu" class="mainmenu">
+		        <nav class="mainmenu">
 					<div class="row">
-						<div class="col-md-3"><a href="{:U('Index/index')}" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
+						<div class="col-md-3"><a href="{:U('Index/index')}" target="_blank" class="logo-wrapper"><img src="__PUBLIC__/img/logo.png" alt="Multipurpose Twitter Bootstrap Template"></a>
 						</div>
 						<div class="col-md-5">
 							<form class="form-horizontal" role="form" method="post" action="__URL__/search" name="form1">
@@ -54,7 +54,7 @@
 						</div>
 						<foreach name='adheadinfo' item='v1' >
 						<div class="col-md-4" style="text-align:right">
-						<a href="{$v1.url}" class="logo-wrapper"><img height="50px" width="260px" src="__PUBLIC__/Uploads/{$v1.imgname}" alt="Multipurpose Twitter Bootstrap Template"></a>
+						<a href="{$v1.url}" target="_blank" class="logo-wrapper"><img height="50px" width="260px" src="__PUBLIC__/Uploads/{$v1.imgname}" alt="Multipurpose Twitter Bootstrap Template"></a>
 						</div>
 						</foreach>
 					</div>

@@ -27,17 +27,16 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<nav id="mainmenu" class="mainmenu">
+					<nav class="mainmenu">
 
 					<ul>
-
-						<li class="active"><a href="{:U('Index/index')}" >今日团购</a>
+						<li > <a href="__APP__/Index/index" target="_blank">今日团购</a>
 						</li>
-						<li><a href="{:U('Processing/processing')}">组团进行时</a>
+						<li class="active"><a href="__APP__/Processing/processing" target="_blank" >组团进行时</a>
 						</li>
-						<li><a href="{:U('Index/purchaseHistory')}">往期团购</a>
+						<li><a href="__APP__/Index/purchaseHistory" target="_blank">往期团购</a>
 						</li>
-						<li><a href="{:U('Index/aboutUs')}">关于组团购物</a>
+						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
 						</li>						
 					</ul>
 					</nav>
@@ -59,13 +58,13 @@
 							<!-- Product Image -->
 							<div class="portfolio-item">
 								<div class="portfolio-image" name="img">
-									<a href="productDetails.html"><img src="__PUBLIC__/Uploads/{$v3.pic1}" alt=""></a>
+									<a href="productDetails.html" target="_blank"><img src="__PUBLIC__/Uploads/{$v3.pic1}" alt=""></a>
 								</div>
 							</div>
 
 							<!-- Product Title -->
 							<div class="title">
-								<h3><a href="productDetails.html" >{$v3.name}</a></h3>
+								<h3><a href="productDetails.html" target="_blank">{$v3.name}</a></h3>
 							</div>
 							<!-- Product Available Colors-->
 							<div class="row">
@@ -82,7 +81,7 @@
 									￥{$v3.price_high}
                                     </div>
 									<div class="col-xs-4" style="text-align:left"><span>原价</span><span>￥{$v3.price_original}</span></div>
-									<div class="col-xs-4" style="text-align:left"><a href="{:U('Purchase/productDetails')}" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
+									<div class="col-xs-4" style="text-align:left"><a href="{:U('Purchase/productDetails')}" target="_blank" class="btn btn-small btn-green"><i class="icon-shopping-cart icon-white"></i> 立即抢购</a></div>
 								
 							</div>
 							

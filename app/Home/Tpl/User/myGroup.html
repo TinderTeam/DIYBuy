@@ -29,15 +29,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<nav id="mainmenu" class="mainmenu">
+					<nav class="mainmenu">
 					<ul>
-						<li ><a href="__APP__/Index/index" >今日团购</a>
+						<li ><a href="__APP__/Index/index" target="_blank">今日团购</a>
 						</li>
-						<li ><a href="__APP__/Processing/processing">组团进行时</a>
+						<li ><a href="__APP__/Processing/processing" target="_blank">组团进行时</a>
 						</li>
-						<li><a href="__APP__/Index/purchaseHistory">往期团购</a>
+						<li><a href="__APP__/Index/purchaseHistory" target="_blank">往期团购</a>
 						</li>
-						<li><a href="__APP__/Index/aboutUs">关于组团购物</a>
+						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
 						</li>						
 					</ul>
 					</nav>
@@ -94,7 +94,7 @@
 								</td>
 								<td class="actions"  style="text-align:center;vertical-align: middle">
 								<?php
-									$statusList= array('议价中','议价成功');
+									$statusList= array('组团成功','议价中','议价成功');
 									for($i=0;$i<count($statusList);$i++)
 									{
 										if($v1['status']==$statusList[$i])
@@ -106,7 +106,7 @@
 								<if condition="$statusFlag eq 1 ">
 									<select class="form-control" id = "select_{$v1.id}">
 										<?php
-											$optionList= array('议价中','议价成功','议价失败');
+											$optionList= array('组团成功','议价中','议价成功','议价失败');
 											$status=$v1['status'];
 										?>
 										<foreach name='optionList' item='option'  >

@@ -34,9 +34,14 @@ class PurchaseAction extends Action {
 			$user=$_SESSION['email'];
 			$data['user'] = $user;
 			$Order->add($data);				//新建订单信息存入数据库
-
+			
+			$dbUser = M('user');
+			$condition['email'] = $_SESSION['email'];
+			$account=$dbUser->where($condition)->getField('account');
+			
 			$newOrder = M('order');
 			$orderID = $newOrder->where('user='.$user AND 'productID='.$productID)->max('Id');
+			$this->assign('account',$account);
 			$this->assign('orderID',$orderID);
 			$this->assign('productName',$productName);					
 			$this->assign('amount',$quantity);

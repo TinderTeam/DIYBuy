@@ -71,8 +71,14 @@ class UserAction extends Action {
 	    $email=$_SESSION['email'];
 		$condition['sponsor'] = $email;
 		$dbGroup = M('product');
-        import("ORG.Util.Page");		
-        $countGroup = $dbGroup->where($condition)->count();
+        import("ORG.Util.Page");
+		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
+		$dataSuccess['status']='组团成功';
+		$dataFail['status']='组团失败';
+		$dbGroup->where($condition2)->where('current_num>=total_num AND status="组团中"')->save($dataSuccess);	//时间截止时，如果参与人数大于总人数，则团购成功
+		$dbGroup->where($condition2)->where('current_num<total_num AND status="组团中"')->save($dataFail);		//时间截止时，如果参与人数小于总人数，则团购失败
+        
+		$countGroup = $dbGroup->where($condition)->count();
         $PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
         $showGroup = $PageGroup->show();                                                        
         $listGroup = $dbGroup->where($condition)->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();

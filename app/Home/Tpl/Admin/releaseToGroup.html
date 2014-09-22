@@ -81,7 +81,7 @@
 							  </tr>
 							  <tr>
 								<td style=" text-align: center;">
-									<input size="1" name="name" type="text" class="form-control" value="{$releaseProduct[0].name}"/>
+									<input size="1" name="name" maxlength="15" type="text" class="form-control" value="{$releaseProduct[0].name}"/>
 								</td>
 								<td style=" text-align: center;">
 									<input size="1" name="total_num" type="text" class="form-control" value="{$releaseProduct[0].total_num}"/>
@@ -157,7 +157,7 @@
 							<div class="panel-heading">宝贝简介<span> </span></div>
 							<div class="panel-body">
 								<div>
-									<textarea name="describ" class="form-control" rows="5">{$releaseProduct[0].describ}</textarea>
+									<textarea name="describ" maxlength="69" class="form-control" rows="5">{$releaseProduct[0].describ}</textarea>
 								</div>								
 							</div>
 							

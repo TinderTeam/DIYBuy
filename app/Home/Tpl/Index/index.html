@@ -17,25 +17,22 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        
-
-<!--页头-->
-<include file="./Home/Tpl/Public/head.html"/>
-
+		<!--页头-->
+		<include file="./Home/Tpl/Public/head.html"/>
         <!-- breadcrumbs nav -->
 		<div class="section-breadcrumbs">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<nav id="mainmenu" class="mainmenu">
+					<nav  class="mainmenu">
 					<ul>
-						<li class="active"><a href="__APP__/Index/index" >今日团购</a>
+						<li class="active"> <a href="__APP__/Index/index" >今日团购</a>
 						</li>
-						<li ><a href="__APP__/Processing/processing">组团进行时</a>
+						<li ><a href="__APP__/Processing/processing" target="_blank" >组团进行时</a>
 						</li>
-						<li><a href="__APP__/Index/purchaseHistory">往期团购</a>
+						<li><a href="__APP__/Index/purchaseHistory" target="_blank">往期团购</a>
 						</li>
-						<li><a href="__APP__/Index/aboutUs">关于组团购物</a>
+						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
 						</li>						
 					</ul>
 					</nav>
@@ -48,55 +45,58 @@
 	    	<div class="container">
 				<div class="row">
 				    <div class="col-md-8">
-						<form class="form-horizontal"  action="__APP__/Purchase/productDetails" method="POST" name="form">
-							<table class="table">
-							  <foreach name='productinfo' item='v3' >
-								<tr class="content">
-									<div class="col-sm-6">
-										<!-- Product -->
-										<div class="shop-item">
-											<!-- Product Image -->
-											<div class="portfolio-item">
-												<div class="portfolio-image" name="img">
-													<a><img src="__PUBLIC__/Uploads/{$v3.pic1}" alt=""></a>
+					<form  action="__APP__/Purchase/productDetails" method="POST" target="_blank" name="form">
+						<div class="row">
+								<table class="table">
+								  <foreach name='productinfo' item='v3' >
+									<tr class="content" >
+										<div class="col-sm-6">
+											<!-- Product -->
+											<div class="shop-item">
+												<!-- Product Image -->
+												<div class="portfolio-item">
+													<div class="portfolio-image" name="img">
+														<a><img src="__PUBLIC__/Uploads/{$v3.pic1}" alt=""></a>
+													</div>
 												</div>
-											</div>
-											<!-- Product Title -->
-											<div class="title">
-												<h3><a >{$v3.name}</a></h3>
-											</div>
-											<!-- Product Available Colors-->
-											<div class="row">
-													<div class="col-xs-12">
-														 {$v3.describ}
-													</div>
-											</div>
+												<!-- Product Title -->
+												<div class="title">
+													<h3><a >{$v3.name}</a></h3>
+												</div>
+												
+												<!-- Product Available Colors-->
+												<div class="row">
+														<div class="col-xs-12">
+															 {$v3.describ}
+														</div>
+												</div>
 
-											<!-- Add to Cart Button -->
-											<div class="actions">
-													<div class="col-xs-4 price" style="text-align:left">
-													￥{$v3.price_high}
-													</div>
-													<div class="col-xs-4" style="text-align:left"><span>原价</span><span>￥{$v3.price_original}</span></div>
-													<button type="submit" name="buttonDetails" value="{$v3.id}" class="btn btn-green" ><strong>查看详情</strong></button>
-											</div>
-										
-											<div class="row">
-												<div class="col-xs-7 pull-left"  ><span>剩余</span><span id="timer_{$key}"></span></div>
-												<input id='end_date_{$key}' value="{$v3.time_end}" style="display:none;"/>
-												<div class="col-xs-5 pull-left " ><span>{$v3.current_num}/{$v3.total_num}</span><span>人已团</span></div>
-											</div>
+												<!-- Add to Cart Button -->
+												<div class="actions">
+														<div class="col-xs-4 price" style="text-align:left">
+														￥{$v3.price_high}
+														</div>
+														<div class="col-xs-4" style="text-align:left"><span>原价</span><span>￥{$v3.price_original}</span></div>
+														<button type="submit" name="buttonDetails" value="{$v3.id}" class="btn btn-green" ><strong>查看详情</strong></button>
+												</div>
+											
+												<div class="row">
+													<div class="col-xs-7 pull-left"  ><span></span><span id="Timer_{$key}"></span></div>
+													<input id="end_date_{$key}" value="{$v3.time_end}" style="display:none;"/>
+													<div class="col-xs-5 pull-left " ><span>{$v3.current_num}/{$v3.total_num}</span><span>人已团</span></div>
+												</div>
+											</div><!-- End Product -->
 										</div>
-										<!-- End Product -->
-									</div>
-								</tr>
-							  </foreach>
-							
-							</table>
-							<div align = "center">
-								<span>{$page}</span>
-							</div>
-						</form>
+									</tr>
+									
+								  </foreach>
+								  <tr class="content">
+										<td colspan="2" style=" text-align: center;" ><span>{$page}</span></td>
+									 </tr>
+								</table>
+							  
+						</div>								
+					</form>
 					</div>  
 					<!--page center-->
 
@@ -118,77 +118,70 @@
 
 <!-- Javascripts -->
 <include file="./Home/Tpl/Public/js.html"/>
+
 		        
- <script type="text/javascript">
+<script type="text/javascript"> 
+
+var target=[]; 
+var time_id=[];
+var productList_id=[]; 
+function show_date_time_0(){ 
+    setTimeout("show_date_time_0()", 1000); 
+for (var i=0,j=target.length;i<j;i++){ 
+    today=new Date(); 
+    var timeold=target[i]-today.getTime(); 
+    var sectimeold=timeold/1000; 
+    var secondsold=Math.floor(sectimeold); 
+    var msPerDay=24*60*60*1000; 
+    var e_daysold=timeold/msPerDay; 
+    var daysold=Math.floor(e_daysold); 
+    var e_hrsold=(e_daysold-daysold)*24; 
+    var hrsold=Math.floor(e_hrsold); 
+    var e_minsold=(e_hrsold-hrsold)*60; 
+    var minsold=Math.floor((e_hrsold-hrsold)*60); 
+    var seconds=Math.floor((e_minsold-minsold)*60); 
+    if (daysold<0) { 
+	
+			document.getElementById(time_id[i]).innerHTML="已到期";
+    }  
+    else { 
+
+        if (minsold<10) {minsold="0"+minsold} 
+        if (seconds<10) {seconds="0"+seconds} 
+        if (daysold<3) { 
+            document.getElementById(time_id[i]).innerHTML="剩余"+"<font color=red>"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒</font& gt;"; 
+        }  
+        else { 
+            document.getElementById(time_id[i]).innerHTML="剩余"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"; 
+        } 
+    } 
+} 
+} 
+setTimeout("show_date_time_0()", 1000); 
+
+</script> 
 
  
-setTimeout("show_time()",1000);
-
+<script > 
  
- //显示时间函数
- function show_time()
- {
- for (var i=0;i<8;i++)
+for (var i=0;i<8;i++)
 {
- 
-	var time_now_server,time_now_client,time_end,time_server_client,timerID;
-	 
-	 //结束时间
-	time_end=new Date(document.getElementById("end_date_" + i.toString()).value);
-	time_end=time_end.getTime();
-	 //开始的时间:如果不填入时间日期默认为当前的日期时间
-	time_now_server=new Date;
-	time_now_server=time_now_server.getTime();
-	 
-	time_now_client=new Date();
-	time_now_client=time_now_client.getTime();
-	 
-	time_server_client=time_now_server-time_now_client;
+//设定目标时间(数组元素) 
+//target[target.length]=new Date(年,月-1,日,时,分,秒).getTime() 
+//target[target.length]=new Date(document.getElementById("end_date_" + i.toString()).value).getTime(); 
+//SimpleDateFormat s = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//格式化日期，和数据库中日期格式相同，这里是datetime
+//String strDate = s.format(now);//格式化日期转换为字符串
+var time_str=document.getElementById("end_date_" + i.toString()).value;
+time_str = time_str.replace(/-/g,"/");
+var time_end= new Date(time_str);
 
-	 var timer = document.getElementById("timer_" + i.toString());
-	 if(!timer){
-	 return ;
-	 }
-	 timer.innerHTML =time_server_client;
-	 
-	 var time_now,time_distance,str_time;
-	 var int_day,int_hour,int_minute,int_second;
-	 var time_now=new Date();
-	 time_now=time_now.getTime()+time_server_client;
-	 time_distance=time_end-time_now;
-	 if(time_distance>0)
-	 {
-		int_day=Math.floor(time_distance/86400000)
-		time_distance-=int_day*86400000;
-		int_hour=Math.floor(time_distance/3600000)
-		time_distance-=int_hour*3600000;
-		int_minute=Math.floor(time_distance/60000)
-		time_distance-=int_minute*60000;
-		int_second=Math.floor(time_distance/1000)
-	   
-		if(int_hour<10){
-		  int_hour="0"+int_hour;
-		}
-		if(int_minute<10){
-		  int_minute="0"+int_minute;
-		}
-		if(int_second<10){
-		  int_second="0"+int_second;
-		}
-	   
-	  str_time=int_day+"天"+int_hour+"小时"+int_minute+"分钟"+int_second+"秒";
-	  timer.innerHTML=str_time;
-	  setTimeout("show_time()",1000);
-	 }
-	 else
-	 {
-	  timer.innerHTML =timer.innerHTML;
-	  clearTimeout(timerID)
-	  
-	 }
- }
- }
- </script>
+
+target[target.length]=time_end.getTime();
+ 
+//设定倒计时显示地址(数组元素) 
+ time_id[time_id.length]="Timer_"+ i.toString();
+}
+</script>
 
     </body>
 </html>

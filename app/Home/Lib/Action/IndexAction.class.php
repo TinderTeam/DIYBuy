@@ -7,19 +7,26 @@ class IndexAction extends Action {
     
     public function index(){
         require './home/Lib/Action/Public.php';
-        	
+
         //显示产品           
         $db = M('product');
-        import("ORG.Util.Page"); 
-        $count = $db->where('status="团购中" OR status="团购成功"')->count();
+        import("ORG.Util.Page");
+		$condition1['time_end']=array('GT',date('Y-m-d H:i:s',time()));	//判断截至时间大于当前时间的条件
+		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
+		$dataSuccess['status']='团购成功';
+		$dataFail['status']='团购失败';
+		$db->where($condition2)->where('current_num>=total_num AND status="团购中"')->save($dataSuccess);
+		$db->where($condition2)->where('current_num<total_num AND status="团购中"')->save($dataFail);
+		
+        $count = $db->where($condition1)->where('status="团购中"')->count();
         $Page1 = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数                                                     
-        $list1 = $db->where('status="团购中" OR status="团购成功"')->order('time_start desc')->limit($Page1->firstRow.','.$Page1->listRows)->select();
+        $list1 = $db->where($condition1)->where('status="团购中"')->order('time_start desc')->limit($Page1->firstRow.','.$Page1->listRows)->select();
         $this->assign('productinfo',$list1); // 赋值数据集
 		$show = $Page1->show(); 
         $this->assign('page',$show); // 赋值分页输出
 		$this->display();
     }
-	
+
 	public function login(){	
 		$this->display();
 	}
@@ -41,9 +48,9 @@ class IndexAction extends Action {
 		
 		$db = M('product');
         import("ORG.Util.Page"); 
-        $count = $db->where('status="组团成功" OR status="组团失败"')->count();
+        $count = $db->where('status="团购成功" OR status="团购失败"')->count();
 		$historyPage = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数		
-		$historyList = $db->where('status="组团成功" OR status="组团失败"')->order('time_end desc')->limit($historyPage->firstRow.','.$historyPage->listRows)->select();
+		$historyList = $db->where('status="团购成功" OR status="团购失败"')->order('time_end desc')->limit($historyPage->firstRow.','.$historyPage->listRows)->select();
         $this->assign('historyinfo',$historyList); // 赋值数据集
 		$show = $historyPage->show(); 
 		$this->assign('showPage',$show); // 赋值分页输出
@@ -95,7 +102,7 @@ class IndexAction extends Action {
         if($User->create()) {
             $result =  $User->add();
             if($result) {
-	    SendMail("liyonglei@fuego.cn","又来个账户咯","$name----华丽的分割线-----$pwd");
+				//SendMail("liyonglei@fuego.cn","又来个账户咯","$name----华丽的分割线-----$pwd");
                 $this->redirect('Index/login','',3,'注册成功');//页面重定向
             }else{
                 //$this->error('写入错误！');

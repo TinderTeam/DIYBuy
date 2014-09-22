@@ -34,15 +34,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<nav id="mainmenu" class="mainmenu">
+					<nav class="mainmenu">
 					<ul>
-						<li ><a href="__APP__/Index/index" >今日团购</a>
+						<li ><a href="__APP__/Index/index" target="_blank">今日团购</a>
 						</li>
-						<li ><a href="__APP__/Processing/processing">组团进行时</a>
+						<li ><a href="__APP__/Processing/processing" target="_blank">组团进行时</a>
 						</li>
-						<li><a href="__APP__/Index/purchaseHistory">往期团购</a>
+						<li><a href="__APP__/Index/purchaseHistory" target="_blank">往期团购</a>
 						</li>
-						<li><a href="__APP__/Index/aboutUs">关于组团购物</a>
+						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
 						</li>						
 					</ul>
 					</nav>
@@ -87,7 +87,8 @@
 									<span style="text-decoration:line-through;" >￥{$purchaseInfo[0].price_original}</span>
 									</li>
 									<li><b>当前状态:</b>{$purchaseInfo[0].status}</li>
-									<li><b>剩余时间:</b> 01天12小时15分55秒</li>
+									<input id="end_time" value="{$purchaseInfo[0].time_end}" style="display:none;"/>
+									<li ><b id="time_count"></b></li>
 									<li><b>参团人数:</b> {$purchaseInfo[0].current_num}/{$purchaseInfo[0].total_num}</li>
 								</ul>
 								<div class="row">
@@ -162,6 +163,49 @@
 
 <!-- Javascripts -->
 <include file="./Home/Tpl/Public/js.html"/>
+
+<script type="text/javascript"> 
+
+function show_date_time_0(){ 
+    setTimeout("show_date_time_0()", 1000); 
+	var time_str=document.getElementById('end_time').value;
+	time_str = time_str.replace(/-/g,"/");
+	var time_end= new Date(time_str);
+	var target=time_end.getTime();
+	today=new Date();
+	var timeold=target-today.getTime();
+	
+	var sectimeold=timeold/1000; 
+    var secondsold=Math.floor(sectimeold); 
+    var msPerDay=24*60*60*1000; 
+    var e_daysold=timeold/msPerDay; 
+    var daysold=Math.floor(e_daysold); 
+    var e_hrsold=(e_daysold-daysold)*24; 
+    var hrsold=Math.floor(e_hrsold); 
+    var e_minsold=(e_hrsold-hrsold)*60; 
+    var minsold=Math.floor((e_hrsold-hrsold)*60); 
+    var seconds=Math.floor((e_minsold-minsold)*60);
+	
+	if (daysold<0) { 
+	
+			document.getElementById(time_id[i]).innerHTML="已到期";
+    }  
+    else { 
+
+        if (minsold<10) {minsold="0"+minsold} 
+        if (seconds<10) {seconds="0"+seconds} 
+        if (daysold<3) { 
+            document.getElementById('time_count').innerHTML="剩余时间："+"<font color=red>"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒</font& gt;"; 
+        }  
+        else { 
+            document.getElementById('time_count').innerHTML="剩余时间："+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"; 
+        } 
+    } 
+
+} 
+setTimeout("show_date_time_0()", 1000); 
+</script> 
+
 
     </body>
 </html>

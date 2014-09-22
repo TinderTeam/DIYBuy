@@ -5,7 +5,7 @@
         $countSider = $dbSider->count();
 		$PageSider = new Page($countSider,10);  // 实例化分页类 传入总记录数和每页显示的记录数
         $showSider = $PageSider->show(); 
-		$listSider = $dbSider->where('status='.'"组团中"')->order('total_num-current_num asc,id asc')->limit(10)->select();                                                      
+		$listSider = $dbSider->where('status="组团中" AND total_num>current_num')->order('total_num-current_num asc,id asc')->limit(10)->select();                                                      
         $this->assign('siderbarInfo',$listSider); // 赋值数据集
 		
 		
