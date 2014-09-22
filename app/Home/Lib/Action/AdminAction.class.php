@@ -34,7 +34,38 @@ class AdminAction extends Action{
 	public function login(){
 		$this->display();
 	}
-    
+    public function accountModify(){
+		$this->display();
+	}
+	public function modifyPassword(){
+	
+		$pwd=$_POST['pwd'];
+		$admin   =   M('admin');
+        $condition['name']=$_POST['name'];
+		$data['pwd']=$pwd;
+		if($admin->create())
+		{
+			if($admin->where($condition)->save($data))
+			{
+			
+				$this->assign("jumpUrl","__APP__/Admin/login");
+				$this->success("修改成功，请重新登录");
+				
+				//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+			} 
+			else{
+			
+					$this->assign("jumpUrl","accountModify");
+					$this->error("修改失败,请重新修改");
+
+				}
+			
+		}else{
+			$this->error($user->getError());
+		} 
+
+        
+    }
     
     public function productInfo(){
         
@@ -52,7 +83,7 @@ class AdminAction extends Action{
     }
 	
 	public function audit($num=3){
-		    if($_SESSION['name']!=""){
+		if($_SESSION['name']!=""){
             $db = M('product');
             if($num==1){
 				$condition['id']=$_POST['button1'];
@@ -60,21 +91,28 @@ class AdminAction extends Action{
 				$data['total_num']=$_POST['total_num'];
 				if($db->create()){
 					if($db->where($condition)->save($data)){
-					$this->redirect('Admin/product','',0,'哇塞，成功了啊');//页面重定向
+					$this->assign("jumpUrl","__APP__/Admin/product");
+					$this->success("审核成功");
+					//$this->redirect('Admin/product','',0,'成功');//页面重定向
 					//$this->redirect("Admin/administrater","",1,"OK");
 					} else{
-						$this->error('写入2B错误！');
+						$this->assign("jumpUrl","__APP__/Admin/product");
+						$this->error("审核失败，请重新提交");
+						//$this->error('写入错误！');
 					}
 				}else{
-					$this->error('写入错误！');
-					//$this->error("保存错误！"); 
+					$this->assign("jumpUrl","__APP__/Admin/product");
+					$this->error("审核失败，请重新提交");
+					//$this->error('写入错误！');
 				}
-			}else if($num==2){
+			}/* else if($num==2){
 				$condition['id']=$_POST['button2'];
 				$data['status']="不通过";
 				if($db->create()){
 					if($db->where($condition)->save($data)){
-					$this->redirect('Admin/product','',0,'哇塞，又成功了啊');//页面重定向
+					$this->assign("jumpUrl","__APP__/Admin/product");
+					$this->success("成功驳回");
+					//$this->redirect('Admin/product','',0,'成功');//页面重定向
 					//$this->redirect("Admin/administrater","",1,"OK");
 					} else{
 						$this->error('写入2B错误！');
@@ -84,7 +122,7 @@ class AdminAction extends Action{
 					//$this->error("保存错误！");
 				}
             $this->display();
-			}
+			} */
         }else{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         } 

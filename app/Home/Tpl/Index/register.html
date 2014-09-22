@@ -23,11 +23,11 @@
         <include file="./Home/Tpl/Public/js.html"/>
 		 <script>
 			$(document).ready(function(){
-					$("#registerForm").validate({ 
+					$("#Form").validate({ 
 						SubmitHandler:function(){ 
 						alert( "success"); 
-						});
 						}
+						});
 			});
 		 </script> 
     </head>
@@ -69,11 +69,11 @@
 				 	    <div class="panel panel-success">
 						    <div class="panel-heading"><strong>会员注册</strong></div>
 						    <div class="panel-body">
-						    <form id="registerForm" action="__URL__/insert" target="_blank" method="POST">
+						    <form id="Form" action="__URL__/insert" target="_blank" method="POST">
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">用户名</label>
 										<div class="col-sm-7">
-											<input id="name" name="name" type="text" class="form-control required"  placeholder="" style="margin-bottom:20px">
+											<input id="name" name="name" type="text" class="form-control {required:true}"  placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
@@ -81,21 +81,21 @@
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">注册邮箱</label>
 										<div class="col-sm-7">
-											<input id="email" name="email" type="email" class="form-control "  placeholder="" style="margin-bottom:20px">
+											<input id="email" name="email" type="email" class="form-control {required:true,email:true}"  placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">请您输入密码</label>
 										<div class="col-sm-7">
-											<input id="pwd" name="pwd" type="password" class="form-control {required:true,minlength:5}"  placeholder="" style="margin-bottom:20px">
+											<input id="pwd" name="pwd" type="password" class="form-control {required:true,minlength:6}"  placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">再次确认密码</label>
 										<div class="col-sm-7">
-											<input id="pwd_check" name="pwd_check" type="password" class="form-control required" equalTo="#pwd" placeholder="" style="margin-bottom:20px">
+											<input id="pwd_check" name="pwd_check" type="password" class="form-control {required:true,equalTo:'#pwd'}" equalTo="#pwd" placeholder="" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>	

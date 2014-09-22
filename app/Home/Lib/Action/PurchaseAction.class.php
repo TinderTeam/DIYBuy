@@ -19,7 +19,7 @@ class PurchaseAction extends Action {
 		$this->display();
     }
     public function orderPay(){        
-        if($_SESSION['email']!=""){
+        if($_SESSION['name']!=""){
 			
 			$db = M('product');
 			$Order = M('order');
@@ -31,12 +31,12 @@ class PurchaseAction extends Action {
 			$data['quantity'] = $quantity;
 			$totalPrices=$quantity*$db->where('id='.$productID)->getField('price_low');
 			$data['totalPrices'] = $totalPrices;
-			$user=$_SESSION['email'];
+			$user=$_SESSION['name'];
 			$data['user'] = $user;
 			$Order->add($data);				//新建订单信息存入数据库
 			
 			$dbUser = M('user');
-			$condition['email'] = $_SESSION['email'];
+			$condition['name'] = $_SESSION['name'];
 			$account=$dbUser->where($condition)->getField('account');
 			
 			$newOrder = M('order');

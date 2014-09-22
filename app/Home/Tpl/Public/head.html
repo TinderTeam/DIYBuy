@@ -7,12 +7,12 @@
 					<div class="extras">
 						<ul >
 							<?php				
-								if(empty($_SESSION['email'])){								
+								if(empty($_SESSION['name'])){								
 									$login='false';	
 								}else{
 									$login='true';
 									$db=new Model('user');
-									$condition['email']=$_SESSION['email'];	
+									$condition['name']=$_SESSION['name'];	
 									$userName = $db->where($condition)->getField('name');
 								}
 							?>

@@ -26,7 +26,10 @@ class IndexAction extends Action {
         $this->assign('page',$show); // 赋值分页输出
 		$this->display();
     }
-
+	
+	public function register(){	
+		$this->display();
+	}
 	public function login(){	
 		$this->display();
 	}
@@ -64,32 +67,29 @@ class IndexAction extends Action {
         $time=30*60; 
         setcookie(session_name(),session_id(),time()+$time,"/");
         $User = M('user');
-        $_SESSION['email']= $_POST['email'];
-        $condition['email']=$_POST['email'];
-		if($_POST['pwd']!=""){
-			$password=$_POST['pwd'];
-		}else{
-			unset($_SESSION['eamil']);
-			session_destroy();
-			$this->error('密码没填！！');
-		}
-        
+        $_SESSION['name']= $_POST['name'];
+        $condition['name']=$_POST['name'];
+		$password=$_POST['pwd'];
+
         $pwd = $User->where($condition)->getField('pwd');
-        if($_SESSION['email']!=""){
-        if($User->create()){
-            
-            if($pwd==$password){
-                //$this->success($_POST['admin_name']);
-                $this->redirect('Index/index','',0,'登陆成功');//页面重定向
-            }else{
-				unset($_SESSION['eamil']);
-				session_destroy();
-                $this->error('密码错误');
-            }
-            
-        }else{
-            $this->error('输入错误');
-        } 
+        if($_SESSION['name']!=""){
+			if($User->create()){
+				
+				if($pwd==$password){
+					//$this->success($_POST['admin_name']);
+					$this->assign("jumpUrl","index");
+					$this->success("您已成功登录");
+					//$this->redirect('Index/index','',0,'登陆成功');//页面重定向
+				}else{
+					unset($_SESSION['name']);
+					session_destroy();
+					$this->assign("jumpUrl","login");
+					$this->error("用户名或密码不正确！");
+				}
+				
+			}else{
+				$this->error('输入错误');
+			} 
         }else{
             $this->error('你还没有登陆呢！');
         }
@@ -98,15 +98,18 @@ class IndexAction extends Action {
     public function insert(){        
         $User = M('user');
 		$name=$_POST['name'];
+		$email = $_POST['email'];
 		$pwd=$_POST['pwd'];
         if($User->create()) {
             $result =  $User->add();
             if($result) {
 				//SendMail("liyonglei@fuego.cn","又来个账户咯","$name----华丽的分割线-----$pwd");
-                $this->redirect('Index/login','',3,'注册成功');//页面重定向
+				$this->assign("jumpUrl","login");
+				$this->success("注册成功");
             }else{
-                //$this->error('写入错误！');
-                $this->show(cao);
+                $this->assign("jumpUrl","register");
+				$this->error("邮箱已被注册");
+                $this->show();
             }
         }else{
             $this->error($User->getError());

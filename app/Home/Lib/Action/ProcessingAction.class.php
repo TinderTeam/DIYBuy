@@ -5,9 +5,11 @@ class ProcessingAction extends Action {
     
     public function startGroup(){
 	require './home/Lib/Action/Public.php';
-        if($_SESSION['email']=="")
+        if($_SESSION['name']=="")
 		{
-			$this->redirect("__APP__/Index/login","",0,"你还没登陆");
+			$this->assign("jumpUrl","__APP__/Index/login");
+			$this->error("您还未登录，请先登录");
+			//$this->redirect("__APP__/Index/login","",0,"你还没登陆");
         }
 	    $this->display();
     }
@@ -67,13 +69,17 @@ class ProcessingAction extends Action {
             $product->pic6 = $info[5]['savename'];
 
 			$product->time_start = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
-            $product->sponsor = $_SESSION['email'];
+            $product->sponsor = $_SESSION['name'];
  
             $res = $product->add();//写入数据库   
             if ($res){  
-                $this->redirect("Processing/processing","",0,"OK");  
+                $this->assign("jumpUrl","Processing/processing");
+				$this->success("成功提交");
+				//$this->redirect("Processing/processing","",0,"OK");  
             }else{  
-                $this->redirect("Admin/login","",2,"Error");  
+                $this->assign("jumpUrl","Processing/processing");
+				$this->error("提交失败，请重新发起组团");
+				//$this->redirect("Admin/login","",2,"Error");  
             } 
     }  
 	
@@ -119,7 +125,7 @@ class ProcessingAction extends Action {
 	}
 	public function join(){
 	
-		if($_SESSION['email']!=""){
+		if($_SESSION['name']!=""){
 			$db = M('product');
 			$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
 			$totalNum = $db->where('id='.$_GET['id'])->getField('total_num');
@@ -129,10 +135,14 @@ class ProcessingAction extends Action {
 
 			if($result)
 			{
-				$this->redirect('Processing/processing','',0,'加入成功!');
+				$this->assign("jumpUrl","processing");
+				$this->success("加入成功");
+				//$this->redirect('Processing/processing','',0,'加入成功!');
 			}
 		}else{
-			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			$this->assign("jumpUrl","__APP__/Index/login");
+			$this->error("您还未登录，请先登录");
+			//$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
 		}
 		
 	}

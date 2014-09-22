@@ -3,50 +3,48 @@
 header("Content-Type:text/html; charset=UTF-8");
 class UserAction extends Action {
     public function accountModify(){
-		$email=$_SESSION['email'];
-		$this->assign('email',$email);
+		$name=$_SESSION['name'];
+		$this->assign('name',$name);
 	    $this->display();
     }
 	
 	public function modifyPassword(){
 	
-		$email=$_SESSION['email'];
+		$name=$_SESSION['name'];
 		$pwd=$_POST['pwd'];
 		$pwd2=$_POST['pwd2'];
 		$user   =   M('user');
-        $condition['email']=$_POST['userName'];
-		if($pwd==$pwd2)
+        $condition['name']=$_POST['userName'];
+		$data['pwd']=$pwd;
+		if($user->create())
 		{
-			$data['pwd']=$pwd;
-			if($user->create())
+			if($user->where($condition)->save($data))
 			{
-                if($user->where($condition)->save($data))
-				{
-                    $this->redirect("__APP__/Index/login","",0,"修改成功"); 
-					//$this->success('操作成功！');
-                    //$this->redirect("Admin/administrater","",1,"OK");
-				} 
-				else{
-						$this->assign('email',$email);
-						$this->display('accountModify');
-					}
+				unset($_SESSION['name']);
+				session_destroy();
+				$this->assign("jumpUrl","__APP__/Index/login");
+				$this->success("修改成功，请重新登录");
 				
-            }else{
-                $this->error($user->getError());
-            } 
-		}
-		else
-		{
-			$this->assign('email',$email);
-			$this->display('accountModify');
-		}
+				//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+			} 
+			else{
+					$this->assign('name',$name);
+					$this->assign("jumpUrl","accountModify");
+					$this->error("修改失败");
+
+				}
+			
+		}else{
+			$this->error($user->getError());
+		} 
+
         
     }
 	
     public function myOrder(){
 	
-		$email=$_SESSION['email'];
-		$condition['user'] = $email;
+		$name=$_SESSION['name'];
+		$condition['user'] = $name;
 		$dbOrder = M('order');
         import("ORG.Util.Page");		
         $countOrder = $dbOrder->where($condition)->count();
@@ -58,18 +56,25 @@ class UserAction extends Action {
 	    $this->display();
     }
 	public function deleteOrder(){
+		$name=$_SESSION['name'];
         $orderDelete = M("order"); // 实例化product对象
 		$condition['Id']=$_POST['button'];
 		if($orderDelete->where($condition)->delete()){// 删除id为5的用户数据
-			$this->redirect('User/myOrder','',0,'删除成功');//页面重定向
+			$this->assign('name',$name);
+			$this->assign("jumpUrl","__APP__/User/myOrder");
+			$this->success("删除成功");
+			//$this->redirect('User/myOrder','',0,'删除成功');
 		}else{
-			$this->error("删除失败！");
+			$this->assign('name',$name);
+			$this->assign("jumpUrl","__APP__/User/myOrder");
+			$this->error("删除失败，请重新操作");
+			//$this->error("删除失败！");
 		}
     }
     public function myGroup(){
 
-	    $email=$_SESSION['email'];
-		$condition['sponsor'] = $email;
+	    $name=$_SESSION['name'];
+		$condition['sponsor'] = $name;
 		$dbGroup = M('product');
         import("ORG.Util.Page");
 		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
@@ -88,7 +93,7 @@ class UserAction extends Action {
     }
 	public function modifyGroupStatus(){
 	
-		$email=$_SESSION['email'];
+		$name=$_SESSION['name'];
 		$status=$_POST['selectStatus'];
 		$product = M('product');
         $condition['id']=$_POST['button'];
@@ -98,14 +103,19 @@ class UserAction extends Action {
 
 		if($product->where($condition)->save($data))
 		{
-			$this->redirect("__APP__/User/myGroup","",0,"修改成功"); 
+			$this->assign('name',$name);
+			$this->assign("jumpUrl","__APP__/User/myGroup");
+			$this->success("修改成功");
+			//$this->redirect("__APP__/User/myGroup","",0,"修改成功"); 
 			//$this->success('操作成功！');
 			//$this->redirect("Admin/administrater","",1,"OK");
 		} 
 		else
 		{
-			$this->assign('email',$email);
-			$this->display('myGroup');
+			$this->assign('name',$name);
+			$this->assign("jumpUrl","__APP__/User/myGroup");
+			$this->error("操作失败，请重新修改");
+			//$this->display('myGroup');
 		}
 
 	}
