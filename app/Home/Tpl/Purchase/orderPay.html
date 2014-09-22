@@ -102,7 +102,7 @@
 							
 							<tr class="cart-grand-total">
 								<td><b>应付总额</b></td>
-								<td><b>￥{$sumMoney}</b></td>
+								<td>￥<span id="targetSum">{$sumMoney}</span></td>
 							</tr>
 						</table>								
 								
@@ -117,9 +117,9 @@
 						 <form role="form">
 							<div class="form-group">
 								<div class="col-md-8">
-								<div >
-								<h4>我的账户余额：{$account}</h4>
-								</div>
+
+								<h4>我的账户余额：<span id="remainSum">{$account}</span></h4>
+                                
 								</div>
 							</div>
 
@@ -142,7 +142,22 @@
 						<!-- Action Buttons -->
 						<div class="pull-right">
 							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
-							<a href="payResult" class="btn"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</a>
+							<button type="submit" class="btn" onclick="checkAccount()"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</button>
+							<script type="text/javascript">
+							   function checkAccount(){
+							   var remain=document.getElementById("remainSum").innerHTML;						  
+							   var target=document.getElementById("targetSum").innerHTML;
+
+								if(remain<target){
+											document.getElementById("modalMsg").innerHTML="账户余额不足，请进行充值！";
+											document.getElementById("modalJump").href="__APP__/User/accountModify";
+											$('#errorModal').modal('show');
+											}else{
+											 window.location.href="payResult.html"; 
+										}
+							   }
+							</script>
+
 						</div>
 					</div>
 				</div>
@@ -152,11 +167,13 @@
 
 	    </div>	
 
+</form>
 <!--页脚-->
 <include file="./Home/Tpl/Public/footer.html"/>
 
 <!-- Javascripts -->
 <include file="./Home/Tpl/Public/js.html"/>
+
 
     </body>
 </html>
