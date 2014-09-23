@@ -144,7 +144,7 @@
 						<!-- Action Buttons -->
 						<div class="pull-right">
 							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
-							<button type="submit" class="btn" onclick="checkAccount()"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</button>
+							<button type="button" class="btn" onclick="checkAccount()"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</button>
 						</div>
 					</div>
 				</div>
@@ -204,6 +204,7 @@
 	function checkAccount(){
 	var remain=parseFloat(document.getElementById("remainSum").innerHTML);						  
 	var target=parseFloat(document.getElementById("targetSum").innerHTML);
+	
 		if(remain<target)
 		{
 			document.getElementById("modalMsg").innerHTML="账户余额不足，请进行充值！";
@@ -211,7 +212,7 @@
 			$('#errorModal').modal('show');
 		}else
 		{
-			 <!-- orderPayForm.submit(); -->
+			<!-- orderPayForm.submit(); -->
 			document.getElementById('orderPayForm').submit();
 			 <!-- window.location.href="payResult.html"; --> 
 		}

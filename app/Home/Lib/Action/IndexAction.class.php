@@ -157,7 +157,8 @@ class IndexAction extends Action {
 		
 		}else{	
 
-			echo "<script>alert('请输入关键信息!');history.back();</script>";
+			$this->redirect('Index/index','',0,'登陆成功');//页面重定向
+			//echo "<script>alert('请输入关键信息!');history.back();</script>";
 			
 		}	
 	}
