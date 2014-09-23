@@ -18,29 +18,41 @@ class PurchaseAction extends Action {
 		$this->assign('purchaseInfo',$select); 
 		$this->display();
     }
-    public function orderPay(){        
+    public function orderPay($Id=0){        
         if($_SESSION['name']!=""){
-			$db = M('product');
-			$Order = M('order');
-			$productID=$_POST['productID'];
-			$data['productID'] = $productID;
-			$productName=$db->where('id='.$productID)->getField('name');
-			$data['productName'] = $productName;
-			$quantity=$_POST['amount'];
-			$data['quantity'] = $quantity;
-			$totalPrices=$quantity*$db->where('id='.$productID)->getField('price_low');
-			$totalPrices = number_format($totalPrices, 2, '.','');
-			$data['totalPrices'] = $totalPrices;
-			$user=$_SESSION['name'];
-			$data['user'] = $user;
-			$Order->add($data);				//新建订单信息存入数据库
-			
+			if($Id==0)
+			{
+				$db = M('product');
+				$Order = M('order');
+				$productID=$_POST['productID'];
+				$data['productID'] = $productID;
+				$productName=$db->where('id='.$productID)->getField('name');
+				$data['productName'] = $productName;
+				$quantity=$_POST['amount'];
+				$data['quantity'] = $quantity;
+				$totalPrices=$quantity*$db->where('id='.$productID)->getField('price_low');
+				$totalPrices = number_format($totalPrices, 2, '.','');
+				$data['totalPrices'] = $totalPrices;
+				$user=$_SESSION['name'];
+				$data['user'] = $user;
+				$Order->add($data);				//新建订单信息存入数据库
+				
+				$newOrder = M('order');
+				$orderID = $newOrder->where('user='.$user AND 'productID='.$productID)->max('Id');
+			}
+			else
+			{
+				$orderID=$Id;
+				$oldOrder = M('order');
+				$productName = $oldOrder->where('Id='.$orderID)->getField('productName');
+				$quantity = $oldOrder->where('Id='.$orderID)->getField('quantity');
+				$totalPrices = $oldOrder->where('Id='.$orderID)->getField('totalPrices');
+			}
 			$dbUser = M('user');
 			$condition['name'] = $_SESSION['name'];
 			$account=$dbUser->where($condition)->getField('account');
 			
-			$newOrder = M('order');
-			$orderID = $newOrder->where('user='.$user AND 'productID='.$productID)->max('Id');
+			
 			$this->assign('account',$account);
 			$this->assign('orderID',$orderID);
 			$this->assign('productName',$productName);					

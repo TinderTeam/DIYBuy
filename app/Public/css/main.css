@@ -1734,7 +1734,7 @@ span.color-red {
   color: #A0A0A0;
   padding: 0 20px 10px 20px;
   border-top: 4px solid #34a637;
-  margin-top: 100px;
+  margin-top: 10px;
   -webkit-box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
   -moz-box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
   box-shadow: 0 -1px 12px rgba(0,0,0,0.4);

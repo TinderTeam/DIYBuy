@@ -67,11 +67,16 @@
 								<th style="text-align:center;width:160px;font-size:1.5em">订单状态</th>
 								<th style="text-align:center;width:160px;font-size:1.5em">操作</th>
 							</tr>
+
 							<foreach name='orderInfo' item='v1' >	
 							<tr class="content">
 								<td><div class="event-date">{$v1.Id}</div></td>
 								<td>
-									<a href="__APP__/Purchase/productDetails?id={$v1.productID}">{$v1.productName}</a>
+									<if condition="$v1.status eq '待付款' ">
+									<a href="__APP__/Purchase/orderPay?Id={$v1.Id}" target="_blank">{$v1.productName}</a>
+									<else/>
+									<a href="__APP__/Purchase/productDetails?id={$v1.productID}" target="_blank">{$v1.productName}</a>
+									</if>
 								</td>
 								<td class="event-venue hidden-xs"><i class="icon-map-marker"></i>{$v1.quantity}</td>
 								<td class="event-price hidden-xs">{$v1.totalPrices}</td>
@@ -83,7 +88,24 @@
 								</td>
 							</tr>
 							</foreach>
-							
+							<!-- 订单少于8个时，用空行显示 -->
+							<?php
+								$noOrder= array();
+								for($i=0;$i<(8-$countOrder);$i++)
+								{
+									$noOrder[$i]='';
+								}
+							?>
+							<foreach name='noOrder' item='v0' >	
+							<tr class="content" style="height:40px">
+								<th style="text-align:center;width:250px;font-size:1em">{$v0.Id}</th>
+								<th style="text-align:center;width:250px;font-size:1em">{$v0.productName}</th>
+								<th style="text-align:center;width:160px;font-size:1em">{$v0.quantity}</th>
+								<th style="text-align:center;width:160px;font-size:1em">{$v0.totalPrices}</th>
+								<th style="text-align:center;width:160px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:160px;font-size:1em">{$v0.status}</th>								
+							</tr>
+							</foreach>
 							<tr class="content">
 								<td colspan="6" style=" text-align: center;" ><span>{$pageOrder}</span></td>
 							</tr>

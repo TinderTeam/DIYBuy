@@ -16,32 +16,43 @@ class UserAction extends Action {
 	
 		$name=$_SESSION['name'];
 		$pwd=$_POST['pwd'];
-		$pwd2=$_POST['pwd2'];
+		$oldpwd = $_POST['oldpwd'];
 		$user   =   M('user');
         $condition['name']=$_POST['userName'];
+		$password = $user->where($condition)->getField('pwd');
 		$data['pwd']=$pwd;
-		if($user->create())
+		if($oldpwd==$password)
 		{
-			if($user->where($condition)->save($data))
+			if($user->create())
 			{
-				unset($_SESSION['name']);
-				session_destroy();
-				$this->assign("jumpUrl","__APP__/Index/login");
-				$this->success("修改成功，请重新登录");
+				if($user->where($condition)->save($data))
+				{
+					unset($_SESSION['name']);
+					session_destroy();
+					$this->assign("jumpUrl","__APP__/Index/login");
+					$this->success("修改成功，请重新登录");
+					
+					//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+				} 
+				else{
+						$this->assign('name',$name);
+						$this->assign("jumpUrl","accountModify");
+						$this->error("修改失败，请重试");
+
+					}
 				
-				//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+			}else{
+				$this->assign('name',$name);
+				$this->assign("jumpUrl","accountModify");
+				$this->error("修改失败，请重试");
 			} 
-			else{
-					$this->assign('name',$name);
-					$this->assign("jumpUrl","accountModify");
-					$this->error("修改失败");
-
-				}
-			
-		}else{
-			$this->error($user->getError());
-		} 
-
+		}
+		else
+		{
+			$this->assign('name',$name);
+			$this->assign("jumpUrl","accountModify");
+			$this->error("原密码输入错误，请重新输入");
+		}
         
     }
 	
@@ -55,7 +66,8 @@ class UserAction extends Action {
         $PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
         $showOrder = $PageOrder->show();
         $listOrder = $dbOrder->where($condition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
-        $this->assign('orderInfo',$listOrder); // 赋值数据集
+        $this->assign('countOrder',$countOrder);
+		$this->assign('orderInfo',$listOrder); // 赋值数据集
         $this->assign('pageOrder',$showOrder); // 赋值分页输出
 	    $this->display();
     }
@@ -91,7 +103,8 @@ class UserAction extends Action {
         $PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
         $showGroup = $PageGroup->show();                                                        
         $listGroup = $dbGroup->where($condition)->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
-        $this->assign('groupInfo',$listGroup); // 赋值数据集
+        $this->assign('countGroup',$countGroup);
+		$this->assign('groupInfo',$listGroup); // 赋值数据集
         $this->assign('pageGroup',$showGroup); // 赋值分页输出
 	    $this->display();
     }

@@ -40,30 +40,41 @@ class AdminAction extends Action{
 	public function modifyPassword(){
 	
 		$pwd=$_POST['pwd'];
+		$oldpwd = $_POST['oldpwd'];
+		$condition['name']=$_POST['name'];
 		$admin   =   M('admin');
-        $condition['name']=$_POST['name'];
-		$data['pwd']=$pwd;
-		if($admin->create())
+		$password = $admin->where($condition)->getField('pwd');
+        $data['pwd']=$pwd;
+		if($oldpwd==$password)
 		{
-			if($admin->where($condition)->save($data))
+			if($admin->create())
 			{
-			
-				$this->assign("jumpUrl","__APP__/Admin/login");
-				$this->success("修改成功，请重新登录");
+				if($admin->where($condition)->save($data))
+				{
+					unset($_SESSION['name']);
+					session_destroy();
+					$this->assign("jumpUrl","__APP__/Admin/login");
+					$this->success("修改成功，请重新登录");
+					
+					//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+				} 
+				else{
 				
-				//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+						$this->assign("jumpUrl","accountModify");
+						$this->error("修改失败,请重新修改");
+
+					}
+				
+			}else{
+				$this->assign("jumpUrl","accountModify");
+				$this->error("修改失败,请重新修改");
 			} 
-			else{
-			
-					$this->assign("jumpUrl","accountModify");
-					$this->error("修改失败,请重新修改");
-
-				}
-			
-		}else{
-			$this->error($user->getError());
-		} 
-
+		}
+		else
+		{
+			$this->assign("jumpUrl","accountModify");
+			$this->error("原密码输入有误,请重新输入");
+		}
         
     }
     

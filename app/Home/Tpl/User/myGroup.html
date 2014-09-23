@@ -74,7 +74,7 @@
 								<td style = "vertical-align: middle">
 									<span>
 										<p class="cart-item-title" >
-											<a href="page-product-details.html"><strong>{$v1.name}</strong>
+											<a ><strong>{$v1.name}</strong>
 											</a>
 										</p>
 									</span>
@@ -129,7 +129,25 @@
 								</td>
 							</tr>
 							</foreach>
-							
+							<!-- 组团数目少于5个时，用空行显示 -->
+							<?php
+								$noGroup= array();
+								for($i=0;$i<(5-$countGroup);$i++)
+								{
+									$noGroup[$i]='';
+								}
+							?>
+							<foreach name='noGroup' item='v0' >	
+							<tr class="content" style="height:60px">
+								<th style="text-align:center;width:220px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:250px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:100px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:100px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:240px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:130px;font-size:1em">{$v0.status}</th>
+								<th style="text-align:center;width:140px;font-size:1em">{$v0.status}</th>
+							</tr>
+							</foreach>
 							<tr class="content">
 								<td colspan="7" style=" text-align: center;" ><span>{$pageGroup}</span></td>
 							</tr>

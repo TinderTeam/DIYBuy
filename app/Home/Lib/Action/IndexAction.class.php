@@ -100,7 +100,22 @@ class IndexAction extends Action {
 		$name=$_POST['name'];
 		$email = $_POST['email'];
 		$pwd=$_POST['pwd'];
-        if($User->create()) {
+		$condition1['name'] = $name;
+		$condition2['email'] = $email;
+		$select1=$User->where($condition1)->count();
+		$select2=$User->where($condition2)->count();
+		if($select1!=0)
+		{
+			$this->assign("jumpUrl","register");
+			$this->error("用户名已被注册，请重新输入用户名");
+		}
+		elseif($select2!=0)
+		{
+			$this->assign("jumpUrl","register");
+			$this->error("邮箱已被注册，请重新输入邮箱");
+		}
+        elseif($User->create()) 
+		{
             $result =  $User->add();
             if($result) {
 				//SendMail("liyonglei@fuego.cn","又来个账户咯","$name----华丽的分割线-----$pwd");
@@ -108,12 +123,12 @@ class IndexAction extends Action {
 				$this->success("注册成功");
             }else{
                 $this->assign("jumpUrl","register");
-				$this->error("邮箱已被注册");
-                $this->show();
+                $this->error("注册失败，请重试");
             }
-        }else{
-            $this->error($User->getError());
-            //$this->show();
+        }else
+		{
+            $this->assign("jumpUrl","register");
+            $this->error("注册失败，请重试");
         }
     }
     public function search()
