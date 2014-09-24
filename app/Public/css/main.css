@@ -2804,3 +2804,5 @@ font-family: "Microsoft Yahei";
 .dropdown.open a.dropdown-toggle .caret {
   border-top: 4px solid #FFF;
 }
+/*html5*/
+article,aside,dialog,footer,header,section,footer,nav,figure,menu{display:block}
