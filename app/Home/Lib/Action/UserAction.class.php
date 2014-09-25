@@ -20,7 +20,7 @@ class UserAction extends Action {
 		$user   =   M('user');
         $condition['name']=$_POST['userName'];
 		$password = $user->where($condition)->getField('pwd');
-		$data['pwd']=$pwd;
+		$data['pwd']=md5($pwd);
 		if($oldpwd==$password)
 		{
 			if($user->create())

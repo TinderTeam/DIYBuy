@@ -77,7 +77,15 @@ class AdminAction extends Action{
 		}
         
     }
-    
+    public function userManage(){
+
+		$user = M('user');
+		$condition['id']=$_POST['button'];
+		$userInfo = $user->where($condition)->find();
+		$this->assign('userInfo',$userInfo);
+		$this->display();
+    }
+	
     public function productInfo(){
         
         if($_SESSION['name']!=""){
@@ -164,8 +172,9 @@ class AdminAction extends Action{
 		if($_SESSION['name']!=""){
 				
 			$user = M('user');
-			$condition['id']=$_POST['button'];
-			$data['account']=$_POST['accountchanged'];
+			$condition['id']=$_POST['userID'];
+			$nowAccount=$user->where($condition)->getField('account');
+			$data['account']=$_POST['accountIncrease']+$nowAccount;
 			if($user->where($condition)->save($data))
 			{
 				$this->redirect("__APP__/Admin/manage","",0,"修改成功"); 

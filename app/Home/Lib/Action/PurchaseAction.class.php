@@ -91,7 +91,8 @@ class PurchaseAction extends Action {
 			$orderID = $_POST['orderID'];
 			$condition['Id'] = $orderID;
 			$orderData['status']="已付款";
-			$updateOrder=$dbOrder->where($condition)->save($orderData);	//更新订单状态
+			$updateOrder=$dbOrder->where($condition)->save($orderData);		//更新订单状态
+			$productID = $dbOrder->where($condition)->getField('productID');	//获取产品ID
 			
 			$dbUser = M('user');
 			$condition1['name'] = $_SESSION['name'];

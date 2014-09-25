@@ -29,9 +29,10 @@
 									$login='false';	
 								}else{
 									$login='true';
+									$userName = $_SESSION['name'];
 									$db=new Model('user');
 									$condition['name']=$_SESSION['name'];	
-									$userName = $db->where($condition)->getField('name');
+									$account = $db->where($condition)->getField('account');
 								}
 							?>
 							<if condition="$login eq 'false'">
@@ -47,6 +48,7 @@
 										<li role="menuitem"><a href="__APP__/User/myGroup" target="_blank">我的组团</a></li>
 									</ul>
 								</li>
+								<li class="J_browser_fav"><a><span>当前积分：{$account}</span> </a> </li>
 								<li class="J_browser_fav"> <a href="__APP__/Index/logout"> <span>退出</span> </a> </li>		
 							</if>
 			        	</ul>
@@ -151,7 +153,7 @@
 						</table>
 						<!-- Action Buttons -->
 						<div class="pull-right">
-							<a href="javascript:history.go(-1);" class="btn btn-green"> 返回上一步</a>
+							<!-- <a href="javascript:history.go(-1);" class="btn btn-green"> 返回上一步</a> -->
 							<button type="submit" class="btn btn-green" ><strong>提交订单</strong></button>
 			
 						</div>

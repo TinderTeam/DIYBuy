@@ -27,9 +27,10 @@
 									$login='false';	
 								}else{
 									$login='true';
+									$userName = $_SESSION['name'];
 									$db=new Model('user');
 									$condition['name']=$_SESSION['name'];	
-									$userName = $db->where($condition)->getField('name');
+									$account = $db->where($condition)->getField('account');
 								}
 							?>
 							<if condition="$login eq 'false'">
@@ -45,6 +46,7 @@
 										<li role="menuitem"><a href="__APP__/User/myGroup" target="_blank">我的组团</a></li>
 									</ul>
 								</li>
+								<li class="J_browser_fav"><a><span>当前积分：{$account}</span> </a> </li>
 								<li class="J_browser_fav"> <a href="__APP__/Index/logout"> <span>退出</span> </a> </li>		
 							</if>
 			        	</ul>
@@ -143,7 +145,7 @@
 
 						<!-- Action Buttons -->
 						<div class="pull-right">
-							<a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a>
+							<!-- <a href="javascript:history.go(-1);" class="btn btn-grey"> 返回上一步</a> -->
 							<button type="button" class="btn" onclick="checkAccount()"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> 立即支付</button>
 						</div>
 					</div>
@@ -190,8 +192,8 @@
         
       </div>
       <div class="modal-footer">
-        <a type="button" class="btn btn-default" target="_blank" id="modalJump">确定</a>
-
+        <a type="button" class="btn btn-default" target="_blank" id="taobaoJump">淘宝充值</a>
+		<a type="button" class="btn btn-default" target="_blank" id="paipaiJump">拍拍充值</a>
       </div>
     </div>
   </div>
@@ -208,7 +210,8 @@
 		if(remain<target)
 		{
 			document.getElementById("modalMsg").innerHTML="账户余额不足，请进行充值！";
-			document.getElementById("modalJump").href="__APP__/User/accountModify";
+			document.getElementById("taobaoJump").href="http://www.taobao.com";
+			document.getElementById("paipaiJump").href="http://www.paipai.com";
 			$('#errorModal').modal('show');
 		}else
 		{

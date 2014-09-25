@@ -69,7 +69,7 @@ class IndexAction extends Action {
         $User = M('user');
         $_SESSION['name']= $_POST['name'];
         $condition['name']=$_POST['name'];
-		$password=$_POST['pwd'];
+		$password = md5($_POST['pwd']);
 
         $pwd = $User->where($condition)->getField('pwd');
         if($_SESSION['name']!=""){
@@ -97,9 +97,10 @@ class IndexAction extends Action {
     
     public function insert(){        
         $User = M('user');
-		$name=$_POST['name'];
-		$email = $_POST['email'];
-		$pwd=$_POST['pwd'];
+		$data['name']=$_POST['name'];
+		$data['email'] = $_POST['email'];
+		$data['pwd'] = md5($_POST['pwd']);
+		
 		$condition1['name'] = $name;
 		$condition2['email'] = $email;
 		$select1=$User->where($condition1)->count();
@@ -116,9 +117,9 @@ class IndexAction extends Action {
 		}
         elseif($User->create()) 
 		{
-            $result =  $User->add();
+            $result =  $User->add($data);
             if($result) {
-				//SendMail("liyonglei@fuego.cn","又来个账户咯","$name----华丽的分割线-----$pwd");
+				//SendMail("market@fuego.cn","又来个账户咯","http://59.39.216.90:7000/DIYBuy/app/index.php/Purchase/productDetails?id=18 $name----华丽的分割线-----$pwd");
 				$this->assign("jumpUrl","login");
 				$this->success("注册成功");
             }else{
