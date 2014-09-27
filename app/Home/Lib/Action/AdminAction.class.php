@@ -199,7 +199,7 @@ class AdminAction extends Action{
         $this->redirect('Admin/login','',0,'退出登陆成功！');
     }
     
-    public function product(){
+    public function groupManage(){
         if($_SESSION['name']==""){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
@@ -211,6 +211,24 @@ class AdminAction extends Action{
 			$Page = new Page($count,8);                     
             $show = $Page->show(); 
 			$list = $db->where('status="组团成功" OR status="组团失败"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
+			$this->assign('productlist',$list); // 赋值数据集
+            $this->assign('page',$show); // 赋值分页输出
+			
+            $this->display();
+        }
+    }
+	public function productManage(){
+        if($_SESSION['name']==""){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
+            $db = M('product');
+            import("ORG.Util.Page");
+
+			// 产品管理页面数据读取
+			$count = $db->where('status="团购中" OR status="团购成功" OR status="团购失败"')->count();
+			$Page = new Page($count,8);                     
+            $show = $Page->show(); 
+			$list = $db->where('status="团购中" OR status="团购成功" OR status="团购失败"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
 			$this->assign('productlist',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
 			
@@ -358,11 +376,20 @@ class AdminAction extends Action{
   
             $product = M('product');
 			$product->create();  
-            $product->pic1 = $info[0]['savename']; 
-			$product->time_start = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
-            $res = $product->add();//写入数据库      
+            $data['name'] = $_POST['name'];
+			$data['total_num'] = $_POST['total_num'];
+			$data['price_original'] = $_POST['price_original'];
+			$data['price_high'] = $_POST['price_high'];
+			$data['price_low'] = $_POST['price_low'];
+			$data['time_end'] = $_POST['time_end'];
+			$data['status'] = $_POST['status'];
+			$data['link_add'] = $_POST['link_add'];
+			$data['describ'] = $_POST['describ'];
+			$data['pic1'] = $info[0]['savename']; 
+			$data['time_start'] = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
+            $res = $product->add($data);//写入数据库      
             if ($res){  
-                $this->redirect("Admin/upload","",0,"OK");  
+                $this->redirect("Admin/productManage","",0,"OK");  
             }else{  
                 $this->redirect("Admin/login","",2,"error");  
             } 

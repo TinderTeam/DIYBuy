@@ -90,35 +90,37 @@
 
 						<table class="events-list table-striped" style="text-align:center">
 							<tr class="success" style="height:40px">
-	    						<th style="text-align:center;width:250px;font-size:1.3em">组团截止时间</th>
-								<th style="text-align:center;width:350px;font-size:1.3em">产品标题</th>
+	    						<th style="text-align:center;width:350px;font-size:1.3em">产品标题</th>
 								<th style="text-align:center;width:190px;font-size:1.3em">参团人数</th>
 								<th style="text-align:center;width:190px;font-size:1.3em">状态</th>
-								<!-- <th style="text-align:center;width:160px;font-size:1.3em">团长编号</th> -->
-								<!-- <th style="text-align:center;width:160px;font-size:1.5em">操作</th>
-								<td class="event-venue tablehead">发布时间</td>
-	    						<td class="event-venue hidden-xs tablehead">产品标题</td>
-	    						<td class="event-venue hidden-xs tablehead">参团人数</td>
-	    						<td class="event-price hidden-xs tablehead">状态</td>
-	    						<td class="event-price hidden-xs tablehead">组团到期倒计时</td>
-								<td class="event-price hidden-xs tablehead">团长编号</td> -->
+								<th style="text-align:center;width:160px;font-size:1.3em">团长编号</th>
+								<th style="text-align:center;width:250px;font-size:1.3em">组团截止时间</th>
 	    					</tr>
                             <foreach name='productinfo' item='v4' >
                             <tr class="content" style="height:40px">
-	    						<th style="text-align:center;width:250px;font-size:1.2em"><div class="event-date">{$v4.time_end}</div></th>
-	    						<th style="text-align:center;width:350px;font-size:1.2em">
-	    							<a href="__URL__/groupDetails?id={$v4.id}" target="_blank">{$v4.name}</a>
+	    						<th style="text-align:left;width:350px;font-size:1.2em">
+	    							<a class="event-date" href="__URL__/groupDetails?id={$v4.id}" target="_blank">{$v4.name}</a>
 	    						</th>
 								<th style="text-align:center;width:190px;font-size:1.2em">
 									<i class="icon-map-marker"></i>{$v4.current_num}/{$v4.total_num}
 								</th>
-	    						<th style="text-align:center;width:190px;font-size:1.2em">
+								<th style="text-align:center;width:190px;font-size:1.2em">
 									{$v4.status}
 								</th>
-	    						<!-- <td class="event-price hidden-xs">最后8小时</td> -->
-								<!-- <th style="text-align:center;width:160px;font-size:1.2em">
-									*****789
-								</th> -->
+								<?php
+								
+									$tr1=substr($v4['sponsor'],0,5);
+									$tr2=substr($v4['sponsor'],10,5);
+									$sponsorID=$tr1."*****".$tr2;
+									
+								?>
+								<th style="text-align:center;width:160px;font-size:1.2em">
+									{$sponsorID}
+								</th>
+								<th style="text-align:center;width:250px;font-size:1.2em">
+								<div >{$v4.time_end}</div>
+								</th>
+
 	    					</tr>
                            </foreach>
                           

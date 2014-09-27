@@ -68,7 +68,7 @@ class IndexAction extends Action {
         setcookie(session_name(),session_id(),time()+$time,"/");
         $User = M('user');
         $_SESSION['name']= $_POST['name'];
-        $condition['name']=$_POST['name'];
+		$condition['name']=$_POST['name'];
 		$password = md5($_POST['pwd']);
 
         $pwd = $User->where($condition)->getField('pwd');
@@ -76,9 +76,6 @@ class IndexAction extends Action {
 			if($User->create()){
 				
 				if($pwd==$password){
-					//$this->success($_POST['admin_name']);
-					//$this->assign("jumpUrl","index");
-					//$this->success("您已成功登录");
 					$this->redirect('Index/index','',0,'登陆成功');//页面重定向
 				}else{
 					unset($_SESSION['name']);
@@ -101,8 +98,8 @@ class IndexAction extends Action {
 		$data['email'] = $_POST['email'];
 		$data['pwd'] = md5($_POST['pwd']);
 		
-		$condition1['name'] = $name;
-		$condition2['email'] = $email;
+		$condition1['name'] = $_POST['name'];
+		$condition2['email'] = $_POST['email'];
 		$select1=$User->where($condition1)->count();
 		$select2=$User->where($condition2)->count();
 		if($select1!=0)
@@ -117,7 +114,12 @@ class IndexAction extends Action {
 		}
         elseif($User->create()) 
 		{
-            $result =  $User->add($data);
+			do
+			{
+				$userID = date('mdHis',time()).rand(10000,99999);
+			}while($User->where('id='.$userID)->count());
+			$data['id'] = $userID;
+			$result =  $User->add($data);
             if($result) {
 				//SendMail("market@fuego.cn","又来个账户咯","http://59.39.216.90:7000/DIYBuy/app/index.php/Purchase/productDetails?id=18 $name----华丽的分割线-----$pwd");
 				$this->assign("jumpUrl","login");

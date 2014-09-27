@@ -26,31 +26,14 @@
 </head>
 <body> 
 
+<hr/>
 <div id="Container">  <!--页面容器--> 
-    <hr/>
     <div class="row">
-    
-        <div class="col-xs-1"></div>
-        <div class="col-xs-7">
-        
-            <ul class="nav nav-pills nav-justified" role="tablist">
-              <li role="presentation" ><a href="__URL__/manage">会员管理</a></li> 
-              <li role="presentation"><a href="__URL__/ad">广告管理</a></li>
-              <li role="presentation"><a href="__URL__/product">产品管理</a></li>
-              <li role="presentation" class="active"><a href="__URL__/upload">产品上传</a></li>
-			  <li role="presentation"><a href="__URL__/productRelease">产品发布</a></li>
-            </ul>
-
-        </div>
-        <div class="col-xs-1">
-            <p class="text-justify" style="padding-top: 10px;">用户:{$Think.session.name}</p>
-        </div>
-        
-        <div class="col-xs-3">
-        <form action="__URL__/logout" method="POST">
-            <button type="submit" class="btn-sm btn-primary">退出登陆</button></form>
-        </div>        
-    </div>
+				<div class="col-xs-1"></div>
+				<div class="col-xs-6">
+				<h3 style="margin-top: 5px;">新建团购产品</h3>
+				</div>        
+	</div>
     
     <div class="row">
         <div class="col-xs-1"></div>
@@ -58,7 +41,7 @@
 
             <hr/>
             
-            <form action="__APP__/Admin/addChk" method="POST" enctype="multipart/form-data">
+        <form action="__APP__/Admin/addChk" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xs-12">
 					<div class="panel panel-primary"> 
@@ -81,8 +64,6 @@
 							<td style=" text-align: center;">团购人数</td>
 							<td style=" text-align: center;">原价</td>
 							<td style=" text-align: center;">团购价</td>
-							<td style=" text-align: center;">优惠券价格</td>
-							<td style=" text-align: center;">到期时间</td>
 						</tr>
 						<tr>
 							<td style=" text-align: center;">
@@ -97,6 +78,14 @@
 							<td style=" text-align: center;">
 								<input name="price_high" type="text" class="form-control" placeholder="请输入用团购价"/>
 							</td>
+						</tr>
+						<tr>
+							<td style=" text-align: center;">优惠券价格</td>
+							<td style=" text-align: center;">到期时间</td>
+							<td style=" text-align: center;">产品链接</td>
+							<td style=" text-align: center;"></td>
+						</tr>
+						<tr>
 							<td style=" text-align: center;">
 								<input name="price_low" type="text" class="form-control" placeholder="请输入代金券价格￥"/>
 							</td>
@@ -104,7 +93,12 @@
 								<input name="time_end" type="text" class="form-control" id="userName" placeholder="到期时间(XXXX-XX-XX)"/>
 								<input name="status" type="text" class="form-control" value="团购中" style="display:none;"/>
 							</td>
-						</tr>	  
+							<td style=" text-align: center;">
+								<input name="link_add" type="text" class="form-control" placeholder="请输入产品原价"/>
+							</td>
+							<td style=" text-align: center;">
+							</td>
+						</tr>
 					</table>
 					<div class="panel-body">
 						<p>

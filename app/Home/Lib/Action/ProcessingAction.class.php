@@ -27,7 +27,6 @@ class ProcessingAction extends Action {
 		$db->where($condition2)->where('current_num>=total_num AND status="组团中"')->save($dataSuccess);
 		$db->where($condition2)->where('current_num<total_num AND status="组团中"')->save($dataFail);
 		
-
         $count = $db->where('status="组团中" OR status="组团成功" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->count();
         $Page = new Page($count,20);  // 实例化分页类 传入总记录数和每页显示的记录数                                         
         $list = $db->where('status="组团中" OR status="组团成功" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->order("status asc")->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -69,8 +68,11 @@ class ProcessingAction extends Action {
             $product->pic6 = $info[5]['savename'];
 
 			$product->time_start = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
-            $product->sponsor = $_SESSION['name'];
- 
+            $user = M('user');
+			$nameCondition['name'] = $_SESSION['name'];
+			$userID = $user->where($nameCondition)->getField('id');
+			$product->sponsor = $userID;
+			
             $res = $product->add();//写入数据库   
             if ($res){  
                 $this->assign("jumpUrl","Processing/processing");
@@ -126,18 +128,34 @@ class ProcessingAction extends Action {
 	public function join(){
 	
 		if($_SESSION['name']!=""){
-			$db = M('product');
-			$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
-			$totalNum = $db->where('id='.$_GET['id'])->getField('total_num');
-			$data['current_num']=$presentNum+1;
 			
-			$result=$db->where('id='.$_GET['id'])->save($data);
+			$user = M('user');
+			$nameCondition['name'] = $_SESSION['name'];
+			$userID = $user->where($nameCondition)->getField('id');
+			$userIDCondition['userID'] = $userID ;
+			$group_order = M('group_order');
+			$group_order_count = $group_order->where($userIDCondition)->where('productID='.$_GET['id'])->count();
 
-			if($result)
+			if($group_order_count==0)
 			{
+				//更新参团人数
+				$db = M('product');
+				$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
+				$data['current_num']=$presentNum+1;
+				$result=$db->where('id='.$_GET['id'])->save($data);
+				//新建组团订单
+				$groupData['productID'] = $_GET['id'];
+				$groupData['userID'] = $userID;
+				$groupData['datetime'] = date('Y-m-d H:i:s',time());
+				$group_order->add($groupData);
+				
 				$this->assign("jumpUrl","processing");
 				$this->success("加入成功");
-				//$this->redirect('Processing/processing','',0,'加入成功!');
+			}
+			else
+			{
+				$this->assign("jumpUrl","processing");
+				$this->error("您已参与组团，不能重复参与组团");
 			}
 		}else{
 			$this->assign("jumpUrl","__APP__/Index/login");
