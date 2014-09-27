@@ -149,12 +149,12 @@ class IndexAction extends Action {
 		if($key!=''){
 			$map="name like('%".$key."%') ";	
 			$list = $db->where($map)->select();
-			$this->assign('searchInfo',$list);				// 赋值数据集
+			$this->assign('productinfo',$list);				// 赋值数据集
 			$count = $db->where($map)->count(); 		// 查询满足要求的总记录数
 			$Page = new Page($count,8,'key='.$key); 	// 实例化分页类 传入总记录数、每页显示的记录数和查询的关键字
 			$show = $Page->show(); 						// 分页显示输出
 			$this->assign('page',$show);   				// 赋值分页输出	
-			$this->display('search'); 			       // 输出模板
+			$this->display('Index/index'); 			       // 输出模板
 		
 		}else{	
 

@@ -1,4 +1,4 @@
-
+		<script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
         <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
         <link rel="stylesheet" href="__PUBLIC__/css/icomoon-social.css">
         
@@ -13,4 +13,38 @@
 		(function() {if (!/*@cc_on!@*/0) return;     
 		var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
 		var i= e.length;     while (i--){         document.createElement(e[i])     } })() 
+		
+
+
 		</script>
+		
+		<!-- 鼠标移动菜单自动下来 -->
+		<style>
+
+#nav { margin: 0; padding: 0; list-style: none;  height: 30px; padding-left: 10px; padding-right: 10px; background: transparent; }
+#nav li { float: left; display: block; background: none; position: relative; z-index: 999; margin: 0 1px; }
+
+#nav li a { display: block; padding: 0; font-weight: 700; line-height: 25px; text-decoration: none;  color: #34a637; zoom: 1; border-left: 1px solid transparent; border-right: 1px solid transparent; padding: 5px 0px 0px 0px; }
+#nav li a:hover, #nav li a.hov { background-color: transparent; border-left: 0px solid transparent; border-right: 0px solid transparent; color: #34a637; }
+#nav ul { position: absolute; left: 1px; display: none; margin: 0; padding: 0; list-style: none; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.2); -o-box-shadow: 0 1px 3px rgba(0,0,0,0.2); box-shadow: 0 1px 3px rgba(0,0,0,0.2); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.2); padding-bottom: 3px; background-color:#fff;}
+#nav ul li { width: 120px; float: left; border-top: 1px solid #fff; text-align: left; }
+#nav ul li:hover { border-left: 0px solid transparent; border-right: 0px solid transparent; }
+#nav ul a { display: block; height: 30px; line-height: 20px; padding: 8px 5px; color: #34a637; border-bottom: 1px solid transparent; text-transform:  uppercase; color:#34a637; font-weight: normal; }
+#nav ul a:hover { text-decoration: none; border-right-color: transparent; border-left-color: transparent; background: #fff; color: #4e4e4e; }
+* html #nav ul { margin: 0 0 0 -2px; }
+.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+</style>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$('#nav li').hover(function() {
+		$('ul', this).slideDown(200);
+		$(this).children('a:first').addClass("hov");
+	}, function() {
+		$('ul', this).slideUp(100);
+		$(this).children('a:first').removeClass("hov");		
+	});
+});
+</script>
