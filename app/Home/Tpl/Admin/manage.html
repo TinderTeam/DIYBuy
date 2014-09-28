@@ -55,12 +55,16 @@
 						<div class="col-lg-6" style="text-align:left">
 							<input type="text" name="userName" class="form-control" placeholder="请输入你要查询的用户名"/>
 						</div>
-						<div class="col-lg-3" style="text-align:left">
+						<div class="col-lg-2" style="text-align:left">
 							<input type="submit" class="btn btn-success" name="submit" value="查询"/>
+						</div>
+						<div class="col-lg-1" style="text-align:left">
+							<a href="__APP__/Admin/newUser" class="btn btn-success btn-db">新增</a>
 						</div>
 					</div>
 				</div>
-				<form  action="__APP__/Admin/userManage" method="POST" name="form">
+				
+				<form  action="__APP__/Admin/accountIncrease" method="POST" name="form">
 				<!-- Table -->
 					<table class="table">
 						<tr>
@@ -72,7 +76,7 @@
 							<td style=" text-align: center;">账户类型</td>
 							<td style=" text-align: center;">账户名</td>
 							<td style=" text-align: center;">积分</td>
-							<td style=" text-align: center;">操作</td>
+							<td style="width:180px; text-align: center;">操作</td>
 						</tr>
 				  
 						<foreach name='b' item='vo' >
@@ -86,7 +90,8 @@
 							<td style=" text-align: center;">{$vo.account_name}</td>
 							<td style=" text-align: center;">{$vo.account}</td>
 							<td style=" text-align: center;">
-								<button name="button" value="{$vo.id}" type="submit" class="btn-sm btn-default">修改</button>
+								<button name="button" value="{$vo.id}" type="submit" class="btn btn-primary btn-sm">充值</button>
+								<a href="__APP__/Admin/deleteUser?userID={$vo.id}" class="btn btn-primary btn-sm">删除</a>
 							</td>
 						</tr>
 						</foreach>
@@ -100,49 +105,8 @@
         </div>
         <div class="col-xs-1"></div> 
     </div>
-    
-    
+ 
 </div>
-
-	<form action="__APP__/Admin/accountChange" method="POST">
-		<div class="modal fade" id="myModal"><!-- 弹出窗 -->
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title">用户积分充值</h4>
-			  </div>
-			  <div class="modal-body">
-				<table class="table">
-					<tr class="content">
-					<td>用户名:</td>
-					<td id ="userModal"></td>
-					<td>积分充值:</td>
-					<td id ="accountModal"></td>
-					</tr>
-				</table>
-			  </div>
-			  <input type="text" value="" style="display:none;" class="select" name="accountchanged"/>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button name = "button" value="" type="submit" class="btn btn-primary submitbtn">确定</button>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->	
-	</form>
-<include file="./Home/Tpl/Public/js.html"/>
-	<script type="text/javascript">
-		$(".modalbtn").click(function(){ 
-			$('#myModal').modal('show');
-			var userID=$(this).val();
-			$('.submitbtn').val(userID);
-			var newAccount=$('#account_'+userID).val();
-			$('.select').val(newAccount);
-			$('#accountModal').html(newAccount);
-			$('#userModal').html($('#account_'+$(this).val()).attr('data'));
-		});	 
-	</script>
 
 </body>
 </html>

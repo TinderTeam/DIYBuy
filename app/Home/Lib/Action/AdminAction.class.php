@@ -77,13 +77,77 @@ class AdminAction extends Action{
 		}
         
     }
-    public function userManage(){
+    public function accountIncrease(){
 
 		$user = M('user');
 		$condition['id']=$_POST['button'];
 		$userInfo = $user->where($condition)->find();
 		$this->assign('userInfo',$userInfo);
 		$this->display();
+    }
+	public function newUser(){
+
+		$this->display();
+    }
+	public function insertUser(){
+		$User = M('user');
+		$data['name']=$_POST['name'];
+		$data['email'] = $_POST['email'];
+		$data['pwd'] = md5($_POST['pwd']);
+		$data['status']=$_POST['status'];
+		$data['real_name'] = $_POST['real_name'];
+		$data['account_type']=$_POST['account_type'];
+		$data['account_name'] = $_POST['account_name'];
+		
+		$condition1['name'] = $_POST['name'];
+		$condition2['email'] = $_POST['email'];
+		$select1=$User->where($condition1)->count();
+		$select2=$User->where($condition2)->count();
+		if($select1!=0)
+		{
+			$this->assign("jumpUrl","newUser");
+			$this->error("用户名已被注册，请重新输入用户名");
+		}
+		elseif($select2!=0)
+		{
+			$this->assign("jumpUrl","newUser");
+			$this->error("邮箱已被注册，请重新输入邮箱");
+		}
+        elseif($User->create()) 
+		{
+			do
+			{
+				$userID = date('mdHis',time()).rand(10000,99999);
+			}while($User->where('id='.$userID)->count());
+			$data['id'] = $userID;
+			$result =  $User->add($data);
+            if($result) {
+				//SendMail("market@fuego.cn","又来个账户咯","http://59.39.216.90:7000/DIYBuy/app/index.php/Purchase/productDetails?id=18 $name----华丽的分割线-----$pwd");
+				$this->assign("jumpUrl","manage");
+				$this->success("注册成功");
+            }else{
+                $this->assign("jumpUrl","newUser");
+                $this->error("注册失败，请重试");
+            }
+        }else
+		{
+            $this->assign("jumpUrl","newUser");
+            $this->error("注册失败，请重试");
+        }
+	}
+	public function deleteUser($userID=""){
+
+		$user = M('user');
+		$condition['id']=$userID;
+		if($user->where($condition)->delete()){
+		
+			$this->assign("jumpUrl","__APP__/Admin/manage");
+			$this->success("删除成功");
+			//$this->redirect('User/myOrder','',0,'删除成功');
+		}else{
+			$this->assign("jumpUrl","__APP__/Admin/manage");
+			$this->error("删除失败，请重新操作");
+		}
     }
 	
     public function productInfo(){
@@ -207,10 +271,10 @@ class AdminAction extends Action{
             import("ORG.Util.Page");
 
 			// 产品管理页面数据读取
-			$count = $db->where('status="组团成功" OR status="组团失败"')->count();
+			$count = $db->where('status="待审核" OR status="不通过" OR status="组团中" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->count();
 			$Page = new Page($count,8);                     
             $show = $Page->show(); 
-			$list = $db->where('status="组团成功" OR status="组团失败"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
+			$list = $db->where('status="待审核" OR status="不通过" OR status="组团中" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
 			$this->assign('productlist',$list); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
 			

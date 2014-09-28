@@ -77,11 +77,10 @@ class ProcessingAction extends Action {
             if ($res){  
                 $this->assign("jumpUrl","Processing/processing");
 				$this->success("成功提交");
-				//$this->redirect("Processing/processing","",0,"OK");  
+				
             }else{  
                 $this->assign("jumpUrl","Processing/processing");
-				$this->error("提交失败，请重新发起组团");
-				//$this->redirect("Admin/login","",2,"Error");  
+				$this->error("提交失败，请重新发起组团"); 
             } 
     }  
 	
