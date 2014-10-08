@@ -119,9 +119,11 @@ class IndexAction extends Action {
 				$userID = date('mdHis',time()).rand(10000,99999);
 			}while($User->where('id='.$userID)->count());
 			$data['id'] = $userID;
+			$data['identity'] = '待激活';
 			$result =  $User->add($data);
             if($result) {
-				//SendMail("market@fuego.cn","又来个账户咯","http://59.39.216.90:7000/DIYBuy/app/index.php/Purchase/productDetails?id=18 $name----华丽的分割线-----$pwd");
+				$IP = C('IP');
+				SendMail("market@fuego.cn","DIY团注册验证邮件","请点击下方链接完成激活："."http://".$IP."/DIYBuy/app/index.php/Index/active?userID=".$userID);
 				$this->assign("jumpUrl","login");
 				$this->success("注册成功");
             }else{
@@ -134,6 +136,21 @@ class IndexAction extends Action {
             $this->error("注册失败，请重试");
         }
     }
+	public function active($userID=0){ 
+		//激活用户
+		
+		$UserDB = M('user');
+		$user=$UserDB->where('id='.$userID)->find();
+		if($user==null){
+			$this->assign("jumpUrl","login");
+			$this->error("链接失效");
+		}
+		$data['identity'] = '待审核';
+		$user=$UserDB->where('id='.$userID)->save($data);
+		$this->assign("jumpUrl","login");
+        $this->success("激活成功,USerID=".$userID);
+	}
+	
     public function search()
 	{
 		require './home/Lib/Action/Public.php';

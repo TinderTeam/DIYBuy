@@ -38,7 +38,7 @@
 		$mail->From=C('MAIL_ADDRESS');
 
 		// 设置发件人名字
-		$mail->FromName='LilyRecruit';
+		$mail->FromName='DIYBuy';
 
 		// 设置邮件标题
 		$mail->Subject=$title;

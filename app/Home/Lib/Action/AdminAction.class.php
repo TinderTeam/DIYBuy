@@ -449,7 +449,12 @@ class AdminAction extends Action{
 			$data['status'] = $_POST['status'];
 			$data['link_add'] = $_POST['link_add'];
 			$data['describ'] = $_POST['describ'];
-			$data['pic1'] = $info[0]['savename']; 
+			$data['pic1'] = $info[0]['savename'];
+			
+			//处理综合描述
+			$text = $_POST['htmltext'];
+			$text = str_replace('\"', '"',$text);
+			$data['html_info']=$text;
 			$data['time_start'] = date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
             $res = $product->add($data);//写入数据库      
             if ($res){  
@@ -493,7 +498,7 @@ class AdminAction extends Action{
                     $this->success('操作成功！');
                     //$this->redirect("Admin/administrater","",1,"OK");
 					} else{
-						$this->error('写入2B错误！');
+						$this->error('写入错误！');
 					}
                 }else{
                     $this->error('写入错误！');

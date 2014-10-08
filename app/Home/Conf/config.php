@@ -6,11 +6,12 @@ return array(
 	
 	
     // 添加邮箱配置信息
-	'MAIL_ADDRESS'=>'liyonglei@fuego.cn', // 邮箱地址
+	'MAIL_ADDRESS'=>'nanbowen@fuego.cn', // 邮箱地址
 	'MAIL_SMTP'=>'smtp.qq.com', // 邮箱SMTP服务器
-	'MAIL_LOGINNAME'=>'liyonglei@fuego.cn', // 邮箱登录帐号
-	'MAIL_PASSWORD'=>'*******', // 邮箱密码
+	'MAIL_LOGINNAME'=>'nanbowen@fuego.cn', // 邮箱登录帐号
+	'MAIL_PASSWORD'=>'mxl805', // 邮箱密码
 	
+	'IP'=>'127.0.0.1:89',//本机IP
 	
     // 添加数据库配置信息
     'DB_TYPE'   => 'mysql', // 数据库类型
