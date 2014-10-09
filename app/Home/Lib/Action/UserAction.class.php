@@ -6,13 +6,38 @@ class UserAction extends Action {
 		$name=$_SESSION['name'];
 		$condition['name']=$_SESSION['name'];
 		$user = M('user');
-		$account = $user->where($condition)->getField('account');
+		$myuser = $user->where($condition)->find();
 		//增加其他的用户信息
 		
-		$this->assign('name',$name);
+		$this->assign('myuser',$myuser);
 	    $this->display();
     }
+	public function userInfoSubmit(){
+	
+		$nameCondition['name']=$_SESSION['name'];
 
+		$user = M('user');
+		$data['account_type']=$_POST['account_type'];
+		$data['account_name']=$_POST['account_name'];
+		$data['real_name']=$_POST['real_name'];
+		$data['identity']="待审核";
+		$myuser=$user->where($nameCondition)->find();
+
+		if($user->where($nameCondition)->save($data))
+		{
+			$this->assign('myuser',$myuser);
+			$this->assign("jumpUrl","__APP__/User/userInfo");
+			$this->success("提交成功，请重新登录");
+
+		} 
+		else
+		{
+			$this->assign('myuser',$myuser);
+			$this->assign("jumpUrl","__APP__/User/userInfo");
+			$this->error("提交失败，请重试");
+
+		}
+    }
 	  public function passwordSetup(){
 		$this->display();
 	  }
@@ -24,10 +49,6 @@ class UserAction extends Action {
 		$account = $user->where($condition)->getField('account');
 		$this->assign('account',$account);
 	    $this->display();
-    }	
-	
-	public function accountModify(){
-		$this->display("passwordSetup");
     }	
 	
 	public function modifyPassword(){
@@ -74,7 +95,18 @@ class UserAction extends Action {
     }
 	
 	 public function myAttend(){
-	  $this->display();
+	 
+		$nameCondition['username']=$_SESSION['name'];
+		$groupOrderView = M('group_order_view');
+		import("ORG.Util.Page");
+		$groupOrderCount = $groupOrderView->where($nameCondition)->count();
+		$PageOrder = new Page($groupOrderCount,8);  // 实例化分页类 传入总记录数和每页显示的记录数
+		$showOrder = $PageOrder->show();
+		$groupOrderList = $groupOrderView->where($nameCondition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+		$this->assign('countOrder',$groupOrderCount);
+		$this->assign('groupOrderList',$groupOrderList);
+		$this->assign('pageOrder',$showOrder); // 赋值分页输出
+		$this->display();
 	 }
 	
     public function myOrder(){

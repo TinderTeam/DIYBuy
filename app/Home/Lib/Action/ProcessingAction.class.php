@@ -135,6 +135,7 @@ class ProcessingAction extends Action {
 			$group_order = M('group_order');
 			$group_order_count = $group_order->where($userIDCondition)->where('productID='.$_GET['id'])->count();
 
+			//新建组团订单
 			if($group_order_count==0)
 			{
 				//更新参团人数

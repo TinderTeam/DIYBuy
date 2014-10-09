@@ -104,11 +104,19 @@
 										<div class="panel panel-success">
 											<div class="panel-heading">用户信息</div>
 											<div class="panel-body">
-												<form id="modifyForm" action="__APP__/User/modifyPassword" target="_blank" method="POST">
+												<form id="modifyForm" action="__APP__/User/userInfoSubmit" target="_blank" method="POST">
 													<div class="form-group">
 														<label class="col-sm-3 control-label" style="text-align:right">用户名</label>
 														<div class="col-sm-7">
-															<input type="text" class="form-control" readonly = "true" name = "userName" value = "{$name}" style="margin-bottom:20px"/>
+															<input type="text" class="form-control" readonly = "true" name = "userName" value = "{$myuser.name}" style="margin-bottom:20px"/>
+														</div>
+														<div class="col-sm-2" ></div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-3 control-label" style="text-align:right">审核意见</label>
+														<div class="col-sm-7">
+															<input type="text" class="form-control"  readonly = "true" style="margin-bottom:20px" value = "{$myuser.note}">
 														</div>
 														<div class="col-sm-2" ></div>
 													</div>
@@ -116,9 +124,9 @@
 													<div class="form-group">
 														<label class="col-sm-3 control-label" style="text-align:right">账户类型</label>
 														<div class="col-sm-7"  style="padding-bottom: 20px;">
-															<select class="form-control">
-																<option/>财付通
-																<option/>支付宝		
+															<select class="form-control" name="account_type">
+																<option value="财付通">财付通 </option>
+																<option value="支付宝">支付宝 </option>		
 															</select>	
 														</div>														
 													</div>
@@ -126,7 +134,7 @@
 													<div class="form-group">
 														<label class="col-sm-3 control-label" style="text-align:right">账号</label>
 														<div class="col-sm-7">
-															<input id="oldpwd" type="text" class="form-control {required:true}"  name = "" style="margin-bottom:20px">
+															<input type="text" class="form-control {required:true}"  name = "account_name" style="margin-bottom:20px">
 														</div>
 														<div class="col-sm-2" ></div>
 													</div>
@@ -134,14 +142,22 @@
 													<div class="form-group">
 														<label class="col-sm-3 control-label" style="text-align:right">真实姓名</label>
 														<div class="col-sm-7">
-															<input id="pwd" type="text" class="form-control {required:true}"  name = "" style="margin-bottom:20px">
+															<input id="pwd" type="text" class="form-control {required:true}"  name = "real_name" style="margin-bottom:20px">
 														</div>
 														<div class="col-sm-2" ></div>
 													</div>
 													<div class="form-group" >
 														<div class="col-sm-3"></div>
 														<div class="col-sm-7">
-														   <button type="submit" class="btn btn-green btn-block"><strong>提交审核</strong></button>
+															<if condition="$myuser.identity eq '已激活' ">
+															<button type="submit" class="btn btn-green btn-block"><strong>提交审核</strong></button>
+															<elseif condition="$myuser.identity eq '已拒绝' "/>
+															<button type="submit" class="btn btn-green btn-block"><strong>重新提交</strong></button>
+															<elseif condition="$myuser.identity eq '已审核' "/>
+															<button disabled="true" class="btn btn-green btn-block"><strong>审核通过</strong></button>
+															<elseif condition="$myuser.identity eq '待审核' "/>
+															<button disabled="true" class="btn btn-green btn-block"><strong>已经提交</strong></button>
+															</if>
 														</div>
 														<div class="col-sm-2" ></div>
 													</div> 

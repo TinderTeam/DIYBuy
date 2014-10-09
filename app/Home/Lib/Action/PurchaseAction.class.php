@@ -91,6 +91,12 @@ class PurchaseAction extends Action {
 			$orderID = $_POST['orderID'];
 			$condition['Id'] = $orderID;
 			$orderData['status']="已付款";
+			//产生随机优惠码
+			do
+			{
+				$code = rand(1000,9999).date('mdHis',time());
+			}while($dbOrder->where('code='.$code)->count());
+			$orderData['code']=$code;
 			$updateOrder=$dbOrder->where($condition)->save($orderData);		//更新订单状态
 			$productID = $dbOrder->where($condition)->getField('productID');	//获取产品ID
 			
