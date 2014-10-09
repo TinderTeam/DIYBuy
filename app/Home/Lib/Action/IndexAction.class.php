@@ -98,6 +98,13 @@ class IndexAction extends Action {
 		$data['email'] = $_POST['email'];
 		$data['pwd'] = md5($_POST['pwd']);
 		
+		//验证邮箱
+		print(strrpos($_POST['email'],"qq.com"));
+		if(strrpos($_POST['email'],"qq.com")==null){
+			$this->assign("jumpUrl","register");
+			$this->error("请使用QQ邮箱进行注册...");
+		}
+		
 		$condition1['name'] = $_POST['name'];
 		$condition2['email'] = $_POST['email'];
 		$select1=$User->where($condition1)->count();

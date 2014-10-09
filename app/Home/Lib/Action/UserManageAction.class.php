@@ -4,6 +4,7 @@ header("Content-Tyoe:text/html;charset=utf-8");
 class UserManageAction extends Action{
     
     // 显示用户管理页面
+
     public function userManage($user_filter=0){
         if($_SESSION['name']!=""){
             

@@ -2,18 +2,35 @@
 // 本类由系统自动生成，仅供测试用途
 header("Content-Type:text/html; charset=UTF-8");
 class UserAction extends Action {
-    public function accountModify(){
+	public function userInfo(){
+		$name=$_SESSION['name'];
+		$condition['name']=$_SESSION['name'];
+		$user = M('user');
+		$account = $user->where($condition)->getField('account');
+		//增加其他的用户信息
+		
+		$this->assign('name',$name);
+	    $this->display();
+    }
+
+	  public function passwordSetup(){
+		$this->display();
+	  }
+	
+    public function account(){
 		$name=$_SESSION['name'];
 		$condition['name']=$_SESSION['name'];
 		$user = M('user');
 		$account = $user->where($condition)->getField('account');
 		$this->assign('account',$account);
-		$this->assign('name',$name);
 	    $this->display();
-    }
+    }	
+	
+	public function accountModify(){
+		$this->display("passwordSetup");
+    }	
 	
 	public function modifyPassword(){
-	
 		$name=$_SESSION['name'];
 		$pwd=$_POST['pwd'];
 		$oldpwd = $_POST['oldpwd'];
@@ -55,6 +72,10 @@ class UserAction extends Action {
 		}
         
     }
+	
+	 public function myAttend(){
+	  $this->display();
+	 }
 	
     public function myOrder(){
 	

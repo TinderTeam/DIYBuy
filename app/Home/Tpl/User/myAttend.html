@@ -15,14 +15,11 @@
 	<link rel="stylesheet" href="__PUBLIC__/nuomi/nuomi2.css">
 
     </head>
-	
-	
-	
+
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-        
+        <![endif]-->       
 <!--页头-->
 <include file="./Home/Tpl/Public/head.html"/>
 
@@ -55,18 +52,18 @@
 					<div class="uc p-order-list clearfix">
 						<div class="user-main fl">
 							<ul class="w-page-tab clearfix">
-								<li class="current current-first">
+								<li >
 									<a class="first" href="__APP__/User/myOrder"><span>我的抢团</span></a>
 								</li>
-								<li >
+								<li class="current current-first">
 									<a class="" href="__APP__/User/myAttend"><span>我的参团</span></a>
 								</li>
-								<li >
+								<li>
 									<a class="" href="__APP__/User/myGroup"><span>我的组团</span></a>
-								</li >
+								</li>
 								<li >
 									<a class="" href="__APP__/User/userInfo"><span>基本资料</span></a>
-								</li>	
+								</li>
 							</ul>
 							<div class="w-orders-wrap line" id="J-orders-wrap">
 								<div class="status-wrap clearfix">
@@ -82,15 +79,15 @@
 									<div class="col-md-10">
 										<div class="panel panel-success">
 											<div class="panel-heading">
-												<strong>我的订单</strong>
+												<strong>我的参团</strong>
 											</div>
 											<div class="panel-body">												
 												<table class="events-list table-striped" style="text-align:center">
 													<tr class="content" style="height:40px">
 														<th style="text-align:center;width:250px;font-size:1.5em">订单号</th>
 														<th style="text-align:center;width:250px;font-size:1.5em">商品名称</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">优惠券</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">优惠券价值</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">优惠券数量</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">优惠券总价</th>
 														<th style="text-align:center;width:160px;font-size:1.5em">订单状态</th>
 														<th style="text-align:center;width:160px;font-size:1.5em">操作</th>
 													</tr>
@@ -129,13 +126,7 @@
 														<tr class="content" style="height:40px">
 															<th style="text-align:center;width:250px;font-size:1em">{$v0.Id}</th>
 															<th style="text-align:center;width:250px;font-size:1em">{$v0.productName}</th>
-															<th style="text-align:center;width:160px;font-size:1em"><a href="#" >
-															<?php
-																if($v0['quantity']!=""){
-																	print('获取优惠券'.$v0['quantity']);
-																}
-															?>
-															</a></th>
+															<th style="text-align:center;width:160px;font-size:1em">{$v0.quantity}</th>
 															<th style="text-align:center;width:160px;font-size:1em">{$v0.totalPrices}</th>
 															<th style="text-align:center;width:160px;font-size:1em">{$v0.status}</th>
 															<th style="text-align:center;width:160px;font-size:1em">{$v0.status}</th>								
