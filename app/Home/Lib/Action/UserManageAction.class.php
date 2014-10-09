@@ -4,7 +4,6 @@ header("Content-Tyoe:text/html;charset=utf-8");
 class UserManageAction extends Action{
     
     // 显示用户管理页面
-
     public function userManage($user_filter=0){
         if($_SESSION['name']!=""){
             
@@ -24,6 +23,13 @@ class UserManageAction extends Action{
 				$Page = new Page($userCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
 				$show = $Page->show();
 				$userList = $user->order('id')->where('identity="待激活"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
+			elseif($user_filter=="Activated")
+			{
+				$userCount = $user->where('identity="已激活"')->count();
+				$Page = new Page($userCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$userList = $user->order('id')->where('identity="已激活"')->limit($Page->firstRow.','.$Page->listRows)->select();
 			}
 			elseif($user_filter=='toApprove')
 			{

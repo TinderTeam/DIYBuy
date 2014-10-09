@@ -147,12 +147,14 @@ class IndexAction extends Action {
 		//激活用户
 		
 		$UserDB = M('user');
-		$user=$UserDB->where('id='.$userID)->find();
+		$userID=substr($userID,0,15);
+		$userIDCondition['id']=$userID;
+		$user=$UserDB->where($userIDCondition)->find();
 		if($user==null){
 			$this->assign("jumpUrl","login");
 			$this->error("链接失效");
 		}
-		$data['identity'] = '待审核';
+		$data['identity'] = '已激活';
 		$user=$UserDB->where('id='.$userID)->save($data);
 		$this->assign("jumpUrl","login");
         $this->success("激活成功,USerID=".$userID);

@@ -61,28 +61,28 @@
 				<div style="margin-top: 10px;margin-bottom: 10px;margin-left: 20px;">
 					<table>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=all">全部</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=all">全部</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=toActivate">待审核</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=toApprove">待审核</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=toApprove">已驳回</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=Rejected">已驳回</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=Approved">组团中</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=inGroup">组团中</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=Approved">组团失败</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=groupFail">组团失败</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=Approved">议价中</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=inBargain">议价中</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=Approved">议价成功</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=bargainOK">议价成功</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
-							<a href="__APP__/UserManage/userManage?user_filter=Approved">议价失败</a>
+							<a href="__APP__/GroupManage/groupManage?group_filter=bargainNG">议价失败</a>
 						</td>
 					</table>
 				</div>
@@ -122,7 +122,7 @@
 					<a href="__APP__/GroupManage/releaseToProduct?productID={$vo.id}" class="btn btn-primary btn-sm">发布</a>
 					<button disabled="true" class="btn btn-primary btn-sm">删除</button>
 				<elseif condition="$vo.status eq '待审核' "/>
-					<button name="button" value="{$vo.id}" type="submit" class="btn btn-primary btn-sm">审核</button>
+					<a href="__APP__/GroupManage/releaseToGroup?groupID={$vo.id}" class="btn btn-primary btn-sm">审核</a>
 					<a href="__APP__/GroupManage/deleteGroup?groupID={$vo.id}" class="btn btn-primary btn-sm">删除</a>
 				<else/>
 					<button disabled="true" class="btn btn-primary btn-sm">编辑</button>

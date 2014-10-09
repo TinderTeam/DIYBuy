@@ -4,19 +4,51 @@ header("Content-Tyoe:text/html;charset=utf-8");
 class ProductManageAction extends Action{
     
 	//显示团购产品列表
-    public function productManage(){
+    public function productManage($product_filter=0){
         if($_SESSION['name']==""){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
-            $db = M('product');
+            $product = M('product');
             import("ORG.Util.Page");
-
-			// 产品管理页面数据读取
-			$count = $db->where('status="团购中" OR status="团购成功" OR status="团购失败"')->count();
-			$Page = new Page($count,8);                     
-            $show = $Page->show(); 
-			$list = $db->where('status="团购中" OR status="团购成功" OR status="团购失败"')->order('id')->limit($Page->firstRow.','.$Page->listRows)->select();
-			$this->assign('productlist',$list); // 赋值数据集
+			
+			if($product_filter=='ongoing')
+			{
+				$productCount = $product->where('status="团购中"')->count();
+				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$productList = $product->order('id')->where('status="团购中"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
+			elseif($product_filter=="success")
+			{
+				$productCount = $product->where('status="团购成功"')->count();
+				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$productList = $product->order('id')->where('status="团购成功"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
+			elseif($product_filter=="fail")
+			{
+				$productCount = $product->where('status="团购失败"')->count();
+				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$productList = $product->order('id')->where('status="团购失败"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
+			elseif($product_filter=="all")
+			{
+				$productCount = $product->where('status="团购中" OR status="团购成功" OR status="团购失败"')->count();
+				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$productList = $product->order('id')->where('status="团购中" OR status="团购成功" OR status="团购失败"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
+			else
+			{
+				$productCount = $product->where('status="团购中"')->count();
+				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$productList = $product->order('id')->where('status="团购中"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
+			$product_filter='ongoing';		//设置初始值，如果重新点击商家中心，刷新页面，显示团购中产品
+			
+			$this->assign('productlist',$productList); // 赋值数据集
             $this->assign('page',$show); // 赋值分页输出
 			
             $this->display();
@@ -98,14 +130,19 @@ class ProductManageAction extends Action{
             //设置文件上传名(按照时间)  
             //$upload->saveRule = "time";  
             if (!$upload->upload()){  
-                $this->error($upload->getErrorMsg());  
+                //$this->error($upload->getErrorMsg());  
             }else{  
                 //上传成功，获取上传信息  
                 $info = $upload->getUploadFileInfo();  
             }  
-  
+	
             $product = M('product');
 			$condition['id']=$_POST['productID'];
+			
+			if($info[0]['savename']!=""){
+				$data['pic1'] = $info[0]['savename'];
+				
+			}
             $data['name'] = $_POST['name'];
 			$data['total_num'] = $_POST['total_num'];
 			$data['price_original'] = $_POST['price_original'];
@@ -115,7 +152,6 @@ class ProductManageAction extends Action{
 			$data['status'] = $_POST['status'];
 			$data['link_add'] = $_POST['link_add'];
 			$data['describ'] = $_POST['describ'];
-			$data['pic1'] = $info[0]['savename'];
 			
 			//处理综合描述
 			$text = $_POST['htmltext'];
