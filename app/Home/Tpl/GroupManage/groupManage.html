@@ -119,7 +119,7 @@
 					<button name="button" value="{$vo.id}" type="submit" class="btn btn-primary btn-sm">编辑</button>
 					<a href="__APP__/GroupManage/deleteGroup?groupID={$vo.id}" class="btn btn-primary btn-sm">删除</a>
 				<elseif condition="$vo.status eq '议价成功' "/>
-					<a href="__APP__/GroupManage/releaseToProduct?productID={$vo.id}" class="btn btn-primary btn-sm">发布</a>
+					<a href="__APP__/GroupManage/releaseToProduct?groupID={$vo.id}" class="btn btn-primary btn-sm">发布</a>
 					<button disabled="true" class="btn btn-primary btn-sm">删除</button>
 				<elseif condition="$vo.status eq '待审核' "/>
 					<a href="__APP__/GroupManage/releaseToGroup?groupID={$vo.id}" class="btn btn-primary btn-sm">审核</a>

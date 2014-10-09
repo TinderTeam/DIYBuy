@@ -169,8 +169,8 @@
 				//var txt = '<p><img src=\"http://127.0.0.1:89/DIYBuy/app/Public/ueditor/php/upload/20141008/14127569472248.jpg\" _src=\"http://127.0.0.1:89/DIYBuy/app/Public/ueditor/php/upload/20141008/14127569472248.jpg\"/></p><p><img src=\"http://127.0.0.1:89/DIYBuy/app/Public/ueditor/php/upload/20141008/14127569585354.jpg\" _src=\"http://127.0.0.1:89/DIYBu"';   
 				//var restr = /src\s*=\Shttp:\S{2,2}[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}:[\d]{0,4}\SDIYBuy\Sapp\SPublic\Sueditor\Sphp\Supload\S\w{0,}\S\w{0,}.jpg\"/g;    
 				//匹配正则表达式
-				var ipStr = /<img src\s*=\Shttp:\S{2,2}[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}:[\d]{0,4}\SDIYBuy\Sapp\SPublic\S/g; 
-				
+				//var ipStr = /<img src\s*=\Shttp:\S{2,2}[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}:[\d]{0,4}\SDIYBuy\Sapp\SPublic\S/g; 
+				var ipStr = /<img src\s*=\S{1,}(http|https):\S{2,2}\S{1,}\SDIYBuy\Sapp\SPublic\S/g;
 				//获取上传的路径
 				var array=txt.match(ipStr);
 				//获取系统路径
@@ -178,12 +178,12 @@
 				
 				for(var i = 0 ;i<array.length;i++ ){
 					//全文替换
-					alert("匹配的是:"+array[i]);
+					//alert("匹配的是:"+array[i]);
 					txt = txt.replace(array[i],"<img src="+'"'+path);
-					alert("替换结果:"+txt);
+					//alert("替换结果:"+txt);
 				}
 				$("#info-text").val(txt);
-				alert("最终结果："+$("#info-text").val());				
+				//alert("最终结果："+$("#info-text").val());				
 				$("#form").submit();
 			});
 			
