@@ -40,7 +40,7 @@
     <div class="row">
 		<div class="col-xs-1"></div>
 		<div class="col-xs-6">
-		<h3 style="margin-top: 5px;">新建团购产品</h3>
+		<h3 style="margin-top: 5px;">编辑团购产品</h3>
 		</div>        
 	</div>
     
@@ -50,17 +50,17 @@
 
             <hr/>
             
-        <form id="form" action="__APP__/Admin/addChk" method="POST" enctype="multipart/form-data">
+        <form id="form" action="__APP__/ProductManage/updateProduct" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xs-12">
 					<div class="panel panel-primary"> 
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col-xs-11" style="float: left; padding-top: 5px;">
-									<span style="">新建产品</span>
+									<span style="">编辑产品</span>
 								</div> 
 								<div class="col-xs-1" style="float: left;">
-									<button type="button" class="btn-sm btn-default submit-btn">提交</button>
+									<button type="submit" class="btn-sm btn-default submit-btn">提交</button>
 									<!--- <button type="submit" class="btn-sm btn-default">提交</button>--->
 								</div> 
 							</div>
@@ -76,47 +76,49 @@
 						</tr>
 						<tr>
 							<td style=" text-align: center;">
-								<input name="name" maxlength="15" type="text" class="form-control" placeholder="产品标题最多15个字"/>
+								<input name="name" maxlength="15" type="text" class="form-control" value="{$productEdit.name}"/>
 							</td>
 							<td style=" text-align: center;">
-								<input name="total_num" type="text" class="form-control" placeholder="请输入可参团总人数"/>
+								<input name="total_num" type="text" class="form-control" value="{$productEdit.total_num}"/>
 							</td>
 							<td style=" text-align: center;">
-								<input name="price_original" type="text" class="form-control" placeholder="请输入产品原价"/>
+								<input name="price_original" type="text" class="form-control" value="{$productEdit.price_original}"/>
 							</td>
 							<td style=" text-align: center;">
-								<input name="price_high" type="text" class="form-control" placeholder="请输入用团购价"/>
+								<input name="price_high" type="text" class="form-control" value="{$productEdit.price_high}"/>
 							</td>
 						</tr>
 						<tr>
 							<td style=" text-align: center;">优惠券价格</td>
+							<td style=" text-align: center;">团购状态</td>
 							<td style=" text-align: center;">到期时间</td>
 							<td style=" text-align: center;">产品链接</td>
-							<td style=" text-align: center;"></td>
 						</tr>
 						<tr>
 							<td style=" text-align: center;">
-								<input name="price_low" type="text" class="form-control" placeholder="请输入代金券价格￥"/>
+								<input name="price_low" type="text" class="form-control" value="{$productEdit.price_low}"/>
 							</td>
 							<td style=" text-align: center;">
-								<input id="userName"  type="text" class="form-control" data-date="" data-date-format="yyyy-mm-dd" value="2014-01-01" onFocus="WdatePicker()" name="time_end" />
+								<input name="productID" type="text" class="form-control" value="{$productEdit.id}" style="display:none;"/>
+								<input name="status" type="text" class="form-control" value="{$productEdit.status}" readonly="readonly"/>
+							</td>
+							<td style=" text-align: center;">
+								<input id="userName"  type="text" class="form-control" data-date="" data-date-format="yyyy-mm-dd" value="{$productEdit.time_end}" onFocus="WdatePicker()" name="time_end" />
 								<!---
 								<input name="time_end" type="text" class="form-control" id="userName" placeholder="到期时间(XXXX-XX-XX)"/>
 								--->
-								<input name="status" type="text" class="form-control" value="团购中" style="display:none;"/>
 							</td>
 							<td style=" text-align: center;">
-								<input name="link_add" type="text" class="form-control" placeholder="请输入产品原价"/>
+								<input name="link_add" type="text" class="form-control" value="{$productEdit.link_add}"/>
 							</td>
-							<td style=" text-align: center;">
-							</td>
+							
 						</tr>
 					</table>
 						<div class="panel-body">
 							<p>
 							<table class="table">
 								<tr><td>宝贝描述</td></tr> 
-								<tr><td><textarea name="describ" maxlength="69" cols="140" rows="4" placeholder="宝贝描述最多可输入69个字符"></textarea></td></tr> 
+								<tr><td><textarea name="describ" maxlength="69" cols="140" rows="4" value="{$productEdit.describ}"></textarea></td></tr> 
 								<div class="col-md-4 col-sm-6">
 									<div class="portfolio-item">
 										<div class="portfolio-image">
