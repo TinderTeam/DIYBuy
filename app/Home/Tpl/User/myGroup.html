@@ -78,106 +78,113 @@
 								<!-----内容---->
 								<div class="row">
 									<!-----我的组团---->
-									<div class="col-md-12">
-										<table class="shopping-cart table">
-											<tr class="success">
-												<th style="text-align:center;width:220px">商品图片</th>
-												<th style="text-align:center;width:250px">商品描述</th>
-												<th style="text-align:center;width:100px">组团人数</th>
-												<th style="text-align:center;width:100px">组团价</th>
-												<th style="text-align:center;width:240px">截止时间</th>
-												<th style="text-align:center;width:130px">状态</th>
-												<th style="text-align:center;width:140px">操作</th>
-											</tr>
-											<foreach name='groupInfo' item='v1' >
-											<tr>
-												<td >
-													<div class="row">
-														<div class="col-md-3"></div>								
-															<div class="image col-md-9" ><a ><img src="__PUBLIC__/Uploads/{$v1.pic1}" alt="Item Name"></a></div>
-													</div>	
-												</td>
-												<td style = "vertical-align: middle">
-													<span>
-														<p class="cart-item-title" >
-															<a ><strong>{$v1.name}</strong>
-															</a>
-														</p>
-													</span>
-													<span>
-													<p class="feature">{$v1.describ}
-													</p>
-													</span>
-												</td>
-												<td class="quantity" name="amount" style="text-align:center;font-size:1.5em;vertical-align: middle">
-												   {$v1.total_num}
-												</td>
-												<td class="price" name="smallTotal" style="text-align:center;font-size:1.5em;vertical-align: middle">
-													{$v1.price_high}
-												</td>							
-												<td class="feature" name="status" style="text-align:center;font-size:1.5em;vertical-align: middle">
-													{$v1.time_end}
-												</td>
-												<td class="actions"  style="text-align:center;vertical-align: middle">
-												<?php
-													$statusList= array('组团成功','议价中','议价成功');
-													for($i=0;$i<count($statusList);$i++)
-													{
-														if($v1['status']==$statusList[$i])
-														{
-															$statusFlag=1;
-														}
-													}
-												?>
-												<if condition="$statusFlag eq 1 ">
-													<select class="form-control" id = "select_{$v1.id}">
+									<div class="col-md-10">
+										<div class="panel panel-success">
+												<div class="panel-heading">
+													<strong>我的订单</strong>
+												</div>
+												<div class="panel-body">
+												<table class="events-list table-striped" style="text-align:center">
+													<tr class="success">
+														<th style="text-align:center;width:220px">商品图片</th>
+														<th style="text-align:center;width:250px">商品描述</th>
+														<th style="text-align:center;width:100px">组团人数</th>
+														<th style="text-align:center;width:100px">组团价</th>
+														<th style="text-align:center;width:240px">截止时间</th>
+														<th style="text-align:center;width:130px">状态</th>
+														<th style="text-align:center;width:140px">操作</th>
+													</tr>
+													<foreach name='groupInfo' item='v1' >
+													<tr>
+														<td >
+															<div class="row">
+																<div class="col-md-3"></div>								
+																	<div class="image col-md-9" ><a ><img src="__PUBLIC__/Uploads/{$v1.pic1}" alt="Item Name"></a></div>
+															</div>	
+														</td>
+														<td style = "vertical-align: middle">
+															<span>
+																<p class="cart-item-title" >
+																	<a ><strong>{$v1.name}</strong>
+																	</a>
+																</p>
+															</span>
+															<span>
+															<p class="feature">{$v1.describ}
+															</p>
+															</span>
+														</td>
+														<td class="quantity" name="amount" style="text-align:center;font-size:1.5em;vertical-align: middle">
+														   {$v1.total_num}
+														</td>
+														<td class="price" name="smallTotal" style="text-align:center;font-size:1.5em;vertical-align: middle">
+															{$v1.price_high}
+														</td>							
+														<td class="feature" name="status" style="text-align:center;font-size:1.5em;vertical-align: middle">
+															{$v1.time_end}
+														</td>
+														<td class="actions"  style="text-align:center;vertical-align: middle">
 														<?php
-															$optionList= array('组团成功','议价中','议价成功','议价失败');
-															$status=$v1['status'];
+															$statusList= array('组团成功','议价中','议价成功');
+															for($i=0;$i<count($statusList);$i++)
+															{
+																if($v1['status']==$statusList[$i])
+																{
+																	$statusFlag=1;
+																}
+															}
 														?>
-														<foreach name='optionList' item='option'  >
-															<if condition="$option eq $status">
-																<option selected = "selected" value="{$option}">{$option}</option>
-															<else/>
-																<option value="{$option}">{$option}</option>
-															</if>
-														</foreach>
-													</select>
-												<else/>
-													<select class="form-control" disabled="disabled">
-														<option selected = "selected" value="{$v1.status}">{$v1.status}</option>
-													</select>
-												</if>
-												
-												</td>
-												<td style="text-align:center;vertical-align: middle">
-													<button type="submit" name ="button" value="{$v1.id}" data = "{$v1.name}" class="btn modalbtn" ><strong>保存修改</strong></button>
-												</td>
-											</tr>
-											</foreach>
-											<!-- 组团数目少于5个时，用空行显示 -->
-											<?php
-												$noGroup= array();
-												for($i=0;$i<(5-$countGroup);$i++)
-												{
-													$noGroup[$i]='';
-												}
-											?>
-											<foreach name='noGroup' item='v0' >	
-											<tr class="content" style="height:60px">
-												<th style="text-align:center;width:220px;font-size:1em">{$v0.status}</th>
-												<th style="text-align:center;width:250px;font-size:1em">{$v0.status}</th>
-												<th style="text-align:center;width:100px;font-size:1em">{$v0.status}</th>
-												<th style="text-align:center;width:100px;font-size:1em">{$v0.status}</th>
-												<th style="text-align:center;width:240px;font-size:1em">{$v0.status}</th>
-												<th style="text-align:center;width:130px;font-size:1em">{$v0.status}</th>
-												<th style="text-align:center;width:140px;font-size:1em">{$v0.status}</th>
-											</tr>
-											</foreach>
-											<tr class="content">
-												<td colspan="7" style=" text-align: center;" ><span>{$pageGroup}</span></td>
-											</tr>
-										</table>
+														<if condition="$statusFlag eq 1 ">
+															<select class="form-control" id = "select_{$v1.id}">
+																<?php
+																	$optionList= array('组团成功','议价中','议价成功','议价失败');
+																	$status=$v1['status'];
+																?>
+																<foreach name='optionList' item='option'  >
+																	<if condition="$option eq $status">
+																		<option selected = "selected" value="{$option}">{$option}</option>
+																	<else/>
+																		<option value="{$option}">{$option}</option>
+																	</if>
+																</foreach>
+															</select>
+														<else/>
+															<select class="form-control" disabled="disabled">
+																<option selected = "selected" value="{$v1.status}">{$v1.status}</option>
+															</select>
+														</if>
+														
+														</td>
+														<td style="text-align:center;vertical-align: middle">
+															<button type="submit" name ="button" value="{$v1.id}" data = "{$v1.name}" class="btn modalbtn" ><strong>保存修改</strong></button>
+														</td>
+													</tr>
+													</foreach>
+													<!-- 组团数目少于5个时，用空行显示 -->
+													<?php
+														$noGroup= array();
+														for($i=0;$i<(5-$countGroup);$i++)
+														{
+															$noGroup[$i]='';
+														}
+													?>
+													<foreach name='noGroup' item='v0' >	
+													<tr class="content" style="height:60px">
+														<th style="text-align:center;width:220px;font-size:1em">{$v0.status}</th>
+														<th style="text-align:center;width:250px;font-size:1em">{$v0.status}</th>
+														<th style="text-align:center;width:100px;font-size:1em">{$v0.status}</th>
+														<th style="text-align:center;width:100px;font-size:1em">{$v0.status}</th>
+														<th style="text-align:center;width:240px;font-size:1em">{$v0.status}</th>
+														<th style="text-align:center;width:130px;font-size:1em">{$v0.status}</th>
+														<th style="text-align:center;width:140px;font-size:1em">{$v0.status}</th>
+													</tr>
+													</foreach>
+													<tr class="content">
+														<td colspan="7" style=" text-align: center;" ><span>{$pageGroup}</span></td>
+													</tr>
+												</table>
+											</div>
+										</div>
 									</div><!-----我的组团---->								 
 								</div><!-----内容---->
 							</div>
