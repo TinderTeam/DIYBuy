@@ -67,7 +67,17 @@ class PurchaseAction extends Action {
     }
     
     public function orderList(){
-		if($_SESSION['name']!="")
+		
+		$User = M('user');
+		$condition['name']=$_SESSION['name'];
+		$userIdentity=$User->where($condition)->getField('identity');
+		
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}		
+		elseif($userIdentity=="已审核")
 		{
 			if($_POST['buttonBuy']!="")
 			{
@@ -77,11 +87,14 @@ class PurchaseAction extends Action {
 			$db = M('product');
 			$select=$db->where('id='.$_SESSION['productPayID'])->select();
 			$this->assign('orderInfo',$select); 
-			$this->display();
-		}else
+			$this->display();			
+		}
+		else
 		{
-			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
-        }
+			$this->assign("jumpUrl","__APP__/User/userInfo");
+			$this->error("请完善您的个人信息并提交审核，审核通过后方可参与抢团");
+		}
+		
     }
 	public function payResult(){
 		if($_POST['orderID']!="")

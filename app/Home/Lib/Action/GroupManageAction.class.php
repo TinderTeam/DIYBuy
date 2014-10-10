@@ -230,6 +230,7 @@ class GroupManageAction extends Action{
 			}
 			if(isset($_POST['Pass'])){
 				$data['status']="组团中";
+				$data['note']="";
 			}
 			if(isset($_POST['Reject'])){
 				$data['status']="已驳回";

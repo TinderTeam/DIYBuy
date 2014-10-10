@@ -143,7 +143,10 @@ class UserAction extends Action {
     public function myGroup(){
 
 	    $name=$_SESSION['name'];
-		$condition['sponsor'] = $name;
+		$user = M('user');
+		$nameCondition['name'] =$name;
+		$userID=$user->where($nameCondition)->getField('id');
+		$condition['sponsor'] = $userID;
 		$dbGroup = M('product');
         import("ORG.Util.Page");
 		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
