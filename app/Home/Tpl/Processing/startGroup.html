@@ -39,7 +39,7 @@
         <!-- Page Title -->
 		<div class="section-breadcrumbs">
 			<div class="container">
-            <form action="__APP__/Processing/addChk" method="POST" enctype="multipart/form-data">
+            <form id="form" action="__APP__/Processing/addChk" method="POST" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-12">
 					<nav class="mainmenu">
@@ -168,7 +168,7 @@
 								</div>
 							</div>
 							
-						    <div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
+						<div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
 						    <div class="panel-body">
 								<div>
 									<textarea name="describ" class="form-control"  placeholder = "请输入宝贝性能参数信息，以便团友更直观的了解产品" rows="10"></textarea>
@@ -182,7 +182,7 @@
 							</div>		
                             <hr/>	
                             	<div align="center">
-								    <button type="submit" class="btn btn-success">发起组团</button>
+								    <button id="btn-submit" type="button" class="btn btn-success">发起组团</button>
 									<a href="javascript:history.go(-1);" class="btn btn-grey"> 取消组团</a>
 									
 								</div>
@@ -193,8 +193,6 @@
 				</div>
 				<!-- End Product -->
 			</div>
-	
-				
 					</div>
 			<!-- 正在组团中的宝贝 -->
 					<div class="col-sm-4">
@@ -206,6 +204,7 @@
         </form>
 	    </div>
 </div>
+
 		
 
 
@@ -219,7 +218,13 @@
 <!-- Javascripts -->
 <include file="./Home/Tpl/Public/js.html"/>
 		
-
+	<script>
+		$("#btn-submit").click(function(){
+			
+			alert('您的组团申请已提交，待管理员审核通过后予以发布，请您耐心等待。');
+			$("#form").submit();
+		});
+	</script>
 
     </body>
 </html>

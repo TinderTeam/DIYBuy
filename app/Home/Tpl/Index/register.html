@@ -73,18 +73,26 @@
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">用户名</label>
 										<div class="col-sm-7">
-											<input id="name" name="name" type="text" class="form-control {required:true}"  placeholder="" style="margin-bottom:20px">
+											<input id="name" name="name" type="text" class="form-control ajaxCheck" style="margin-bottom:20px">
 									    </div>
+										<div class="col-sm-2" ></div>
+										<div class="col-sm-3" ></div>
+										<label  class="col-sm-7 control-label name-err"></label>		
 										<div class="col-sm-2" ></div>
 								</div>
 								
 								<div class="form-group">
-										<label class="col-sm-3 control-label" style="text-align:right">QQ邮箱</label>
+										<label class="col-sm-3 control-label" style="text-align:right">QQ邮箱</label>								
 										<div class="col-sm-7">
-											<input id="email" name="email" type="email" class="form-control {required:true,email:true}"  placeholder="" style="margin-bottom:20px">
+											<input id="email" name="email" type="text" class="form-control ajaxCheck"  placeholder="" style="margin-bottom:20px">							
 									    </div>
 										<div class="col-sm-2" ></div>
-								</div>
+										<div class="col-sm-3" ></div>
+										<label  class="col-sm-7 control-label email-err"></label>		
+										<div class="col-sm-2" ></div>										
+								</div>									
+															
+
 								<div class="form-group">
 										<label class="col-sm-3 control-label" style="text-align:right">请您输入密码</label>
 										<div class="col-sm-7">
@@ -169,7 +177,43 @@
 		    </div>
 	    </div>
 
-
-
+	<script>
+		$(".ajaxCheck").change(function(){
+			var key=$(this).attr('id');
+			var value =$(this).val();			
+			$.ajax({
+				type:"post",
+				url:"__URL__/AjaxCheck",
+				data:"data="+key+"-"+value,
+				dataType:"html",
+				error:
+				function(){
+					alert("当前ajax操作出错！");
+				},
+				success:function(msg){
+					var obj = eval ("(" + msg + ")");
+					//alert(obj.data);
+					if(obj.data=='false'){
+						//校验失败	
+						//alert('key='+key);						
+						if(key=='email'){											
+							$(".email-err").html('请填写正确的QQ邮箱');								
+						}
+						else if(key=='name'){
+							$(".name-err").html('您填写的用户名已经重复');	
+						}
+					}else{
+						if(key=='email'){											
+							$(".email-err").html('');								
+						}
+						else if(key=='name'){
+							$(".name-err").html('');	
+						}						
+					}				
+				}		  
+			});		
+		});
+	</script>
+	
     </body>
 </html>

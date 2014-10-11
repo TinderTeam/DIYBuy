@@ -139,7 +139,7 @@
 								</tr> 
 								<tr>
 									<td>
-										<textarea id="info-text" ip="__PUBLIC__/" name="htmltext" style="display:none"></textarea>
+										<textarea id="info-text" ip="__PUBLIC__/" name="htmltext"  style="display:none;"  value="{$productEdit.html_info}"> </textarea>
 										<script id="editor" type="text/plain" class="form-default" style="width:100%">
 										</script>	
 									</td>
@@ -161,7 +161,10 @@
 		   //实例化编辑器
 			//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 			var um = UM.getEditor('editor');
-
+			
+			UM.getEditor('editor').setContent($("#info-text").val());
+			
+			
 			$(".submit-btn").click(function(){
 				
 				var txt=UM.getEditor('editor').getContent();//获得描述内容

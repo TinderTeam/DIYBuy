@@ -151,15 +151,13 @@
         </div>
         <div class="col-xs-1"></div> 
     </div>
-    
-    
 </div>
 
 	<script type="text/javascript">	
 		   //实例化编辑器
 			//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 			var um = UM.getEditor('editor');
-
+			UM.getEditor('editor').setContent($("#info-text").val());
 			$(".submit-btn").click(function(){
 				
 				var txt=UM.getEditor('editor').getContent();//获得描述内容
@@ -167,8 +165,8 @@
 				//var txt = '<p><img src=\"http://127.0.0.1:89/DIYBuy/app/Public/ueditor/php/upload/20141008/14127569472248.jpg\" _src=\"http://127.0.0.1:89/DIYBuy/app/Public/ueditor/php/upload/20141008/14127569472248.jpg\"/></p><p><img src=\"http://127.0.0.1:89/DIYBuy/app/Public/ueditor/php/upload/20141008/14127569585354.jpg\" _src=\"http://127.0.0.1:89/DIYBu"';   
 				//var restr = /src\s*=\Shttp:\S{2,2}[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}:[\d]{0,4}\SDIYBuy\Sapp\SPublic\Sueditor\Sphp\Supload\S\w{0,}\S\w{0,}.jpg\"/g;    
 				//匹配正则表达式
-				var ipStr = /<img src\s*=\Shttp:\S{2,2}[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}:[\d]{0,4}\SDIYBuy\Sapp\SPublic\S/g; 
-				
+				//var ipStr = /<img src\s*=\Shttp:\S{2,2}[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}:[\d]{0,4}\SDIYBuy\Sapp\SPublic\S/g; 
+				var ipStr = /<img src\s*=\S{1,}(http|https):\S{2,2}\S{1,}\SDIYBuy\Sapp\SPublic\S/g;
 				//获取上传的路径
 				var array=txt.match(ipStr);
 				//获取系统路径

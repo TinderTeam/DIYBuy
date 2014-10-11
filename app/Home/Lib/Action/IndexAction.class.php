@@ -30,6 +30,29 @@ class IndexAction extends Action {
 	public function register(){	
 		$this->display();
 	}
+	
+	public function AjaxCheck($data){
+		$array = explode("-",$data);
+		$key=urldecode($array[0]);
+		$value=urldecode($array[1]);	
+		
+		if($key=='email'){
+			if(strrpos($value,"qq.com")==null){
+				//非QQ邮箱
+				$this->ajaxReturn('false', 'Ajax 成功！', 1);
+			}
+		}
+		if($key=='name'){
+			//验证用户名重复
+			$User = M('user');
+			$condition['name']=$value;
+			$name = $User->where($condition)->getField('name');
+			if($name!=''){
+				$this->ajaxReturn('false', 'Ajax 成功！', 1);
+			}
+		}
+		$this->ajaxReturn('true', 'Ajax 成功！', 1);
+	}
 	public function login(){	
 		$this->display();
 	}
@@ -41,6 +64,11 @@ class IndexAction extends Action {
     
     public function aboutUs(){
 		require './home/Lib/Action/Public.php';
+		
+		$SysDB = M('sys');
+		$sysCondition['key']='note_html';
+		$context = $SysDB->where($sysCondition)->find();
+		$this->assign('context',$context['value']); // 赋值分页输出
         $this->display();
     }
     
@@ -98,12 +126,7 @@ class IndexAction extends Action {
 		$data['email'] = $_POST['email'];
 		$data['pwd'] = md5($_POST['pwd']);
 		
-		//验证邮箱
-		print(strrpos($_POST['email'],"qq.com"));
-		if(strrpos($_POST['email'],"qq.com")==null){
-			$this->assign("jumpUrl","register");
-			$this->error("请使用QQ邮箱进行注册...");
-		}
+		
 		
 		$condition1['name'] = $_POST['name'];
 		$condition2['email'] = $_POST['email'];

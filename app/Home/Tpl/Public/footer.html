@@ -10,9 +10,22 @@
 					</tr>
 					<tr class="content" style="height:40px">
 						<th style="text-align:left;width:50px"></th>
-						<th style="text-align:left;width:250px">联系电话:400-8000-8008</th>
-						<th style="text-align:left;width:250px">工作时间:每天9:00-22:00</th>
-						<th style="text-align:left;width:250px">邮箱:customer@diy-tuan.com</th>
+						<?php
+							$SysDB = M('sys');
+							$sysPhoneCondition['key']='phone';
+							$phone = $SysDB->where($sysPhoneCondition)->getField('value');
+							
+							$sysEmailCondition['key']='email';
+							$email = $SysDB->where($sysEmailCondition)->getField('value');
+							
+							$sysWorkTimeCondition['key']='work_time';
+							$work_time = $SysDB->where($sysWorkTimeCondition)->getField('value');
+							
+							
+						?>
+						<th style="text-align:left;width:250px">联系电话:{$phone}</th>
+						<th style="text-align:left;width:250px">工作时间:{$work_time}</th>
+						<th style="text-align:left;width:250px">邮箱:{$email}</th>
 					</tr>
 				</table>
 				</div>
