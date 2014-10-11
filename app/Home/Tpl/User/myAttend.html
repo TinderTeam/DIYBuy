@@ -86,25 +86,21 @@
 													<tr class="content" style="height:40px">
 														<th style="text-align:center;width:250px;font-size:1.5em">订单号</th>
 														<th style="text-align:center;width:250px;font-size:1.5em">商品名称</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">优惠券数量</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">优惠券总价</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">订单状态</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">商品状态</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">参团人数</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">到期时间</th>
 														<th style="text-align:center;width:160px;font-size:1.5em">操作</th>
 													</tr>
 													
-													<foreach name='orderInfo' item='v1' >	
+													<foreach name='groupOrderList' item='v1' >	
 														<tr class="content">
 															<td><div class="event-date">{$v1.Id}</div></td>
 															<td>
-																<if condition="$v1.status eq '待付款' ">
-																<a href="__APP__/Purchase/orderPay?Id={$v1.Id}" target="_blank">{$v1.productName}</a>
-																<else/>
-																<a href="__APP__/Purchase/productDetails?id={$v1.productID}" target="_blank">{$v1.productName}</a>
-																</if>
+																<a href="__APP__/Purchase/productDetails?id={$v1.productID}">{$v1.productName}</a>
 															</td>
-															<td class="event-venue hidden-xs"><i class="icon-map-marker"></i>{$v1.quantity}</td>
-															<td class="event-price hidden-xs">{$v1.totalPrices}</td>
-															<td class="event-price hidden-xs">{$v1.status}</td>
+															<td class="event-venue hidden-xs"><i class="icon-map-marker"></i>{$v1.status}</td>
+															<td class="event-price hidden-xs">{$v1.current_num}/{$v1.total_num}</td>
+															<td class="event-price hidden-xs">{$v1.time_end}</td>
 															<td class="actions"  style="text-align:center">
 																<button name="button" value="{$v1.Id}" type="submit" class="btn btn-grey modalbtn" >
 																	<i class="glyphicon glyphicon-trash"></i>删除

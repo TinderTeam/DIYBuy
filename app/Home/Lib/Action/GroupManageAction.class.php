@@ -230,6 +230,7 @@ class GroupManageAction extends Action{
 			}
 			if(isset($_POST['Pass'])){
 				$data['status']="组团中";
+				$data['note']="";
 			}
 			if(isset($_POST['Reject'])){
 				$data['status']="已驳回";
@@ -262,15 +263,13 @@ class GroupManageAction extends Action{
         } 
 	}
 	//进入产品发布页面
-	public function releaseToProduct(){
+	public function releaseToProduct($groupID=0){
         
         if($_SESSION['name']!=""){
-			$db = M('product');
-			$condition['id']=$_POST['button1'];
-			$audit=$db->where($condition)->select();
-			$this->assign('audit',$audit); // 赋值数据集
-			$this->assign('pass',"pass");
-			$this->assign('reject',"reject");
+			$group = M('product');
+			$condition['id']=$groupID;
+			$productRelease=$group->where($condition)->find();
+			$this->assign('productRelease',$productRelease); // 赋值数据集
             $this->display();
         }else{
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向

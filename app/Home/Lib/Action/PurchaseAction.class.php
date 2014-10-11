@@ -67,7 +67,17 @@ class PurchaseAction extends Action {
     }
     
     public function orderList(){
-		if($_SESSION['name']!="")
+		
+		$User = M('user');
+		$condition['name']=$_SESSION['name'];
+		$userIdentity=$User->where($condition)->getField('identity');
+		
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}		
+		elseif($userIdentity=="已审核")
 		{
 			if($_POST['buttonBuy']!="")
 			{
@@ -77,11 +87,14 @@ class PurchaseAction extends Action {
 			$db = M('product');
 			$select=$db->where('id='.$_SESSION['productPayID'])->select();
 			$this->assign('orderInfo',$select); 
-			$this->display();
-		}else
+			$this->display();			
+		}
+		else
 		{
-			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
-        }
+			$this->assign("jumpUrl","__APP__/User/userInfo");
+			$this->error("请完善您的个人信息并提交审核，审核通过后方可参与抢团");
+		}
+		
     }
 	public function payResult(){
 		if($_POST['orderID']!="")
@@ -91,6 +104,12 @@ class PurchaseAction extends Action {
 			$orderID = $_POST['orderID'];
 			$condition['Id'] = $orderID;
 			$orderData['status']="已付款";
+			//产生随机优惠码
+			do
+			{
+				$code = rand(1000,9999).date('mdHis',time());
+			}while($dbOrder->where('code='.$code)->count());
+			$orderData['code']=$code;
 			$updateOrder=$dbOrder->where($condition)->save($orderData);		//更新订单状态
 			$productID = $dbOrder->where($condition)->getField('productID');	//获取产品ID
 			

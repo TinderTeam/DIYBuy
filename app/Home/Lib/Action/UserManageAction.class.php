@@ -207,6 +207,7 @@ class UserManageAction extends Action{
 
 		$user = M('user');
 		$condition['id']=$userID;
+		$data['note']="";
 		$data['identity']="已审核";
 		if($user->where($condition)->save($data))
 		{

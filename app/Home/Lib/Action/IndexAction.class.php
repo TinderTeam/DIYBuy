@@ -98,13 +98,24 @@ class IndexAction extends Action {
         $_SESSION['name']= $_POST['name'];
 		$condition['name']=$_POST['name'];
 		$password = md5($_POST['pwd']);
-
+		$userIdentity=$User->where($condition)->getField('identity');
         $pwd = $User->where($condition)->getField('pwd');
         if($_SESSION['name']!=""){
 			if($User->create()){
 				
 				if($pwd==$password){
-					$this->redirect('Index/index','',0,'登陆成功');//页面重定向
+					if($userIdentity=="待激活")									//待激活用户提示用户激活账户
+					{
+						unset($_SESSION['name']);
+						unset($_SESSION['userIdentity']);
+						session_destroy();
+						$this->assign("jumpUrl","login");
+						$this->error("您的帐户还没有激活，请激活后重新登录");
+					}
+					else
+					{
+						$this->redirect('Index/index','',0,'登陆成功');			//登录成功
+					}
 				}else{
 					unset($_SESSION['name']);
 					session_destroy();

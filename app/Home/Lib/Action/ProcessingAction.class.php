@@ -5,13 +5,25 @@ class ProcessingAction extends Action {
     
     public function startGroup(){
 	require './home/Lib/Action/Public.php';
-        if($_SESSION['name']=="")
+       
+		$User = M('user');
+		$condition['name']=$_SESSION['name'];
+		$userIdentity=$User->where($condition)->getField('identity');
+		if($_SESSION['name']=="")
 		{
 			$this->assign("jumpUrl","__APP__/Index/login");
 			$this->error("您还未登录，请先登录");
-			//$this->redirect("__APP__/Index/login","",0,"你还没登陆");
         }
-	    $this->display();
+		elseif($userIdentity=="已审核")
+		{
+			$this->display();			
+		}
+		else
+		{
+			$this->assign("jumpUrl","__APP__/User/userInfo");
+			$this->error("请完善您的个人信息并提交审核，审核通过后方可发起组团");
+		}
+
     }
     
 
@@ -125,9 +137,18 @@ class ProcessingAction extends Action {
 	
 	}
 	public function join(){
-	
-		if($_SESSION['name']!=""){
-			
+		
+		$User = M('user');
+		$condition['name']=$_SESSION['name'];
+		$userIdentity=$User->where($condition)->getField('identity');
+		
+		if($_SESSION['name']==""){
+		
+			$this->assign("jumpUrl","__APP__/Index/login");
+			$this->error("您还未登录，请先登录");
+		}
+		elseif($userIdentity=="已审核")
+		{
 			$user = M('user');
 			$nameCondition['name'] = $_SESSION['name'];
 			$userID = $user->where($nameCondition)->getField('id');
@@ -135,6 +156,7 @@ class ProcessingAction extends Action {
 			$group_order = M('group_order');
 			$group_order_count = $group_order->where($userIDCondition)->where('productID='.$_GET['id'])->count();
 
+			//新建组团订单
 			if($group_order_count==0)
 			{
 				//更新参团人数
@@ -156,12 +178,12 @@ class ProcessingAction extends Action {
 				$this->assign("jumpUrl","processing");
 				$this->error("您已参与组团，不能重复参与组团");
 			}
-		}else{
-			$this->assign("jumpUrl","__APP__/Index/login");
-			$this->error("您还未登录，请先登录");
-			//$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
 		}
-		
+		else
+		{
+			$this->assign("jumpUrl","__APP__/User/userInfo");
+			$this->error("请完善您的个人信息并提交审核，审核通过后方可加入组团");
+		}
 	}
 }
 ?>
