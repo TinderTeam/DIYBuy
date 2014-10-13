@@ -125,6 +125,52 @@ class UserAction extends Action {
 		}
 		
 	 }
+	 public function ongoingAttend(){
+		
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$nameCondition['username']=$_SESSION['name'];
+			$groupOrderView = M('group_order_view');
+			import("ORG.Util.Page");
+			$groupOrderCount = $groupOrderView->where($nameCondition)->where('status="组团中"')->count();
+			$PageOrder = new Page($groupOrderCount,8);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showOrder = $PageOrder->show();
+			$groupOrderList = $groupOrderView->where($nameCondition)->where('status="组团中"')->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+			$this->assign('countOrder',$groupOrderCount);
+			$this->assign('groupOrderList',$groupOrderList);
+			$this->assign('pageOrder',$showOrder); // 赋值分页输出
+			$this->display();
+		}
+		
+	 }
+	 public function endAttend(){
+		
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$nameCondition['username']=$_SESSION['name'];
+			$groupOrderView = M('group_order_view');
+			import("ORG.Util.Page");
+			$groupOrderCount = $groupOrderView->where($nameCondition)->where('status="组团成功" or status="组团失败" or status="议价中" or status="议价成功" or status="议价失败"')->count();
+			$PageOrder = new Page($groupOrderCount,8);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showOrder = $PageOrder->show();
+			$groupOrderList = $groupOrderView->where($nameCondition)->where('status="组团成功" or status="组团失败" or status="议价中" or status="议价成功" or status="议价失败"')->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+			$this->assign('countOrder',$groupOrderCount);
+			$this->assign('groupOrderList',$groupOrderList);
+			$this->assign('pageOrder',$showOrder); // 赋值分页输出
+			$this->display();
+		}
+		
+	 }
 	
     public function myOrder(){
 	
@@ -143,6 +189,56 @@ class UserAction extends Action {
 			$PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
 			$showOrder = $PageOrder->show();
 			$listOrder = $dbOrder->where($condition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+
+			$this->assign('countOrder',$countOrder);
+			$this->assign('orderInfo',$listOrder); // 赋值数据集
+			$this->assign('pageOrder',$showOrder); // 赋值分页输出
+			$this->display();
+		}
+		
+    }
+	public function ongoingOrder(){
+	
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$condition['userName'] = $name;
+			$dbOrder = M('order_view');
+			import("ORG.Util.Page");
+
+			$countOrder = $dbOrder->where($condition)->where('productStatus="团购中"')->count();
+			$PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showOrder = $PageOrder->show();
+			$listOrder = $dbOrder->where($condition)->where('productStatus="团购中"')->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+			$this->assign('countOrder',$countOrder);
+			$this->assign('orderInfo',$listOrder); // 赋值数据集
+			$this->assign('pageOrder',$showOrder); // 赋值分页输出
+			$this->display();
+		}
+		
+    }
+	public function endOrder(){
+	
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$condition['userName'] = $name;
+			$dbOrder = M('order_view');
+			import("ORG.Util.Page");
+			$countOrder = $dbOrder->where($condition)->where('productStatus="团购成功" or productStatus="团购失败"')->count();
+			$PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showOrder = $PageOrder->show();
+			$listOrder = $dbOrder->where($condition)->where('productStatus="团购成功" or productStatus="团购失败"')->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
 			$this->assign('countOrder',$countOrder);
 			$this->assign('orderInfo',$listOrder); // 赋值数据集
 			$this->assign('pageOrder',$showOrder); // 赋值分页输出
@@ -200,6 +296,64 @@ class UserAction extends Action {
 		}
 	    
     }
+	//显示我们的组团列表
+    public function ongoingGroup(){
+
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$user = M('user');
+			$nameCondition['name'] =$name;
+			$userID=$user->where($nameCondition)->getField('id');
+			$condition['sponsor'] = $userID;
+			$dbGroup = M('product');
+			import("ORG.Util.Page");
+		
+			$countGroup = $dbGroup->where($condition)->where('status="待审核" or status="已驳回" or status="组团中" or status="组团成功" or status="组团失败" or status="议价中"')->count();
+			$PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showGroup = $PageGroup->show();                                                        
+			$listGroup = $dbGroup->where($condition)->where('status="待审核" or status="已驳回" or status="组团中" or status="组团成功" or status="组团失败" or status="议价中"')->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
+			$this->assign('countGroup',$countGroup);
+			$this->assign('groupInfo',$listGroup); // 赋值数据集
+			$this->assign('pageGroup',$showGroup); // 赋值分页输出
+			$this->display();
+		}
+	    
+    }
+	//显示我们的组团列表
+    public function endGroup(){
+
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$user = M('user');
+			$nameCondition['name'] =$name;
+			$userID=$user->where($nameCondition)->getField('id');
+			$condition['sponsor'] = $userID;
+			$dbGroup = M('product');
+			import("ORG.Util.Page");
+		
+			$countGroup = $dbGroup->where($condition)->where('status="议价成功" or status="议价失败" or status="团购中" or status="团购成功" or status="团购失败"')->count();
+			$PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showGroup = $PageGroup->show();                                                        
+			$listGroup = $dbGroup->where($condition)->where('status="议价成功" or status="议价失败" or status="团购中" or status="团购成功" or status="团购失败"')->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
+			$this->assign('countGroup',$countGroup);
+			$this->assign('groupInfo',$listGroup); // 赋值数据集
+			$this->assign('pageGroup',$showGroup); // 赋值分页输出
+			$this->display();
+		}
+	    
+    }
 	//显示编辑组团列表
 	public function editGroup($groupID=0){
 		$groupIDCondition['id'] = $groupID;
@@ -231,7 +385,6 @@ class UserAction extends Action {
 
 		$product = M('product');
 		$IDCondition['id']=$_POST['productID'];
-		print($_POST['productID']);
 		if($info[0]['savename']!=""){
 			$data['pic1'] = $info[0]['savename'];
 			
@@ -260,8 +413,7 @@ class UserAction extends Action {
 		$data['comment']=$_POST['comment'];
 		$data['status']="待审核";
 		$data['note']="";
-		$res=$product->where($IDCondition)->save($data);
-		if($res)
+		if($product->where($IDCondition)->save($data))
 		{
 			$this->assign("jumpUrl","__APP__/User/myGroup");
 			$this->success("操作成功");
@@ -269,7 +421,7 @@ class UserAction extends Action {
 		else
 		{
 			$this->assign("jumpUrl","__APP__/User/myGroup");
-			$this->error("操作失败，请重新提交".$res);
+			$this->error("操作失败，请重新提交");
 		}
 	}
 	//更新组团状态

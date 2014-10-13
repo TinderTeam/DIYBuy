@@ -106,7 +106,7 @@
 								<input name="status" type="text" class="form-control" value="团购中" style="display:none;"/>
 							</td>
 							<td style=" text-align: center;">
-								<input name="link_add" type="text" class="form-control" placeholder="请输入产品原价"/>
+								<input name="link_add" type="text" class="form-control" placeholder="请输入产品链接"/>
 							</td>
 							<td style=" text-align: center;">
 							</td>
@@ -115,8 +115,6 @@
 						<div class="panel-body">
 							<p>
 							<table class="table">
-								<tr><td>宝贝描述</td></tr> 
-								<tr><td><textarea name="describ" maxlength="69" cols="140" rows="4" placeholder="宝贝描述最多可输入69个字符"></textarea></td></tr> 
 								<div class="col-md-4 col-sm-6">
 									<div class="portfolio-item">
 										<div class="portfolio-image">
@@ -124,7 +122,9 @@
 										</div>
 									</div>
 									<input name="img[]" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
-								</div> 
+								</div>
+								<tr><td>宝贝简介</td></tr> 
+								<tr><td><textarea name="describ" maxlength="46" cols="120" rows="4" placeholder="宝贝描述最多可输入46个字符"></textarea></td></tr> 								
 							</table>                      
 							</p>
 						</div>

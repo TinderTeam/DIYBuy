@@ -15,14 +15,11 @@
 	<link rel="stylesheet" href="__PUBLIC__/nuomi/nuomi2.css">
 
     </head>
-	
-	
-	
+
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-        
+        <![endif]-->       
 <!--页头-->
 <include file="./Home/Tpl/Public/head.html"/>
 
@@ -55,25 +52,25 @@
 					<div class="uc p-order-list clearfix">
 						<div class="user-main fl">
 							<ul class="w-page-tab clearfix">
-								<li class="current current-first">
+								<li >
 									<a class="first" href="__APP__/User/myOrder"><span>我的抢团</span></a>
 								</li>
-								<li >
+								<li class="current current-first">
 									<a class="" href="__APP__/User/myAttend"><span>我的参团</span></a>
 								</li>
-								<li >
+								<li>
 									<a class="" href="__APP__/User/myGroup"><span>我的组团</span></a>
-								</li >
+								</li>
 								<li >
 									<a class="" href="__APP__/User/userInfo"><span>基本资料</span></a>
-								</li>	
+								</li>
 							</ul>
 							<div class="w-orders-wrap line" id="J-orders-wrap">
 								<div class="status-wrap clearfix">
 									<ul class="w-status-tab fl" >
-										<li class="current"><a href="__APP__/User/myOrder" class="first">全部</a></li>
-										<li><a href="__APP__/User/ongoingOrder" class="" mon="element_type=filter">团购中</a></li>				
-										<li><a href="__APP__/User/endOrder" class="" mon="element_type=filter">已结束</a></li>	
+										<li ><a href="__APP__/User/myAttend" class="first">全部</a></li>
+										<li><a href="__APP__/User/ongoingAttend" class="" mon="element_type=filter">进行中</a></li>				
+										<li class="current"><a href="__APP__/User/endAttend" class="" mon="element_type=filter">已结束</a></li>	
 									</ul>
 								</div>
 								<!-----内容---->
@@ -82,38 +79,28 @@
 									<div class="col-md-10">
 										<div class="panel panel-success">
 											<div class="panel-heading">
-												<strong>我的订单</strong>
+												<strong>我的参团</strong>
 											</div>
 											<div class="panel-body">												
 												<table class="events-list table-striped" style="text-align:center">
 													<tr class="content" style="height:40px">
 														<th style="text-align:center;width:250px;font-size:1.5em">订单号</th>
 														<th style="text-align:center;width:250px;font-size:1.5em">商品名称</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">优惠码</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">优惠券价值</th>
-														<th style="text-align:center;width:160px;font-size:1.5em">订单状态</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">商品状态</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">参团人数</th>
+														<th style="text-align:center;width:160px;font-size:1.5em">到期时间</th>
 														<th style="text-align:center;width:160px;font-size:1.5em">操作</th>
 													</tr>
 													
-													<foreach name='orderInfo' item='v1' >	
+													<foreach name='groupOrderList' item='v1' >	
 														<tr class="content">
 															<td><div class="event-date">{$v1.Id}</div></td>
 															<td>
-																<if condition="$v1.orderStatus eq '待付款' ">
-																<a href="__APP__/Purchase/orderPay?Id={$v1.Id}" target="_blank">{$v1.productName}</a>
-																<else/>
-																<a href="__APP__/Purchase/productDetails?id={$v1.productID}" target="_blank">{$v1.productName}</a>
-																</if>
+																<a href="__APP__/Processing/groupDetails?id={$v1.productID}" target="_blank">{$v1.productName}</a>
 															</td>
-															<td class="actions"  style="text-align:center">
-																<if condition="$v1.productStatus eq '团购成功' and $v1.orderStatus eq '已付款'">
-																	<a value="{$v1.code}" class="btn btn-primary btn-sm codebtn">提取</a>
-																<else/>
-																	<button disabled="true" class="btn btn-primary btn-sm">提取</button>
-																</if>
-															</td>
-															<td class="event-price hidden-xs">{$v1.totalPrices}</td>
-															<td class="event-price hidden-xs">{$v1.orderStatus}</td>
+															<td class="event-venue hidden-xs"><i class="icon-map-marker"></i>{$v1.status}</td>
+															<td class="event-price hidden-xs">{$v1.current_num}/{$v1.total_num}</td>
+															<td class="event-price hidden-xs">{$v1.time_end}</td>
 															<td class="actions"  style="text-align:center">
 																<button name="button" value="{$v1.Id}" type="submit" class="btn btn-grey modalbtn" >
 																	<i class="glyphicon glyphicon-trash"></i>删除
@@ -135,13 +122,7 @@
 														<tr class="content" style="height:40px">
 															<th style="text-align:center;width:250px;font-size:1em">{$v0.Id}</th>
 															<th style="text-align:center;width:250px;font-size:1em">{$v0.productName}</th>
-															<th style="text-align:center;width:160px;font-size:1em"><a href="#" >
-															<?php
-																if($v0['quantity']!=""){
-																	print('获取优惠券'.$v0['quantity']);
-																}
-															?>
-															</a></th>
+															<th style="text-align:center;width:160px;font-size:1em">{$v0.quantity}</th>
 															<th style="text-align:center;width:160px;font-size:1em">{$v0.totalPrices}</th>
 															<th style="text-align:center;width:160px;font-size:1em">{$v0.status}</th>
 															<th style="text-align:center;width:160px;font-size:1em">{$v0.status}</th>								
@@ -186,27 +167,6 @@
 	</form><!-- 弹出窗 -->
 	
 	
-	<!-- 优惠码弹出窗 -->
-		<div class="modal fade" id="codeModal">
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title">提取优惠码</h4>
-			  </div>
-			  <div class="modal-body">
-				<table>
-				<tr> <td>优惠码:&nbsp&nbsp</td><td id ="codeOrder"> </td> </tr>
-				</table>
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->	
-	
-	
 <!--页脚-->
 <include file="./Home/Tpl/Public/footer.html"/>
 
@@ -218,11 +178,7 @@
 			$('#myModal').modal('show');
 			$('.submitbtn').val($(this).val());
 			$('#orderModal').html($(this).attr('value'));
-		});
-		$(".codebtn").click(function(){ 
-			$('#codeModal').modal('show');
-			$('#codeOrder').html($(this).attr('value'));
-		});	
+		});	 
 	</script>
 	
 	</body>
