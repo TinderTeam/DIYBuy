@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DIY组团网</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+		<script src="__PUBLIC__/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+		<script src="__PUBLIC__/js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>		
+		<include file="./Home/Tpl/Public/css.html"/>
+		
+		
+	
+    <script>
+        $(function () {
+            $("#up0").uploadPreview({ Img: "img0"});
+			$("#up1").uploadPreview({ Img: "img1"});
+			$("#up2").uploadPreview({ Img: "img2"});
+			$("#up3").uploadPreview({ Img: "img3"});
+			$("#up4").uploadPreview({ Img: "img4"});
+			$("#up5").uploadPreview({ Img: "img5"});
+        });
+    </script>
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        
+<!--页头-->
+<include file="./Home/Tpl/Public/head.html"/>
+
+
+        <!-- Page Title -->
+		<div class="section-breadcrumbs">
+			<div class="container">
+            <form id="form" action="__APP__/User/updateGroup" method="POST" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-md-12">
+					<nav class="mainmenu">
+
+					<ul>
+
+						<li ><a href="__APP__/Index/index" target="_blank">今日团购</a>
+						</li>
+						<li ><a href="__APP__/Processing/processing" target="_blank">组团进行时</a>
+						</li>
+						<li><a href="__APP__/Index/purchaseHistory" target="_blank">往期团购</a>
+						</li>
+						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
+						</li>							
+					</ul>
+					</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+        <div class="section">
+	    	<div class="container">
+				<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+
+			
+					<div class="row">
+
+					<div class="col-md-12">
+				
+					<h2>修改组团信息</h2>				
+					 
+					<div class="panel panel-success">
+						<div class="panel-heading"><strong>产品信息</strong><span> </span></div>
+								<table class="table">
+								  <tr>
+									  <td style=" text-align: center;">产品名称</td>
+									  <td style=" text-align: center;">原价</td>
+									  <td style=" text-align: center;">团购价</td>
+								  </tr>
+								  <tr>
+									  <td style=" text-align: center;"><input name="name" type="text" maxlength="15" class="form-control" value="{$myGroup.name}"></td>
+									  <td style=" text-align: center;"><input name="price_original" type="text" class="form-control" value="{$myGroup.price_original}"></td>
+									  <td style=" text-align: center;"><input name="price_high" type="text" class="form-control" value="{$myGroup.price_high}"></td>
+								  </tr>
+								  <tr>
+									  <td style=" text-align: center;">到期时间</td>
+									  <td style=" text-align: center;">产品链接</td>
+									  <td style=" text-align: center;"></td>
+								  </tr>
+								  <tr>
+										<td style=" text-align: center;">
+											<input id="userName"  type="text" class="form-control" data-date="" data-date-format="yyyy-mm-dd" value="{$myGroup.time_end}" onFocus="WdatePicker()" name="time_end" />
+											<!--
+												<input name="time_end" type="text" class="form-control" placeholder="到期时间(XXXX-XX-XX)">
+											--->
+										</td>
+									  <td style=" text-align: center;"><input name="link_add" type="text" class="form-control" value="{$myGroup.link_add}"></td>
+									  <td style=" text-align: center;"><input name="productID" style="display:none;" value="{$myGroup.id}"></td>
+									  
+								  </tr>
+								</table>
+						<div class="panel-heading"><strong>宝贝靓照</strong><span> </span></div>
+							<div class="panel-body">
+								<div class="row">
+				
+									<div class="col-md-4 col-sm-6">
+										<div class="portfolio-item">
+											<div class="portfolio-image">
+												<img src="__PUBLIC__/Uploads/{$myGroup.pic1}" alt="靓照1" height="160px" id="img0">
+											</div>
+										</div>
+										<input name="img[]" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
+									</div>
+									
+									<div class="col-md-4 col-sm-6">
+										<div class="portfolio-item">
+											<div class="portfolio-image">
+												<img src="__PUBLIC__/Uploads/{$myGroup.pic2}" alt="靓照2" height="160px" id="img1">
+											</div>
+										</div>
+										 <input name="img[]" type="file" id="up1" onchange="viewmypic(showimg,this.form.up1);"/>
+										
+									</div>
+									<div class="col-md-4 col-sm-6">
+										<div class="portfolio-item">
+											<div class="portfolio-image">
+												<img src="__PUBLIC__/Uploads/{$myGroup.pic3}" alt="靓照3" height="160px" id="img2">
+											</div>
+
+										</div>
+											<input name="img[]" type="file" id="up2" onchange="viewmypic(showimg,this.form.up2);"/>
+									</div>
+									<div class="clearfix"></div>
+									<div class="col-md-4 col-sm-6">
+										<div class="portfolio-item">
+											<div class="portfolio-image">
+												<img src="__PUBLIC__/Uploads/{$myGroup.pic4}" alt="靓照4" height="160px" id="img3">
+											</div>
+										</div>
+												<input name="img[]" type="file" id="up3" onchange="viewmypic(showimg,this.form.up3);"/>
+
+										
+									</div>
+									<div class="col-md-4 col-sm-6">
+										<div class="portfolio-item">
+											<div class="portfolio-image">
+												<img src="__PUBLIC__/Uploads/{$myGroup.pic5}" alt="靓照5" height="160px" id="img4">
+											</div>
+										</div>
+												<input name="img[]" type="file" id="up4" onchange="viewmypic(showimg,this.form.up4);"/>
+
+										
+									</div>
+									<div class="col-md-4 col-sm-6">
+										<div class="portfolio-item">
+											<div class="portfolio-image">
+												<img src="__PUBLIC__/Uploads/{$myGroup.pic6}" alt="靓照6" height="160px" id="img5">
+											</div>
+										</div>
+												<input name="img[]" type="file" id="up5" onchange="viewmypic(showimg,this.form.up5);"/>
+										
+									</div>
+				 
+								</div>
+							</div>
+							
+						<div class="panel-heading"><strong>宝贝简介</strong><span> </span></div>
+						    <div class="panel-body">
+								<div>
+									<textarea name="describ" class="form-control" maxlength="46"  rows="10">{$myGroup.describ}</textarea>
+								</div>
+							</div>							
+						    <div class="panel-heading"><strong>团长号令</strong><span> </span></div>
+						    <div class="panel-body">
+								<div>
+									<textarea name="comment" maxlength="69" class="form-control" rows="10"> {$myGroup.comment}</textarea>
+								</div>
+							</div>
+							<div class="panel-heading"><strong>审核意见</strong><span> </span></div>
+						    <div class="panel-body">
+								<div>
+									<textarea name="note" maxlength="69" class="form-control" rows="5"> {$myGroup.note}</textarea>
+								</div>
+							</div>
+                            <hr/>	
+                            	<div align="center">
+								    <button id="btn-submit" type="button" class="btn btn-success">重新提交</button>
+									<a href="javascript:history.go(-1);" class="btn btn-grey"> 取消修改</a>
+									
+								</div>
+							<hr/>	
+						</div>
+
+					
+				</div>
+				<!-- End Product -->
+			</div>
+					</div>
+				</div>
+			</div>
+        </form>
+	    </div>
+</div>
+
+			
+
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
+
+<!-- Javascripts -->
+<include file="./Home/Tpl/Public/js.html"/>
+		
+	<script>
+		$("#btn-submit").click(function(){
+			
+			alert('您的组团申请已提交，待管理员审核通过后予以发布，请您耐心等待。');
+			$("#form").submit();
+		});
+	</script>
+
+    </body>
+</html>

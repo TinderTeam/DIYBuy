@@ -37,38 +37,36 @@
 
 
         <!-- Page Title -->
-        <hr/>
-			<div class="container">
-            
-		</div>
-        <form action="" method="POST" >
-        <div class="section">
-		</form>
-	    	<div class="container">
-				<div class="row">
-				<div class="col-md-12">
-			
-					<div class="row">
+<hr/>
+<div id="Container">  <!--页面容器--> 
+    <div class="row">
+		<div class="col-xs-1"></div>
+		<div class="col-xs-6">
+		<h3 style="margin-top: 5px;">发布团购产品</h3>
+		</div>        
+	</div>
+    
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
 
-					<div class="col-md-12">
-				
-                    <div class="row">
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-6">
-                        <h3 style="margin-top: 5px;">组团信息审核</h3>
-                        </div>
-                        <div class="col-xs-2">
-                            <p class="text-justify" style="padding-top: 10px;">用户:{$Think.session.name}</p>
-                        </div>
-                        
-                        <div class="col-xs-3">
-                        <form action="__APP__/Admin/logout" method="POST">
-                            <button type="submit" class="btn-sm btn-primary">退出登陆</button>
-						</form>
-                        </div>        
-                    </div>	
-                    
-                    <hr/>		
+            <hr/>
+            
+        <form id="form" action="__APP__/GroupManage/submitProduct" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-12">
+					<div class="panel panel-primary"> 
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-11" style="float: left; padding-top: 5px;">
+									<span style="">发布产品</span>
+								</div> 
+								<div class="col-xs-1" style="float: left;">
+									<button type="submit" class="btn-sm btn-default submit-btn">提交</button>
+									<!--- <button type="submit" class="btn-sm btn-default">提交</button>--->
+								</div> 
+							</div>
+						</div>		
 
                   <!-- Table -->
 					<table class="table">
@@ -121,8 +119,6 @@
 						<div class="panel-body">
 							<p>
 							<table class="table">
-								<tr><td>宝贝描述</td></tr> 
-								<tr><td><textarea name="describ" maxlength="46" cols="140" rows="4" value="{$productRelease.describ}"></textarea></td></tr> 
 								<div class="col-md-4 col-sm-6">
 									<div class="portfolio-item">
 										<div class="portfolio-image">
@@ -131,6 +127,8 @@
 									</div>
 									<input name="img[]" type="file" id="up0" onchange="viewmypic(showimg,this.form.up0);"/>
 								</div> 
+								<tr><td>宝贝简介</td></tr> 
+								<tr><td><textarea name="describ" maxlength="46" cols="140" rows="4" >{$productRelease.describ}</textarea></td></tr>
 							</table>                      
 							</p>
 						</div>
@@ -184,12 +182,12 @@
 				
 				for(var i = 0 ;i<array.length;i++ ){
 					//全文替换
-					alert("匹配的是:"+array[i]);
+					//alert("匹配的是:"+array[i]);
 					txt = txt.replace(array[i],"<img src="+'"'+path);
-					alert("替换结果:"+txt);
+					//alert("替换结果:"+txt);
 				}
 				$("#info-text").val(txt);
-				alert("最终结果："+$("#info-text").val());				
+				//alert("最终结果："+$("#info-text").val());				
 				$("#form").submit();
 			});
 			

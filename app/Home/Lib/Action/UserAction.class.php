@@ -112,8 +112,8 @@ class UserAction extends Action {
     public function myOrder(){
 	
 		$name=$_SESSION['name'];
-		$condition['user'] = $name;
-		$dbOrder = M('order');
+		$condition['userName'] = $name;
+		$dbOrder = M('order_view');
         import("ORG.Util.Page");		
         $countOrder = $dbOrder->where($condition)->count();
         $PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
@@ -140,6 +140,7 @@ class UserAction extends Action {
 			//$this->error("删除失败！");
 		}
     }
+	//显示我们的组团列表
     public function myGroup(){
 
 	    $name=$_SESSION['name'];
@@ -164,6 +165,79 @@ class UserAction extends Action {
         $this->assign('pageGroup',$showGroup); // 赋值分页输出
 	    $this->display();
     }
+	//显示编辑组团列表
+	public function editGroup($groupID=0){
+		$groupIDCondition['id'] = $groupID;
+		$dbGroup = M('product');
+		$myGroup = $dbGroup->where($groupIDCondition)->find();
+		$this->assign('myGroup',$myGroup);
+		$this->display();
+	}
+	//更新组团信息
+	public function updateGroup(){
+		
+		import("ORG.Net.UploadFile");  
+		//实例化上传类  
+		$upload = new UploadFile();  
+		$upload->maxSize = 4145728; 
+		//$upload->saveRule=time; 
+		//设置文件上传类型  
+		$upload->allowExts = array('jpg','gif','png','jpeg');  
+		//设置文件上传位置  
+		$upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
+		//设置文件上传名(按照时间)  
+		//$upload->saveRule = "time";  
+		if (!$upload->upload()){
+			//$this->error($upload->getErrorMsg());  
+		}else{
+			//上传成功，获取上传信息  
+		$info = $upload->getUploadFileInfo();
+		} 
+
+		$product = M('product');
+		$IDCondition['id']=$_POST['productID'];
+		print($_POST['productID']);
+		if($info[0]['savename']!=""){
+			$data['pic1'] = $info[0]['savename'];
+			
+		}
+		if($info[1]['savename']!=""){
+			$data['pic2'] = $info[1]['savename'];
+		}
+		if($info[2]['savename']!=""){
+			$data['pic3'] = $info[2]['savename'];
+		}
+		if($info[3]['savename']!=""){
+			$data['pic4'] = $info[3]['savename'];
+		}
+		if($info[4]['savename']!=""){
+			$data['pic5'] = $info[4]['savename'];
+		}
+		if($info[5]['savename']!=""){
+			$data['pic6'] = $info[5]['savename'];
+		}
+		$data['name']=$_POST['name'];
+		$data['price_orginal']=$_POST['price_orginal'];
+		$data['price_high']=$_POST['price_high'];
+		$data['link_add']=$_POST['link_add'];
+		$data['time_end']=$_POST['time_end'];
+		$data['describ']=$_POST['describ'];
+		$data['comment']=$_POST['comment'];
+		$data['status']="待审核";
+		$data['note']="";
+		$res=$product->where($IDCondition)->save($data);
+		if($res)
+		{
+			$this->assign("jumpUrl","__APP__/User/myGroup");
+			$this->success("操作成功");
+		} 
+		else
+		{
+			$this->assign("jumpUrl","__APP__/User/myGroup");
+			$this->error("操作失败，请重新提交".$res);
+		}
+	}
+	//更新组团状态
 	public function modifyGroupStatus(){
 	
 		$name=$_SESSION['name'];

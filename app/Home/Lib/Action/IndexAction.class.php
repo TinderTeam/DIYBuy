@@ -8,7 +8,7 @@ class IndexAction extends Action {
     public function index(){
         require './home/Lib/Action/Public.php';
 
-        //显示产品           
+        //根据当前时间更新产品状态，           
         $db = M('product');
         import("ORG.Util.Page");
 		$condition1['time_end']=array('GT',date('Y-m-d H:i:s',time()));	//判断截至时间大于当前时间的条件
@@ -16,8 +16,26 @@ class IndexAction extends Action {
 		$dataSuccess['status']='团购成功';
 		$dataFail['status']='团购失败';
 		$db->where($condition2)->where('current_num>=total_num AND status="团购中"')->save($dataSuccess);
+		
+		//团购失败的产品退还积分给用户
+		$productIDList = $db->where($condition2)->where('current_num<total_num AND status="团购中"')->getField('id',true);
+		$order= M('order');
+		$user = M('user');
+		for($i=0;$i<count($productIDList);$i++)
+		{
+			
+			$IDcondition['productID'] = $productIDList[$i];
+			$userList = $order->where($IDcondition)->where('status = "已付款"')->getField('user',true);
+			$totalPrices = $order->where($IDcondition)->getField('totalPrices');
+			
+			$nameCondition['name'] = array('in',$userList);
+			$user->where($nameCondition)->setInc('account',$totalPrices);
+
+		}
 		$db->where($condition2)->where('current_num<total_num AND status="团购中"')->save($dataFail);
 		
+		
+		//显示团购中的产品列表 
         $count = $db->where($condition1)->where('status="团购中"')->count();
         $Page1 = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数                                                     
         $list1 = $db->where($condition1)->where('status="团购中"')->order('time_start desc')->limit($Page1->firstRow.','.$Page1->listRows)->select();

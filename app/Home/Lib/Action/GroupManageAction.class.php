@@ -277,58 +277,66 @@ class GroupManageAction extends Action{
     }
 	//提交将要发布的产品信息到数据库
     public function submitProduct(){
-	
-		if($_SESSION['name']!=""){
-				
-			import("ORG.Net.UploadFile");  
+            //导入图片上传类  
+            import("ORG.Net.UploadFile");  
             //实例化上传类  
             $upload = new UploadFile();  
-            $upload->maxSize = 4145728; 
-            //$upload->saveRule=time; 
+            $upload->maxSize = 4145728;  
             //设置文件上传类型  
             $upload->allowExts = array('jpg','gif','png','jpeg');  
             //设置文件上传位置  
             $upload->savePath = "./Public/Uploads/";//这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹  
             //设置文件上传名(按照时间)  
             //$upload->saveRule = "time";  
-            if (!$upload->upload()){
-                $this->error($upload->getErrorMsg());  
-            }else{
+            if (!$upload->upload()){  
+                //$this->error($upload->getErrorMsg());  
+            }else{  
                 //上传成功，获取上传信息  
-            $info = $upload->getUploadFileInfo();
-            } 
-
-			$product = M('product');
-			$condition['id']=$_POST['button'];
+                $info = $upload->getUploadFileInfo();  
+            }  
+	
+            $product = M('product');
+			$condition['id']=$_POST['productID'];
 			
-			$data['name']=$_POST['name'];
-			$data['total_num']=$_POST['total_num'];
-			$data['price_orginal']=$_POST['price_orginal'];
-			$data['price_high']=$_POST['price_high'];
-			$data['price_low']=$_POST['price_low'];
-			$data['time_end']=$_POST['time_end'];
-			$data['status']=$_POST['status'];
-			$data['pic1'] = $info[0]['savename'];
-			$data['pic2'] = $info[1]['savename'];
-			$data['pic3'] = $info[2]['savename'];
-			$data['pic4'] = $info[3]['savename'];
-			$data['pic5'] = $info[4]['savename'];
-			$data['pic6'] = $info[5]['savename'];
-			$data['time_start']=date('Y-m-d H:i:s',time());	//获取当前时间作为发起团购开始时间
-
-			if($product->where($condition)->save($data))
-			{
-				$this->redirect("__APP__/GroupManage/groupManage","",0,"修改成功"); 
-			} 
-			else
-			{
-				$this->display('GroupManage/groupManage');
+			if($info[0]['savename']!=""){
+				$data['pic1'] = $info[0]['savename'];
+				
 			}
-        }else{
-            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
-        } 
+            $data['name'] = $_POST['name'];
+			$data['total_num'] = $_POST['total_num'];
+			$data['price_original'] = $_POST['price_original'];
+			$data['price_high'] = $_POST['price_high'];
+			$data['price_low'] = $_POST['price_low'];
+			$data['time_end'] = $_POST['time_end'];
+			$data['status'] = "团购中";
+			$data['link_add'] = $_POST['link_add'];
+			$data['describ'] = $_POST['describ'];
+			
+			//处理综合描述
+			$text = $_POST['htmltext'];
+			$text = str_replace('\"', '"',$text);
+			$data['html_info']=$text;
 
-	}
+			if($product->create())
+			{
+				if($product->where($condition)->save($data))
+				{
+					$this->assign("jumpUrl","__APP__/ProductManage/productManage");
+					$this->success("修改成功");
+				} 
+				else{
+				
+						$this->assign("jumpUrl","__APP__/ProductManage/productManage");
+						$this->error("修改失败,请重新修改");
+
+					}
+				
+			}else{
+				$this->assign("jumpUrl","__APP__/ProductManage/productManage");
+				$this->error("修改失败,请重新修改");
+			}     
+
+    }
 	
 
 }  
