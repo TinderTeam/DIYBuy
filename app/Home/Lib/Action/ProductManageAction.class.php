@@ -178,6 +178,20 @@ class ProductManageAction extends Action{
 			}     
 
     }
+	//显示团购订单列表
+	public function productOrder($productID=0){
+		
+		import("ORG.Util.Page");
+		$IDcondition['productID'] = $productID;
+		$orderView = M('order_view');
+		$orderCount = $orderView->where($IDcondition)->count();
+		$Page = new Page($orderCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+		$show = $Page->show();
+		$orderList = $orderView->where($IDcondition)->select();
+		$this->assign('orderList',$orderList); // 赋值数据集
+        $this->assign('page',$show); // 赋值分页输出
+		$this->display();
+    }
    
     
 }  

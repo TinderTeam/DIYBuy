@@ -31,6 +31,13 @@ class GroupManageAction extends Action{
 				$show = $Page->show();
 				$groupList = $group->order('id')->where('status="组团中"')->limit($Page->firstRow.','.$Page->listRows)->select();
 			}
+			elseif($group_filter=="groupOK")
+			{
+				$groupCount = $group->where('status="组团成功"')->count();
+				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+				$show = $Page->show();
+				$groupList = $group->order('id')->where('status="组团成功"')->limit($Page->firstRow.','.$Page->listRows)->select();
+			}
 			elseif($group_filter=='groupFail')
 			{
 				$groupCount = $group->where('status="组团失败"')->count();
@@ -61,10 +68,10 @@ class GroupManageAction extends Action{
 			}
 			elseif($group_filter=='all')
 			{
-				$groupCount = $group->where('status="待审核" OR status="不通过" OR status="组团中" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->count();
+				$groupCount = $group->where('status="待审核" OR status="不通过" OR status="组团中" OR status="组团成功" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->count();
 				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
 				$show = $Page->show();
-				$groupList = $group->order('id')->where('status="待审核" OR status="不通过" OR status="组团中" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->limit($Page->firstRow.','.$Page->listRows)->select();
+				$groupList = $group->order('id')->where('status="待审核" OR status="不通过" OR status="组团中" OR status="组团成功" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->limit($Page->firstRow.','.$Page->listRows)->select();
 			}
 			else
 			{
@@ -336,6 +343,20 @@ class GroupManageAction extends Action{
 				$this->error("修改失败,请重新修改");
 			}     
 
+    }
+	//显示组团订单列表
+	public function groupOrder($groupID=0){
+		
+		import("ORG.Util.Page");
+		$IDcondition['productID'] = $groupID;
+		$groupOrderView = M('group_order_view');
+		$grouporderCount = $groupOrderView->where($IDcondition)->count();
+		$Page = new Page($grouporderCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
+		$show = $Page->show();
+		$groupOrderList = $groupOrderView->where($IDcondition)->select();
+		$this->assign('groupOrderList',$groupOrderList); // 赋值数据集
+        $this->assign('page',$show); // 赋值分页输出
+		$this->display();
     }
 	
 

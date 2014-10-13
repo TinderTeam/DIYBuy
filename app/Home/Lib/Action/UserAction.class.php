@@ -3,14 +3,21 @@
 header("Content-Type:text/html; charset=UTF-8");
 class UserAction extends Action {
 	public function userInfo(){
-		$name=$_SESSION['name'];
-		$condition['name']=$_SESSION['name'];
-		$user = M('user');
-		$myuser = $user->where($condition)->find();
-		//增加其他的用户信息
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$condition['name']=$_SESSION['name'];
+			$user = M('user');
+			$myuser = $user->where($condition)->find();
+			$this->assign('myuser',$myuser);
+			$this->display();
+		}
 		
-		$this->assign('myuser',$myuser);
-	    $this->display();
     }
 	public function userInfoSubmit(){
 	
@@ -21,6 +28,7 @@ class UserAction extends Action {
 		$data['account_name']=$_POST['account_name'];
 		$data['real_name']=$_POST['real_name'];
 		$data['identity']="待审核";
+		$data['note']="";
 		$myuser=$user->where($nameCondition)->find();
 
 		if($user->where($nameCondition)->save($data))
@@ -95,34 +103,52 @@ class UserAction extends Action {
     }
 	
 	 public function myAttend(){
-	 
-		$nameCondition['username']=$_SESSION['name'];
-		$groupOrderView = M('group_order_view');
-		import("ORG.Util.Page");
-		$groupOrderCount = $groupOrderView->where($nameCondition)->count();
-		$PageOrder = new Page($groupOrderCount,8);  // 实例化分页类 传入总记录数和每页显示的记录数
-		$showOrder = $PageOrder->show();
-		$groupOrderList = $groupOrderView->where($nameCondition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
-		$this->assign('countOrder',$groupOrderCount);
-		$this->assign('groupOrderList',$groupOrderList);
-		$this->assign('pageOrder',$showOrder); // 赋值分页输出
-		$this->display();
+		
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$nameCondition['username']=$_SESSION['name'];
+			$groupOrderView = M('group_order_view');
+			import("ORG.Util.Page");
+			$groupOrderCount = $groupOrderView->where($nameCondition)->count();
+			$PageOrder = new Page($groupOrderCount,8);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showOrder = $PageOrder->show();
+			$groupOrderList = $groupOrderView->where($nameCondition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+			$this->assign('countOrder',$groupOrderCount);
+			$this->assign('groupOrderList',$groupOrderList);
+			$this->assign('pageOrder',$showOrder); // 赋值分页输出
+			$this->display();
+		}
+		
 	 }
 	
     public function myOrder(){
 	
-		$name=$_SESSION['name'];
-		$condition['userName'] = $name;
-		$dbOrder = M('order_view');
-        import("ORG.Util.Page");		
-        $countOrder = $dbOrder->where($condition)->count();
-        $PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
-        $showOrder = $PageOrder->show();
-        $listOrder = $dbOrder->where($condition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
-        $this->assign('countOrder',$countOrder);
-		$this->assign('orderInfo',$listOrder); // 赋值数据集
-        $this->assign('pageOrder',$showOrder); // 赋值分页输出
-	    $this->display();
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$condition['userName'] = $name;
+			$dbOrder = M('order_view');
+			import("ORG.Util.Page");		
+			$countOrder = $dbOrder->where($condition)->count();
+			$PageOrder = new Page($countOrder,10);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showOrder = $PageOrder->show();
+			$listOrder = $dbOrder->where($condition)->order("Id desc")->limit($PageOrder->firstRow.','.$PageOrder->listRows)->select();
+			$this->assign('countOrder',$countOrder);
+			$this->assign('orderInfo',$listOrder); // 赋值数据集
+			$this->assign('pageOrder',$showOrder); // 赋值分页输出
+			$this->display();
+		}
+		
     }
 	public function deleteOrder(){
 		$name=$_SESSION['name'];
@@ -143,27 +169,36 @@ class UserAction extends Action {
 	//显示我们的组团列表
     public function myGroup(){
 
-	    $name=$_SESSION['name'];
-		$user = M('user');
-		$nameCondition['name'] =$name;
-		$userID=$user->where($nameCondition)->getField('id');
-		$condition['sponsor'] = $userID;
-		$dbGroup = M('product');
-        import("ORG.Util.Page");
-		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
-		$dataSuccess['status']='组团成功';
-		$dataFail['status']='组团失败';
-		$dbGroup->where($condition2)->where('current_num>=total_num AND status="组团中"')->save($dataSuccess);	//时间截止时，如果参与人数大于总人数，则团购成功
-		$dbGroup->where($condition2)->where('current_num<total_num AND status="组团中"')->save($dataFail);		//时间截止时，如果参与人数小于总人数，则团购失败
-        
-		$countGroup = $dbGroup->where($condition)->count();
-        $PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
-        $showGroup = $PageGroup->show();                                                        
-        $listGroup = $dbGroup->where($condition)->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
-        $this->assign('countGroup',$countGroup);
-		$this->assign('groupInfo',$listGroup); // 赋值数据集
-        $this->assign('pageGroup',$showGroup); // 赋值分页输出
-	    $this->display();
+		if($_SESSION['name']=="")
+		{
+			$this->redirect("__APP__/Index/login","",0,"你还没登陆"); 
+			
+		}
+		else
+		{
+			$name=$_SESSION['name'];
+			$user = M('user');
+			$nameCondition['name'] =$name;
+			$userID=$user->where($nameCondition)->getField('id');
+			$condition['sponsor'] = $userID;
+			$dbGroup = M('product');
+			import("ORG.Util.Page");
+			$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
+			$dataSuccess['status']='组团成功';
+			$dataFail['status']='组团失败';
+			$dbGroup->where($condition2)->where('current_num>=total_num AND status="组团中"')->save($dataSuccess);	//时间截止时，如果参与人数大于总人数，则团购成功
+			$dbGroup->where($condition2)->where('current_num<total_num AND status="组团中"')->save($dataFail);		//时间截止时，如果参与人数小于总人数，则团购失败
+			
+			$countGroup = $dbGroup->where($condition)->count();
+			$PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
+			$showGroup = $PageGroup->show();                                                        
+			$listGroup = $dbGroup->where($condition)->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
+			$this->assign('countGroup',$countGroup);
+			$this->assign('groupInfo',$listGroup); // 赋值数据集
+			$this->assign('pageGroup',$showGroup); // 赋值分页输出
+			$this->display();
+		}
+	    
     }
 	//显示编辑组团列表
 	public function editGroup($groupID=0){

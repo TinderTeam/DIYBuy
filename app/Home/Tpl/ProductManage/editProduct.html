@@ -117,8 +117,8 @@
 						<div class="panel-body">
 							<p>
 							<table class="table">
-								<tr><td>宝贝描述</td></tr> 
-								<tr><td><textarea name="describ" maxlength="69" cols="140" rows="4" value="{$productEdit.describ}"></textarea></td></tr> 
+								<tr><td>宝贝简介</td></tr> 
+								<tr><td><textarea name="describ" maxlength="46" cols="140" rows="4">{$productEdit.describ}</textarea></td></tr> 
 								<div class="col-md-4 col-sm-6">
 									<div class="portfolio-item">
 										<div class="portfolio-image">
@@ -177,13 +177,15 @@
 				//获取上传的路径
 				var array=txt.match(ipStr);
 				//获取系统路径
-				var path=$("#info-text").attr('ip');
-				
-				for(var i = 0 ;i<array.length;i++ ){
-					//全文替换
-					//alert("匹配的是:"+array[i]);
-					txt = txt.replace(array[i],"<img src="+'"'+path);
-					//alert("替换结果:"+txt);
+				if(array!=null)
+				{	
+					var path=$("#info-text").attr('ip');
+					for(var i = 0 ;i<array.length;i++ ){
+						//全文替换
+						//alert("匹配的是:"+array[i]);
+						txt = txt.replace(array[i],"<img src="+'"'+path);
+						//alert("替换结果:"+txt);
+					}
 				}
 				$("#info-text").val(txt);
 				//alert("最终结果："+$("#info-text").val());				

@@ -98,7 +98,9 @@
               <td style=" text-align: center;">{$vo.name}</td>
               <td style=" text-align: center;">{$vo.status}</td>
               <td style=" text-align: center;">{$vo.total_num}</td>
-              <td style=" text-align: center;">{$vo.current_num}</td>
+              <td style=" text-align: center;">
+				<a href="__APP__/ProductManage/productOrder?productID={$vo.id}" >{$vo.current_num}</a>
+			  </td>
               <td style=" text-align: center;">{$vo.price_original}</td>
               <td style=" text-align: center;">{$vo.price_high}</td>
               <td style=" text-align: center;">{$vo.time_end}</td>

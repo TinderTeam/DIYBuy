@@ -178,13 +178,15 @@
 				//获取上传的路径
 				var array=txt.match(ipStr);
 				//获取系统路径
-				var path=$("#info-text").attr('ip');
-				
-				for(var i = 0 ;i<array.length;i++ ){
-					//全文替换
-					//alert("匹配的是:"+array[i]);
-					txt = txt.replace(array[i],"<img src="+'"'+path);
-					//alert("替换结果:"+txt);
+				if(array!=null)
+				{
+					var path=$("#info-text").attr('ip');
+					for(var i = 0 ;i<array.length;i++ ){
+						//全文替换
+						//alert("匹配的是:"+array[i]);
+						txt = txt.replace(array[i],"<img src="+'"'+path);
+						//alert("替换结果:"+txt);
+					}
 				}
 				$("#info-text").val(txt);
 				//alert("最终结果："+$("#info-text").val());				

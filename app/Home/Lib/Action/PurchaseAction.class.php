@@ -56,6 +56,14 @@ class PurchaseAction extends Action {
 		$condition['name'] = $_SESSION['name'];
 		$account=$dbUser->where($condition)->getField('account');
 		
+		//加载淘宝、拍拍充值地址、客服地址信息
+		$SysDB = M('sys');
+		$sysTaobaoCondition['key']='taobao';
+		$taobao = $SysDB->where($sysTaobaoCondition)->find();
+		$sysPaipaiCondition['key']='paipai';
+		$paipai = $SysDB->where($sysPaipaiCondition)->find();
+		$this->assign('taobao',$taobao['value']);
+		$this->assign('paipai',$paipai['value']);
 		
 		$this->assign('account',$account);
 		$this->assign('orderID',$orderID);

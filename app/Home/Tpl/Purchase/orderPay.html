@@ -126,6 +126,8 @@
 								<div class="col-md-8">
 								<h4>我的账户余额：<span id="remainSum" name="account" >{$account}</span></h4>
 								<input type="text" value="{$account}" style="display:none;" name="account"/>
+								<input id="taobao" type="text" value="{$taobao}" style="display:none;" />
+								<input id="paipai" type="text" value="{$paipai}" style="display:none;" />
 								</div>
 							</div>
 					</div>
@@ -153,33 +155,11 @@
 			</div>
 		</form>
 		</div>
-
-
-	    </div>
-<!-- Footer -->
-	<div class="footer" style="margin-top:71px">
-		<div class="container">
-			<div class="row">
-			<table>
-				<tr class="content" style="height:40px">
-					<th style="text-align:left;width:50px;font-size:1.2em"></th>
-					<th style="text-align:left;width:250px;font-size:1.2em">客服联系</th>
-				</tr>
-				<tr class="content" style="height:40px">
-					<th style="text-align:left;width:50px"></th>
-					<th style="text-align:left;width:250px">联系电话:400-8000-8008</th>
-					<th style="text-align:left;width:250px">工作时间:每天9:00-22:00</th>
-					<th style="text-align:left;width:250px">邮箱:customer@diy-tuan.com</th>
-				</tr>
-			</table>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="footer-copyright">&copy; 2014 <a href="http://www.fuego.cn/">Fuego</a>. All rights reserved.</div>
-				</div>
-			</div>
-		</div>
 	</div>
+	<!--填充多余空间-->  
+	<div style="margin-top:110px"> </div>
+<!--页脚-->
+<include file="./Home/Tpl/Public/footer.html"/>
 		
 <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -210,8 +190,8 @@
 		if(remain<target)
 		{
 			document.getElementById("modalMsg").innerHTML="账户余额不足，请进行充值！";
-			document.getElementById("taobaoJump").href="http://www.taobao.com";
-			document.getElementById("paipaiJump").href="http://www.paipai.com";
+			document.getElementById("taobaoJump").href=document.getElementById("taobao").value;
+			document.getElementById("paipaiJump").href=document.getElementById("paipai").value;
 			$('#errorModal').modal('show');
 		}else
 		{

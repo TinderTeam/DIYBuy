@@ -73,6 +73,9 @@
 							<a href="__APP__/GroupManage/groupManage?group_filter=inGroup">组团中</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
+							<a href="__APP__/GroupManage/groupManage?group_filter=groupOK">组团成功</a>
+						</td>
+						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
 							<a href="__APP__/GroupManage/groupManage?group_filter=groupFail">组团失败</a>
 						</td>
 						<td style=" text-align: center; padding-left: 10px; padding-right: 10px;">
@@ -107,7 +110,9 @@
               <td style=" text-align: center;">{$vo.name}</td>
               <td style=" text-align: center;">{$vo.status}</td>
               <td style=" text-align: center;">{$vo.total_num}</td>
-              <td style=" text-align: center;">{$vo.current_num}</td>
+              <td style=" text-align: center;">
+				<a href="__APP__/GroupManage/groupOrder?groupID={$vo.id}" >{$vo.current_num}</a>
+			  </td>
               <td style=" text-align: center;">{$vo.price_original}</td>
               <td style=" text-align: center;">{$vo.price_high}</td>
               <td style=" text-align: center;">{$vo.time_end}</td>
