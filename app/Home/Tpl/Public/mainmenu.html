@@ -1,0 +1,72 @@
+ <style>
+ 
+	.my-menu{
+		background: #34a637;
+		margin-bottom: 1px;
+		box-sizing: border-box;
+		display: block;
+	}
+	
+	.my-nav li{
+		display: inline-block;
+		box-sizing: border-box;
+		text-align: -webkit-match-parent;
+	}
+	
+	.my-nav li a{
+		font-family: Microsoft YaHei UI;
+		font-size: 1.5em;
+		padding: 10px 30px;
+		color: #FFFFFF;
+		display: inline-block;
+		text-decoration: none;
+	}
+	
+	.my-nav ul {
+		margin-bottom: 0px;
+		padding-left: 0px;
+	}
+	
+	.my-nav ul a:hover {
+		color: #fff;
+		font-weight: 400 !important;
+		background-color: #51C800;
+	}
+	
+	.my-select {
+		color: #fff;
+		font-weight: 400 !important;
+		background-color: #51C800;
+	}
+ </style>
+ <div class="my-menu">
+	<div class="container">
+		<div  class="my-nav">
+			<ul class="nav nav-pills my-menu" role="tablist">
+				<if condition="$menuNum eq 1">
+					<li class="my-select"><a href="__APP__/Index/index" >今日团购</a></li>
+				<else/>
+					<li ><a href="__APP__/Index/index" >今日团购</a></li>
+				</if>
+
+				<if condition="$menuNum eq 2">
+					<li class="my-select"><a href="__APP__/Processing/processing">组团进行时</a></li>
+				<else/>
+					<li><a href="__APP__/Processing/processing">组团进行时</a></li>
+				</if>
+
+				<if condition="$menuNum eq 3">
+					<li  class="my-select"><a href="__APP__/Index/purchaseHistory">往期团购</a></li>
+				<else/>
+					<li><a href="__APP__/Index/purchaseHistory">往期团购</a></li>
+				</if>
+
+				<if condition="$menuNum eq 4">
+					<li  class="my-select"><a href="__APP__/Index/aboutUs">关于组团购物</a></li>
+				<else/>
+					<li><a href="__APP__/Index/aboutUs">关于组团购物</a></li>
+				</if>	
+			</ul>
+		</div>
+	</div>
+</div>

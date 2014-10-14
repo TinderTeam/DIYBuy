@@ -1,47 +1,21 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>DIY组团网</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-		
 		<include file="./Home/Tpl/Public/css.html"/>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-        
+		<!--页头-->
+		<include file="./Home/Tpl/Public/head.html"/>
 
-<!--页头-->
-<include file="./Home/Tpl/Public/head.html"/>
-
-        <!-- Page Title -->
-		<div class="section-breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					<nav class="mainmenu">
-					<ul>
-						<li ><a href="__APP__/Index/index" target="_blank">今日团购</a>
-						</li>
-						<li ><a href="__APP__/Processing/processing" target="_blank">组团进行时</a>
-						</li>
-						<li class="active"><a href="__APP__/Index/purchaseHistory">往期团购</a>
-						</li>
-						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
-						</li>						
-					</ul>
-					</nav>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!--导航-->
+		<?php
+			$menuNum=3;
+		?>
+		<include file="./Home/Tpl/Public/mainmenu.html"/>
         
         <div class="section">
 	    	<div class="container">
