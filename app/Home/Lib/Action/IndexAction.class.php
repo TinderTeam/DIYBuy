@@ -209,7 +209,7 @@ class IndexAction extends Action {
 		$data['identity'] = '已激活';
 		$user=$UserDB->where('id='.$userID)->save($data);
 		$this->assign("jumpUrl","login");
-        $this->success("激活成功,USerID=".$userID);
+        $this->success("激活成功");
 	}
 	
     public function search()
@@ -244,6 +244,34 @@ class IndexAction extends Action {
 		}	
 	}
 
-
+	public function findPswd(){
+		
+		$findCondition['email']=$_POST['email'];
+		$findCondition['name']=$_POST['name'];
+		
+		$UserDB = M('user');
+		$user=$UserDB->where($findCondition)->find();
+		
+		if($user==null){
+			$this->assign("jumpUrl","login");
+			$this->error("您输入的用户名或邮箱错误");
+		}
+		$newPswd=$this->randomkeys(6);
+		$Data['pwd']= md5($newPswd);
+		$UserDB->where($findCondition)->save($Data);
+		SendMail("market@fuego.cn","DIY团密码找回邮件","您的新随机密码为：【".$newPswd."】请尽快登录系统修改密码");
+		$this->assign("jumpUrl","login");
+        $this->success("系统已重置密码，请登录您的Email查看新密码".$user['password']);
+	}
+	
+	function randomkeys($length)
+	{
+	 $pattern='1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ';
+	 for($i=0;$i<$length;$i++)
+	 {
+	   $key .= $pattern{mt_rand(0,35)};    //生成php随机数
+	 }
+	 return $key;
+	}
 }
 ?>

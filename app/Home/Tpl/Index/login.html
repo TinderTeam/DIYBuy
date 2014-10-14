@@ -76,10 +76,18 @@
 								</div>
 								
 
-								<div class="form-group">
+								<div class="form-group sbmt">
 										<label class="col-sm-3 control-label" style="text-align:right">密码</label>
 										<div class="col-sm-7">
 											<input id="pwd" name="pwd" type="password" class="form-control {required:true,minlength:6}"  placeholder="请输入密码" style="margin-bottom:20px">
+									    </div>
+										<div class="col-sm-2" ></div>
+								</div>
+								
+								<div class="form-group find" style="display:none" >
+										<label class="col-sm-3 control-label" style="text-align:right">验证邮箱</label>
+										<div class="col-sm-7">
+											<input id="email" name="email" type="email" class="form-control {required:true}"   placeholder="请输入注册时的邮箱" style="margin-bottom:20px">
 									    </div>
 										<div class="col-sm-2" ></div>
 								</div>
@@ -99,13 +107,19 @@
 										
                                         <div class="col-sm-3"></div>
 										<div class="col-sm-7">
-                                           <button type="submit" class="btn btn-green btn-block" ><strong>登&nbsp;&nbsp;录</strong></button>
+											<button type="submit" class="btn btn-green btn-block sbmt" ><strong>登&nbsp;&nbsp;录</strong></button>
+											<button id="find-btn" type="button" class="btn btn-green btn-block find" style="display:none" ><strong>找回密码</strong></button>
 										</div>
 										<div class="col-sm-2" ></div>
+										<div class="col-sm-3"></div>
+										<div class="col-sm-7" style="padding-top: 15px;">
+                                           <a href="javascropt:void(0)" onclick="findPswd()"><span>找回密码？</span></a>
+										</div>
+											
 							    </div> 
                             </form>
 						
-						
+							
 				            
 				            </div>
 					    </div>	
@@ -155,8 +169,25 @@
 		    </div>
 	    </div>
 
+		<!----找回密码---->
+		 <form id="findForm" name="loginForm" action="__URL__/findPswd" target="_blank" method="POST">
+			<input name="name" type="text"  class="find-name" />
+			<input name="email" type="text" class="find-email" />
+		 </form>
         <!-- Javascripts -->
-
+		<script>
+		
+		function findPswd(){
+			$(".find").attr('style',"");
+			$(".sbmt").attr('style',"display:none");
+		}
+		
+		$("#find-btn").click(function(){
+			$(".find-name").val($("#name").val());
+			$(".find-email").val($("#email").val());
+			$("#findForm").submit();
+		});
+		</script>
 
     </body>
 </html>
