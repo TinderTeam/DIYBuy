@@ -62,9 +62,9 @@ class UserAction extends Action {
 	public function modifyPassword(){
 		$name=$_SESSION['name'];
 		$pwd=$_POST['pwd'];
-		$oldpwd = $_POST['oldpwd'];
+		$oldpwd =md5($_POST['oldpwd']);
 		$user   =   M('user');
-        $condition['name']=$_POST['userName'];
+        $condition['name']=$name;
 		$password = $user->where($condition)->getField('pwd');
 		$data['pwd']=md5($pwd);
 		if($oldpwd==$password)
@@ -82,21 +82,21 @@ class UserAction extends Action {
 				} 
 				else{
 						$this->assign('name',$name);
-						$this->assign("jumpUrl","accountModify");
+						$this->assign("jumpUrl","passwordSetup");
 						$this->error("修改失败，请重试");
 
 					}
 				
 			}else{
 				$this->assign('name',$name);
-				$this->assign("jumpUrl","accountModify");
+				$this->assign("jumpUrl","passwordSetup");
 				$this->error("修改失败，请重试");
 			} 
 		}
 		else
 		{
 			$this->assign('name',$name);
-			$this->assign("jumpUrl","accountModify");
+			$this->assign("jumpUrl","passwordSetup");
 			$this->error("原密码输入错误，请重新输入");
 		}
         
