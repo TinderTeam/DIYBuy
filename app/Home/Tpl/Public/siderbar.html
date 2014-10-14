@@ -8,13 +8,10 @@
 					<foreach name='siderbarInfo' item='v4' >		
     						<tr>
     							<td>
-    								
-									<div style="width: 140px; height: 120px; background-image: url(__PUBLIC__/Uploads/{$v4.pic1});background-size:140px 100px;background-repeat:no-repeat; position: relative;"  >
-										<div class="ribbon-wrapper">
-											<div class="price-ribbon ribbon-orange">Top<span name="num" >{$key+1}</span></div>
-										</div>
+									<div style="padding-bottom: 5px;">
+										<span class="label label-success">Top {$key+1}</span>
 									</div>
-									
+    								<img src="__PUBLIC__/Uploads/{$v4.pic1}" style="width:140px ;height:100px;"/>
     							</td>
     							<td>
 								<p><strong>{$v4.name}</strong></p>
