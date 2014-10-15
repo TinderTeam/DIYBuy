@@ -56,16 +56,14 @@
         <div class="section">
 	    	<div class="container">
 				<div class="row">
-					<div class="col-md-8">
 					<form class="form-horizontal" role="form" action="__APP__/Purchase/orderList" method="POST" target="_blank" name="form">
 						<h2>产品详情</h2>
-						<div class="row">
 							<!-- Image Column -->
 							<div class="col-sm-6">
-								<div class="shop-item" style="height:230px" >
+								<div >
 									<div >
-									<a class="example-image-link" href="__PUBLIC__/Uploads/{$purchaseInfo[0].pic1}" data-lightbox="example-1">
-									<img class="example-image" src="__PUBLIC__/Uploads/{$purchaseInfo[0].pic1}" alt="thumb-1" />
+									<a class="example-image-link" href="__PUBLIC__/Uploads/{$purchaseInfo.pic1}" data-lightbox="example-1">
+									<img class="example-image" src="__PUBLIC__/Uploads/{$purchaseInfo.pic1}" alt="thumb-1" />
 									</a>
 									</div>
 								</div>
@@ -73,28 +71,32 @@
 							<!-- End Image Column -->
 							<!-- Project Info Column -->
 							<div class="portfolio-item-description col-sm-6">
-								<h3>{$purchaseInfo[0].name}</h3>						
+								<h3>{$purchaseInfo.name}</h3>						
 								<p id="goods_brief">
-									{$purchaseInfo[0].describ}
+									{$purchaseInfo.describ}
 								</p>
 								<hr/>
 								<p class="product-details ">
-									<span  style="font-size:30px;color:orange;"class="price" id="promote_price">优惠券价格：￥{$purchaseInfo[0].price_low}</span>
+									<span  style="font-size:30px;color:orange;"class="price" id="promote_price">优惠券价格：￥{$purchaseInfo.price_low}</span>
 								</p>
 								<ul class="no-list-style">
 									<li><b>组团价格:</b>
-									<span >￥{$purchaseInfo[0].price_high}</span>
-									<span style="text-decoration:line-through;" >￥{$purchaseInfo[0].price_original}</span>
+									<span >￥{$purchaseInfo.price_high}</span>
+									<span style="text-decoration:line-through;" >￥{$purchaseInfo.price_original}</span>
 									</li>
-									<li><b>当前状态:</b>{$purchaseInfo[0].status}</li>
-									<input id="end_time" value="{$purchaseInfo[0].time_end}" style="display:none;"/>
+									<li><b>当前状态:</b>{$purchaseInfo.status}</li>
+									<input id="end_time" value="{$purchaseInfo.time_end}" style="display:none;"/>
 									<li ><b id="time_count"></b></li>
-									<li><b>参团人数:</b> {$purchaseInfo[0].current_num}/{$purchaseInfo[0].total_num}</li>
-									<li><b>产品链接：</b><a href="{$purchaseInfo[0].link_add}" target="_blank">点击此处</a></li>
+									<li><b>参团人数:</b> {$purchaseInfo.current_num}/{$purchaseInfo.total_num}</li>
+									<li><b>产品链接：</b><a href="{$purchaseInfo.link_add}" target="_blank">点击此处</a></li>
 								</ul>
 								<div class="row">
 									<span class="col-xs-6">
-										<button type="submit" name="buttonBuy" value="{$purchaseInfo[0].id}" class="btn btn-green" ><strong>立即抢团</strong></button>
+										<if condition="$purchaseInfo.status eq '团购中'">
+											<button type="submit" name="buttonBuy" value="{$purchaseInfo.id}" class="btn btn-green" ><strong>立即抢团</strong></button>
+										<else/>
+										<button disabled="true" class="btn btn-green" ><strong>立即抢团</strong></button>
+										</if>
 									</span>
 									<span class="bdsharebuttonbox col-xs-6 pull-right">
 										<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
@@ -111,16 +113,19 @@
 								</script>
 							</div>
 							<!-- End Project Info Column -->
-						</div>
 					</form>
-					<h2>产品描述</h2>{$purchaseInfo[0].html_info}
+				</div>
+				<div class="row">
+					
+					<div class="col-md-8">
+						<h2>产品描述</h2>{$purchaseInfo.html_info}
 					</div>
-					<!-- page center-->
-					<!-- 正在组团中的宝贝 -->
+						<!-- page center-->
+						<!-- 正在组团中的宝贝 -->
 					<div class="col-sm-4">
 						<include file="./Home/Tpl/Public/siderbar.html"/>	
 					</div>
-					
+				</div>
 				</div>
 			</div>
 		</div>

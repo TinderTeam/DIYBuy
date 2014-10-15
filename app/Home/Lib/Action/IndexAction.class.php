@@ -173,6 +173,7 @@ class IndexAction extends Action {
 		}
         elseif($User->create()) 
 		{
+			$serveraddr=$_SERVER['HTTP_HOST'];
 			do
 			{
 				$userID = date('mdHis',time()).rand(10000,99999);
@@ -182,7 +183,7 @@ class IndexAction extends Action {
 			$result =  $User->add($data);
             if($result) {
 				$IP = C('IP');
-				SendMail("market@fuego.cn","DIY团注册验证邮件","请点击下方链接完成激活："."http://".$IP."/DIYBuy/app/index.php/Index/active?userID=".$userID);
+				SendMail($_POST['email'],"DIY团注册验证邮件","请点击下方链接完成激活："."http://".$serveraddr."/DIYBuy/app/index.php/Index/active?userID=".$userID);
 				$this->assign("jumpUrl","login");
 				$this->success("注册成功");
             }else{

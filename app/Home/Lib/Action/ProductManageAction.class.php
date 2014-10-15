@@ -184,10 +184,10 @@ class ProductManageAction extends Action{
 		import("ORG.Util.Page");
 		$IDcondition['productID'] = $productID;
 		$orderView = M('order_view');
-		$orderCount = $orderView->where($IDcondition)->count();
+		$orderCount = $orderView->where($IDcondition)->where('orderStatus="已付款"')->count();
 		$Page = new Page($orderCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
 		$show = $Page->show();
-		$orderList = $orderView->where($IDcondition)->select();
+		$orderList = $orderView->where($IDcondition)->where('orderStatus="已付款"')->select();
 		$this->assign('orderList',$orderList); // 赋值数据集
         $this->assign('page',$show); // 赋值分页输出
 		$this->display();

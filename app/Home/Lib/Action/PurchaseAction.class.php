@@ -14,7 +14,7 @@ class PurchaseAction extends Action {
 		{
 			$_SESSION['productDetailID']=$id;						//订单页面跳转使用
 		}
-		$select=$db->where('id='.$_SESSION['productDetailID'])->select();
+		$select=$db->where('id='.$_SESSION['productDetailID'])->find();
 		$this->assign('purchaseInfo',$select); 
 		$this->display();
     }
@@ -134,7 +134,7 @@ class PurchaseAction extends Action {
 			$condition2['id'] = $productID;
 			$productName = $product->where($condition2)->getField('name');
 			$currentNum = $product->where($condition2)->getField('current_num');
-			$productData['current_num'] = $currentNum+$_POST['amount'];
+			$productData['current_num'] = $currentNum+1;
 			$updateProduct=$product->where($condition2)->save($productData);	//更新参团人数
 			
 		}
