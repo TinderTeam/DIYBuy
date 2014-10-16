@@ -165,7 +165,8 @@ class UserManageAction extends Action{
 			$condition['id']=$_POST['userID'];
 			$nowAccount=$user->where($condition)->getField('account');
 			$data['account']=$_POST['accountIncrease']+$nowAccount;
-			if($user->where($condition)->save($data))
+			$result=$user->where($condition)->save($data);
+			if($result!==false)
 			{
 				$this->redirect("__APP__/UserManage/userManage","",0,"修改成功"); 
 			} 
@@ -208,7 +209,8 @@ class UserManageAction extends Action{
 		$user = M('user');
 		$condition['id']=$userID;
 		$data['identity']="已审核";
-		if($user->where($condition)->save($data))
+		$result=$user->where($condition)->save($data);
+		if($result!==false)
 		{
 			$this->redirect("__APP__/UserManage/userManage","",0,"修改成功"); 
 		} 
@@ -224,7 +226,8 @@ class UserManageAction extends Action{
 		$condition['id']=$_POST['userID'];
 		$data['note']=$_POST['note'];
 		$data['identity']="已拒绝";
-		if($user->where($condition)->save($data))
+		$result=$user->where($condition)->save($data);
+		if($result!==false)
 		{
 			$this->redirect("__APP__/UserManage/userManage","",0,"修改成功"); 
 		} 

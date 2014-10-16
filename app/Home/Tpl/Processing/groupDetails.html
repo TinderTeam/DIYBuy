@@ -171,7 +171,11 @@
 							
                             <hr/>	
                             <div align="center">
-								    <a type="submit" class="btn btn-success" href="__URL__/join?id={$v1.id}">加入组团</a>
+								    <if condition="$v1.status eq '组团中'">
+									<a type="submit" class="btn btn-success" href="__URL__/join?id={$v1.id}">加入组团</a>
+									<else/>
+									<a disabled="true" class="btn btn-success" href="__URL__/join?id={$v1.id}">加入组团</a>
+									</if>
 								    <a type="submit" class="btn btn-grey" href="__URL__/processing">返回</a>			
 							</div>
 <hr/>						

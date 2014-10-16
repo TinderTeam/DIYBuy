@@ -157,25 +157,19 @@ class ProductManageAction extends Action{
 			$text = $_POST['htmltext'];
 			$text = str_replace('\"', '"',$text);
 			$data['html_info']=$text;
-
-			if($product->create())
+			$result=$product->where($condition)->save($data);
+			if($result!==false)
 			{
-				if($product->where($condition)->save($data))
-				{
-					$this->assign("jumpUrl","__APP__/ProductManage/productManage");
-					$this->success("修改成功");
-				} 
-				else{
-				
-						$this->assign("jumpUrl","__APP__/ProductManage/productManage");
-						$this->error("修改失败,请重新修改");
-
-					}
-				
-			}else{
+				$this->assign("jumpUrl","__APP__/ProductManage/productManage");
+				$this->success("修改成功");
+			} 
+			else
+			{
+			
 				$this->assign("jumpUrl","__APP__/ProductManage/productManage");
 				$this->error("修改失败,请重新修改");
-			}     
+
+			}   
 
     }
 	//显示团购订单列表

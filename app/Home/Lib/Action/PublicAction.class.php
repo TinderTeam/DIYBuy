@@ -2,41 +2,6 @@
 // 本类由系统自动生成，仅供测试用途
 header("Content-Type:text/html; charset=UTF-8");
 class PublicAction extends Action {
-    /* public function head(){
-        if($_SESSION['email']!=""){
-            $this->assign('v1',"已登录"); 
-            $this->assign('code1',"11"); 
-            $this->assign('v2',"退出"); 
-            $this->assign('code2',"12");
-        }else{
-            $this->assign('v1',"登录"); 
-            $this->assign('code1',"21");
-            $this->assign('v2',"注册"); 
-            $this->assign('code2',"22");            
-        } 
-
-	    $this->display();
-    }
-    
-    public function select1($code1=0){
-        if($code1=="21"){
-           $this->redirect('Index/login','',0,'登陆。。。');//页面重定向 
-        }else{
-            $this->redirect('Index/index','',0,'已登录。。。');//页面重定向 
-             
-        } 
-    }
-    
-    public function select2($code2=0){
-        if($code2=="22"){
-            $this->redirect('Index/register','',0,'注册。。。');//页面重定向    
-        }else{
-            session_start();
-            unset($_SESSION['name']);
-            session_destroy();
-            $this->redirect('Index/index','',0,'退出登陆。。。');//页面重定向  
-        }  
-    } */
     
     public function addChk(){  
             //导入图片上传类  

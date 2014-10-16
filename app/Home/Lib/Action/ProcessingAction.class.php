@@ -34,14 +34,12 @@ class ProcessingAction extends Action {
         $db = M('product');
         import("ORG.Util.Page");
 		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
-		$dataSuccess['status']='组团成功';
 		$dataFail['status']='组团失败';
-		$db->where($condition2)->where('current_num>=total_num AND status="组团中"')->save($dataSuccess);
 		$db->where($condition2)->where('current_num<total_num AND status="组团中"')->save($dataFail);
 		
-        $count = $db->where('status="组团中" OR status="组团成功" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->count();
+        $count = $db->where('status="组团中" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->count();
         $Page = new Page($count,20);  // 实例化分页类 传入总记录数和每页显示的记录数                                         
-        $list = $db->where('status="组团中" OR status="组团成功" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->order("status asc")->limit($Page->firstRow.','.$Page->listRows)->select();
+        $list = $db->where('status="组团中" OR status="组团失败" OR status="议价中" OR status="议价成功" OR status="议价失败"')->order("status asc")->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('productinfo',$list); // 赋值数据集
 		$show = $Page->show();
 		$this->assign('page',$show); // 赋值分页输出
@@ -161,9 +159,15 @@ class ProcessingAction extends Action {
 			{
 				//更新参团人数
 				$db = M('product');
-				$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');	
+				$presentNum = $db->where('id='.$_GET['id'])->getField('current_num');
+				$totalNum = $db->where('id='.$_GET['id'])->getField('total_num');
+				if($totalNum==($presentNum+1))
+				{
+					$data['status']="议价中";
+				}
 				$data['current_num']=$presentNum+1;
 				$result=$db->where('id='.$_GET['id'])->save($data);
+				
 				//新建组团订单
 				$groupData['productID'] = $_GET['id'];
 				$groupData['userID'] = $userID;

@@ -56,28 +56,25 @@ class AdminAction extends Action{
         $data['pwd']=$pwd;
 		if($oldpwd==$password)
 		{
-			if($admin->create())
-			{
-				if($admin->where($condition)->save($data))
-				{
-					unset($_SESSION['name']);
-					session_destroy();
-					$this->assign("jumpUrl","__APP__/Admin/login");
-					$this->success("修改成功，请重新登录");
-					
-					//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
-				} 
-				else{
-				
-						$this->assign("jumpUrl","accountModify");
-						$this->error("修改失败,请重新修改");
 
-					}
+			$result=$admin->where($condition)->save($data);
+			if($result!==false)
+			{
+				unset($_SESSION['name']);
+				session_destroy();
+				$this->assign("jumpUrl","__APP__/Admin/login");
+				$this->success("修改成功，请重新登录");
 				
-			}else{
+				//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+			} 
+			else
+			{
+			
 				$this->assign("jumpUrl","accountModify");
 				$this->error("修改失败,请重新修改");
-			} 
+
+			}
+
 		}
 		else
 		{

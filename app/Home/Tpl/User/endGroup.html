@@ -25,27 +25,9 @@
 <!--页头-->
 <include file="./Home/Tpl/Public/head.html"/>
 
-        <!-- Page Title -->
-		<div class="section-breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					<nav class="mainmenu">
-					<ul>
-						<li ><a href="__APP__/Index/index" target="_blank">今日团购</a>
-						</li>
-						<li ><a href="__APP__/Processing/processing" target="_blank">组团进行时</a>
-						</li>
-						<li><a href="__APP__/Index/purchaseHistory" target="_blank">往期团购</a>
-						</li>
-						<li><a href="__APP__/Index/aboutUs" target="_blank">关于组团购物</a>
-						</li>					
-					</ul>
-					</nav>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!--导航-->
+		<include file="./Home/Tpl/Public/mainmenu.html"/>
+
 		
 		
 		<div class="section">
@@ -112,45 +94,14 @@
 															<td class="feature" name="status" style="text-align:center;font-size:1.5em;vertical-align: middle">
 																{$v1.time_end}
 															</td>
-															<td class="actions">
-															<?php
-																$statusList= array('组团成功','议价中','议价成功');
-																for($i=0;$i<count($statusList);$i++)
-																{
-																	if($v1['status']==$statusList[$i])
-																	{
-																		$statusFlag=1;
-																	}
-																}
-															?>
-															<if condition="$statusFlag eq 1 ">
-																<select class="form-control" id = "select_{$v1.id}">
-																	<?php
-																		$optionList= array('组团成功','议价中','议价成功','议价失败');
-																		$status=$v1['status'];
-																	?>
-																	<foreach name='optionList' item='option'  >
-																		<if condition="$option eq $status">
-																			<option selected = "selected" value="{$option}">{$option}</option>
-																		<else/>
-																			<option value="{$option}">{$option}</option>
-																		</if>
-																	</foreach>
-																</select>
-															<else/>
-																<select class="form-control" disabled="disabled">
-																	<option selected = "selected" value="{$v1.status}">{$v1.status}</option>
-																</select>
-															</if>
-															
+															<td class="feature" name="status" style="text-align:center;font-size:1.5em;vertical-align: middle">
+																{$v1.status}
 															</td>
 															<td style="text-align:center;vertical-align: middle">
 																<if condition="$v1.status eq '已驳回' ">
 																	<button onclick="top.location='__APP__/User/editGroup?groupID={$v1.id}'" class="btn btn-primary"><strong>重新修改</strong></button>
-																<elseif condition="$v1.status eq '组团成功' or $v1.status eq '议价中' or $v1.status eq '议价成功'"/>
-																	<button type="submit" name ="button" value="{$v1.id}" data = "{$v1.name}" class="btn modalbtn" ><strong>保存修改</strong></button>
 																<else/>
-																	<button disabled="true" class="btn" ><strong>保存修改</strong></button>
+																	<button disabled="true" class="btn" ><strong>重新修改</strong></button>
 																</if>															
 															</td>
 														</tr>
@@ -188,45 +139,11 @@
 				</div>
 			</div>
 		</div>
-	   
-	<form action="__APP__/User/modifyGroupStatus" method="POST">
-		<div class="modal fade" id="myModal"><!-- 弹出窗 -->
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title">修改组团状态</h4>
-			  </div>
-			  <div class="modal-body">
-				<table>
-				<tr> <td>产品名称:</td> <td id ="productModal"></td> </tr>
-				</table>
-			  </div>
-			  <input type="text" value="" style="display:none;" class="select" name="selectStatus"/>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				<button name = "button" value="" type="submit" class="btn btn-primary submitbtn">确定</button>
-			  </div>
-			</div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->	
-	</form>
-
 <!--页脚-->
 <include file="./Home/Tpl/Public/footer.html"/>
 
 <!-- Javascripts -->
 <include file="./Home/Tpl/Public/js.html"/>
-
-	<script type="text/javascript">
-		$(".modalbtn").click(function(){ 
-			$('#myModal').modal('show');
-			$('.submitbtn').val($(this).val());
-			$('#select_'+$(this).val()).val();
-			$('.select').val($('#select_'+$(this).val()).val());
-			$('#productModal').html($(this).attr('data'));
-		});	 
-	</script>
 
     </body>
 </html>

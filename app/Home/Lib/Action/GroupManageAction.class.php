@@ -31,13 +31,6 @@ class GroupManageAction extends Action{
 				$show = $Page->show();
 				$groupList = $group->order('id')->where('status="组团中"')->limit($Page->firstRow.','.$Page->listRows)->select();
 			}
-			elseif($group_filter=="groupOK")
-			{
-				$groupCount = $group->where('status="组团成功"')->count();
-				$Page = new Page($groupCount,8);                     // 实例化分页类 传入总记录数和每页显示的记录数
-				$show = $Page->show();
-				$groupList = $group->order('id')->where('status="组团成功"')->limit($Page->firstRow.','.$Page->listRows)->select();
-			}
 			elseif($group_filter=='groupFail')
 			{
 				$groupCount = $group->where('status="组团失败"')->count();
@@ -95,7 +88,7 @@ class GroupManageAction extends Action{
         if($_SESSION['name']!=""){
 			$productRelease = M('product');
 			$condition['id']=$_POST['button'];
-			$releaseProduct=$productRelease->where($condition)->select();
+			$releaseProduct=$productRelease->where($condition)->find();
 			$this->assign('releaseProduct',$releaseProduct); // 赋值数据集
             $this->display();
         }else{
@@ -147,6 +140,8 @@ class GroupManageAction extends Action{
 			if($info[5]['savename']!=""){
 				$data['pic6'] = $info[5]['savename'];
 			}
+			
+			$data['status']=$_POST['status'];
 			$data['name']=$_POST['name'];
 			$data['total_num']=$_POST['total_num'];
 			$data['price_orginal']=$_POST['price_orginal'];
@@ -155,8 +150,8 @@ class GroupManageAction extends Action{
 			$data['time_end']=$_POST['time_end'];
 			$data['describ']=$_POST['describ'];
 			$data['comment']=$_POST['comment'];
-
-			if($product->where($condition)->save($data))
+			$result=$product->where($condition)->save($data);
+			if($result!==false)
 			{
 				$this->assign("jumpUrl","__APP__/GroupManage/groupManage");
 				$this->success("操作成功");

@@ -55,9 +55,16 @@ class IndexAction extends Action {
 		$value=urldecode($array[1]);	
 		
 		if($key=='email'){
+			
+			$User = M('user');
+			$condition['email']=$value;
+			$email = $User->where($condition)->getField('email');
+			if($email!=''){
+				$this->ajaxReturn('false', '您填写的邮箱已被注册', 1);
+			}
 			if(strrpos($value,"qq.com")==null){
 				//非QQ邮箱
-				$this->ajaxReturn('false', 'Ajax 成功！', 1);
+				$this->ajaxReturn('false', '请填写正确的QQ邮箱', 1);
 			}
 		}
 		if($key=='name'){
@@ -66,7 +73,7 @@ class IndexAction extends Action {
 			$condition['name']=$value;
 			$name = $User->where($condition)->getField('name');
 			if($name!=''){
-				$this->ajaxReturn('false', 'Ajax 成功！', 1);
+				$this->ajaxReturn('false', '您填写的用户名已被注册', 1);
 			}
 		}
 		$this->ajaxReturn('true', 'Ajax 成功！', 1);
@@ -128,7 +135,7 @@ class IndexAction extends Action {
 						unset($_SESSION['userIdentity']);
 						session_destroy();
 						$this->assign("jumpUrl","login");
-						$this->error("您的帐户还没有激活，请激活后重新登录");
+						$this->error("您的帐户还没有激活，请尽快进入QQ邮箱完成激活后重新登录");
 					}
 					else
 					{
@@ -191,7 +198,7 @@ class IndexAction extends Action {
 				$IP = C('IP');
 				SendMail($_POST['email'],"DIY团注册验证邮件","请点击下方链接完成激活："."http://".$serveraddr."/DIYBuy/app/index.php/Index/active?userID=".$userID);
 				$this->assign("jumpUrl","login");
-				$this->success("注册成功");
+				$this->success("注册成功,激活链接已发送至您的QQ邮箱，请尽快完成激活");
             }else{
                 $this->assign("jumpUrl","register");
                 $this->error("注册失败，请重试");

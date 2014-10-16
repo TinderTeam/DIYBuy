@@ -30,8 +30,8 @@ class UserAction extends Action {
 		$data['identity']="待审核";
 		$data['note']="";
 		$myuser=$user->where($nameCondition)->find();
-
-		if($user->where($nameCondition)->save($data))
+		$result=$user->where($nameCondition)->save($data);
+		if($result!==false)
 		{
 			$this->assign('myuser',$myuser);
 			$this->assign("jumpUrl","__APP__/User/userInfo");
@@ -69,29 +69,23 @@ class UserAction extends Action {
 		$data['pwd']=md5($pwd);
 		if($oldpwd==$password)
 		{
-			if($user->create())
+			$result=$user->where($condition)->save($data);
+			if($result!==false)
 			{
-				if($user->where($condition)->save($data))
-				{
-					unset($_SESSION['name']);
-					session_destroy();
-					$this->assign("jumpUrl","__APP__/Index/login");
-					$this->success("修改成功，请重新登录");
-					
-					//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
-				} 
-				else{
-						$this->assign('name',$name);
-						$this->assign("jumpUrl","passwordSetup");
-						$this->error("修改失败，请重试");
-
-					}
+				unset($_SESSION['name']);
+				session_destroy();
+				$this->assign("jumpUrl","__APP__/Index/login");
+				$this->success("修改成功，请重新登录");
 				
-			}else{
+				//$this->redirect("__APP__/Index/login","",0,"修改成功"); 
+			} 
+			else
+			{
 				$this->assign('name',$name);
 				$this->assign("jumpUrl","passwordSetup");
 				$this->error("修改失败，请重试");
-			} 
+
+			}
 		}
 		else
 		{
@@ -280,9 +274,7 @@ class UserAction extends Action {
 			$dbGroup = M('product');
 			import("ORG.Util.Page");
 			$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
-			$dataSuccess['status']='组团成功';
 			$dataFail['status']='组团失败';
-			$dbGroup->where($condition2)->where('current_num>=total_num AND status="组团中"')->save($dataSuccess);	//时间截止时，如果参与人数大于总人数，则团购成功
 			$dbGroup->where($condition2)->where('current_num<total_num AND status="组团中"')->save($dataFail);		//时间截止时，如果参与人数小于总人数，则团购失败
 			
 			$countGroup = $dbGroup->where($condition)->count();
@@ -314,10 +306,10 @@ class UserAction extends Action {
 			$dbGroup = M('product');
 			import("ORG.Util.Page");
 		
-			$countGroup = $dbGroup->where($condition)->where('status="待审核" or status="已驳回" or status="组团中" or status="组团成功" or status="组团失败" or status="议价中"')->count();
+			$countGroup = $dbGroup->where($condition)->where('status="待审核" or status="已驳回" or status="组团中" or status="组团失败" or status="议价中"')->count();
 			$PageGroup = new Page($countGroup,5);  // 实例化分页类 传入总记录数和每页显示的记录数
 			$showGroup = $PageGroup->show();                                                        
-			$listGroup = $dbGroup->where($condition)->where('status="待审核" or status="已驳回" or status="组团中" or status="组团成功" or status="组团失败" or status="议价中"')->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
+			$listGroup = $dbGroup->where($condition)->where('status="待审核" or status="已驳回" or status="组团中" or status="组团失败" or status="议价中"')->order("time_start desc")->limit($PageGroup->firstRow.','.$PageGroup->listRows)->select();
 			$this->assign('countGroup',$countGroup);
 			$this->assign('groupInfo',$listGroup); // 赋值数据集
 			$this->assign('pageGroup',$showGroup); // 赋值分页输出
@@ -413,7 +405,8 @@ class UserAction extends Action {
 		$data['comment']=$_POST['comment'];
 		$data['status']="待审核";
 		$data['note']="";
-		if($product->where($IDCondition)->save($data))
+		$result=$product->where($IDCondition)->save($data);
+		if($result!==false)
 		{
 			$this->assign("jumpUrl","__APP__/User/myGroup");
 			$this->success("操作成功");
@@ -423,35 +416,6 @@ class UserAction extends Action {
 			$this->assign("jumpUrl","__APP__/User/myGroup");
 			$this->error("操作失败，请重新提交");
 		}
-	}
-	//更新组团状态
-	public function modifyGroupStatus(){
-	
-		$name=$_SESSION['name'];
-		$status=$_POST['selectStatus'];
-		$product = M('product');
-        $condition['id']=$_POST['button'];
-		//$this->show($status);
-		
-		$data['status']=$status;
-
-		if($product->where($condition)->save($data))
-		{
-			$this->assign('name',$name);
-			$this->assign("jumpUrl","__APP__/User/myGroup");
-			$this->success("修改成功");
-			//$this->redirect("__APP__/User/myGroup","",0,"修改成功"); 
-			//$this->success('操作成功！');
-			//$this->redirect("Admin/administrater","",1,"OK");
-		} 
-		else
-		{
-			$this->assign('name',$name);
-			$this->assign("jumpUrl","__APP__/User/myGroup");
-			$this->error("操作失败，请重新修改");
-			//$this->display('myGroup');
-		}
-
 	}
    
 }

@@ -176,10 +176,10 @@
 						//校验失败	
 						//alert('key='+key);						
 						if(key=='email'){											
-							$(".email-err").html('请填写正确的QQ邮箱');								
+							$(".email-err").html(obj.info);								
 						}
 						else if(key=='name'){
-							$(".name-err").html('您填写的用户名已经重复');	
+							$(".name-err").html(obj.info);	
 						}
 					}else{
 						if(key=='email'){											

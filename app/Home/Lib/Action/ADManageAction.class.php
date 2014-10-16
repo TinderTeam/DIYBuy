@@ -45,22 +45,17 @@ class ADManageAction extends Action{
             $ad   =   M('ad');
             $condition['Id']=$_POST['Id'];
             $data['imgname']=$info[0]['savename'];
-             
-            
-            if($ad->create()){
-                $result =   $ad->save();
-                if($result) {
-					if($ad->where($condition)->save($data)){
-                    $this->success('操作成功！');
-					} else{
-						$this->error('写入错误！');
-					}
-                }else{
-                    $this->error('写入错误！');
-                }
-            }else{
-                $this->error($ad->getError());
-            }      
+            $result=$ad->where($condition)->save($data);
+			if($result!==false)
+			{
+				$this->assign("jumpUrl","__APP__/ADManage/adManage");
+				$this->success("操作成功");
+			} 
+			else
+			{
+				$this->assign("jumpUrl","__APP__/ADManage/adManage");
+				$this->error("操作失败，请重新提交");
+			}     
     }
 }  
 ?>
