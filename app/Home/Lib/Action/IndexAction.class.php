@@ -161,6 +161,12 @@ class IndexAction extends Action {
 		$condition2['email'] = $_POST['email'];
 		$select1=$User->where($condition1)->count();
 		$select2=$User->where($condition2)->count();
+		
+		if(strpos($_POST['email'],"@qq.com")==false){
+			$this->assign("jumpUrl","register");
+			$this->error("请使用QQ邮箱注册");
+		}
+		
 		if($select1!=0)
 		{
 			$this->assign("jumpUrl","register");
