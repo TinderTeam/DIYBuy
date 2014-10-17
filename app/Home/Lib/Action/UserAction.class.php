@@ -53,9 +53,19 @@ class UserAction extends Action {
     public function account(){
 		$name=$_SESSION['name'];
 		$condition['name']=$_SESSION['name'];
+		//获取账户信息
 		$user = M('user');
 		$account = $user->where($condition)->getField('account');
 		$this->assign('account',$account);
+		//加载淘宝，拍拍充值地址
+		$SysDB = M('sys');
+		$sysTaobaoCondition['key']='taobao';
+		$taobao = $SysDB->where($sysTaobaoCondition)->find();
+		
+		$sysPaipaiCondition['key']='paipai';
+		$paipai = $SysDB->where($sysPaipaiCondition)->find();
+		$this->assign('taobao',$taobao['value']);
+		$this->assign('paipai',$paipai['value']);
 	    $this->display();
     }	
 	

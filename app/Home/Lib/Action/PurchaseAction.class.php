@@ -15,6 +15,17 @@ class PurchaseAction extends Action {
 			$_SESSION['productDetailID']=$id;						//订单页面跳转使用
 		}
 		$select=$db->where('id='.$_SESSION['productDetailID'])->find();
+		//判断产品时间是否到期
+		$endtime = $db->where('id='.$_SESSION['productDetailID'])->getField('time_end');
+		if($endtime>date('Y-m-d',time()))
+		{
+			$timeFlag="ongoing";
+		}
+		else
+		{
+			$timeFlag="timeout";
+		}
+		$this->assign('timeFlag',$timeFlag);
 		$this->assign('purchaseInfo',$select); 
 		$this->display();
     }
@@ -134,6 +145,11 @@ class PurchaseAction extends Action {
 			$condition2['id'] = $productID;
 			$productName = $product->where($condition2)->getField('name');
 			$currentNum = $product->where($condition2)->getField('current_num');
+			$totalNum = $product->where($condition2)->getField('total_num');
+			if($totalNum==($currentNum+1))
+			{
+				$productData['status'] = "团购成功";
+			}
 			$productData['current_num'] = $currentNum+1;
 			$updateProduct=$product->where($condition2)->save($productData);	//更新参团人数
 			

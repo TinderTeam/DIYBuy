@@ -60,7 +60,7 @@
 									<span style="">编辑产品</span>
 								</div> 
 								<div class="col-xs-1" style="float: left;">
-									<button type="submit" class="btn-sm btn-default submit-btn">提交</button>
+									<button type="button" class="btn-sm btn-default submit-btn">提交</button>
 									<!--- <button type="submit" class="btn-sm btn-default">提交</button>--->
 								</div> 
 							</div>
@@ -140,7 +140,8 @@
 								</tr> 
 								<tr>
 									<td>
-										<textarea id="info-text" ip="__PUBLIC__/" name="htmltext"  style="display:none;"  value="{$productEdit.html_info}"> </textarea>
+										<textarea id="info-text" ip="__PUBLIC__/" name="htmltext"  style="display:none;"> </textarea>
+										<div class="hide" style="display:none">{$productEdit.html_info}</div>
 										<script id="editor" type="text/plain" class="form-default" style="width:100%">
 										</script>	
 									</td>
@@ -163,7 +164,7 @@
 			//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 			var um = UM.getEditor('editor');
 			
-			UM.getEditor('editor').setContent($("#info-text").val());
+			UM.getEditor('editor').setContent($(".hide").html());
 			
 			
 			$(".submit-btn").click(function(){

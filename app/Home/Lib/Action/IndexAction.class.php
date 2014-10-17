@@ -13,9 +13,7 @@ class IndexAction extends Action {
         import("ORG.Util.Page");
 		$condition1['time_end']=array('GT',date('Y-m-d H:i:s',time()));	//判断截至时间大于当前时间的条件
 		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
-		$dataSuccess['status']='团购成功';
 		$dataFail['status']='团购失败';
-		$db->where($condition2)->where('current_num>=total_num AND status="团购中"')->save($dataSuccess);
 		
 		//团购失败的产品退还积分给用户
 		$productIDList = $db->where($condition2)->where('current_num<total_num AND status="团购中"')->getField('id',true);
@@ -36,9 +34,9 @@ class IndexAction extends Action {
 		
 		
 		//显示团购中的产品列表 
-        $count = $db->where($condition1)->where('status="团购中"')->count();
+        $count = $db->where($condition1)->where('status="团购中" or status="团购成功"')->count();
         $Page1 = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数                                                     
-        $list1 = $db->where($condition1)->where('status="团购中"')->order('time_start desc')->limit($Page1->firstRow.','.$Page1->listRows)->select();
+        $list1 = $db->where($condition1)->where('status="团购中" or status="团购成功"')->order('time_start desc')->limit($Page1->firstRow.','.$Page1->listRows)->select();
         $this->assign('productinfo',$list1); // 赋值数据集
 		$show = $Page1->show(); 
         $this->assign('page',$show); // 赋值分页输出
@@ -103,10 +101,11 @@ class IndexAction extends Action {
 		//显示产品           
 		
 		$db = M('product');
-        import("ORG.Util.Page"); 
-        $count = $db->where('status="团购成功" OR status="团购失败"')->count();
+        import("ORG.Util.Page");
+		$condition2['time_end']=array('LT',date('Y-m-d H:i:s',time()));
+        $count = $db->where($condition2)->where('status="团购成功" OR status="团购失败"')->count();
 		$historyPage = new Page($count,8);  // 实例化分页类 传入总记录数和每页显示的记录数		
-		$historyList = $db->where('status="团购成功" OR status="团购失败"')->order('time_end desc')->limit($historyPage->firstRow.','.$historyPage->listRows)->select();
+		$historyList = $db->where($condition2)->where('status="团购成功" OR status="团购失败"')->order('time_end desc')->limit($historyPage->firstRow.','.$historyPage->listRows)->select();
         $this->assign('historyinfo',$historyList); // 赋值数据集
 		$show = $historyPage->show(); 
 		$this->assign('showPage',$show); // 赋值分页输出
@@ -273,7 +272,7 @@ class IndexAction extends Action {
 		$newPswd=$this->randomkeys(6);
 		$Data['pwd']= md5($newPswd);
 		$UserDB->where($findCondition)->save($Data);
-		SendMail("market@fuego.cn","DIY团密码找回邮件","您的新随机密码为：【".$newPswd."】请尽快登录系统修改密码");
+		SendMail($_POST['email'],"DIY团密码找回邮件","您的新随机密码为：【".$newPswd."】请尽快登录系统修改密码");
 		$this->assign("jumpUrl","login");
         $this->success("系统已重置密码，请登录您的Email查看新密码".$user['password']);
 	}

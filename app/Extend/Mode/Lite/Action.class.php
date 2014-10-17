@@ -245,14 +245,14 @@ abstract class Action {
         if($status) { //发送成功信息
             $this->assign('message',$message);// 提示信息
             // 成功操作后默认停留1秒
-            if(!$this->get('waitSecond'))    $this->assign('waitSecond',"1");
+            if(!$this->get('waitSecond'))    $this->assign('waitSecond',"5");
             // 默认操作成功自动返回操作前页面
             if(!$this->get('jumpUrl')) $this->assign("jumpUrl",$_SERVER["HTTP_REFERER"]);
             $this->display(C('TMPL_ACTION_SUCCESS'));
         }else{
             $this->assign('error',$message);// 提示信息
             //发生错误时候默认停留3秒
-            if(!$this->get('waitSecond'))    $this->assign('waitSecond',"3");
+            if(!$this->get('waitSecond'))    $this->assign('waitSecond',"5");
             // 默认发生错误的话自动返回上页
             if(!$this->get('jumpUrl')) $this->assign('jumpUrl',"javascript:history.back(-1);");
             $this->display(C('TMPL_ACTION_ERROR'));
