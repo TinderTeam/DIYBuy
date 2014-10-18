@@ -108,7 +108,7 @@ class UserManageAction extends Action{
 		$data['name']=$_POST['name'];
 		$data['email'] = $_POST['email'];
 		$data['pwd'] = md5($_POST['pwd']);
-		$data['status']=$_POST['status'];
+		$data['identity']=$_POST['identity'];
 		$data['real_name'] = $_POST['real_name'];
 		$data['account_type']=$_POST['account_type'];
 		$data['account_name'] = $_POST['account_name'];

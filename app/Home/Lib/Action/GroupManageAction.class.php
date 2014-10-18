@@ -304,6 +304,7 @@ class GroupManageAction extends Action{
 				$data['pic1'] = $info[0]['savename'];
 				
 			}
+			$data['current_num']=0;
             $data['name'] = $_POST['name'];
 			$data['total_num'] = $_POST['total_num'];
 			$data['price_original'] = $_POST['price_original'];

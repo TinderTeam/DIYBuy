@@ -45,6 +45,10 @@ class ADManageAction extends Action{
             $ad   =   M('ad');
             $condition['Id']=$_POST['Id'];
             $data['imgname']=$info[0]['savename'];
+			$data['name']=$_POST['name'];
+			$data['url']=$_POST['url'];
+			$data['price']=$_POST['price'];
+			$data['note']=$_POST['note'];
             $result=$ad->where($condition)->save($data);
 			if($result!==false)
 			{

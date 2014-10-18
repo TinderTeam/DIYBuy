@@ -97,7 +97,7 @@
 									<tr>
 										<td>{$productName}</td>
 										<input type="text" value="{$amount}" style="display:none;" name="amount"/>
-										<td>{$amount}</td>
+										<td>1</td>
 										<input type="text" value="{$sumMoney}" style="display:none;" name="sumMoney"/>
 										<td >{$sumMoney}</td>
 									</tr>						
@@ -195,9 +195,7 @@
 			$('#errorModal').modal('show');
 		}else
 		{
-			<!-- orderPayForm.submit(); -->
 			document.getElementById('orderPayForm').submit();
-			 <!-- window.location.href="payResult.html"; --> 
 		}
    }
 </script>
