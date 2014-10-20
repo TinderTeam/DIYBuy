@@ -5,7 +5,7 @@ class ProductManageAction extends Action{
     
 	//显示团购产品列表
     public function productManage($product_filter=0){
-        if($_SESSION['name']==""){
+        if($_SESSION['name']!="admin"){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
             $product = M('product');
@@ -56,7 +56,11 @@ class ProductManageAction extends Action{
     }
 	//新建团购产品,进入新建团购产品页面
 	public function newProduct(){
-		$this->display();
+		if($_SESSION['name']!="admin"){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
+			$this->display();
+		}
     }
 	//提交新建团购产品到数据库
 	public function addChk(){  
@@ -106,7 +110,7 @@ class ProductManageAction extends Action{
 	//编辑团购信息，进入编辑页面
 	public function editProduct(){
         		
-        if($_SESSION['name']!=""){
+        if($_SESSION['name']=="admin"){
 			$editProduct = M('product');
 			$condition['id']=$_POST['button'];
 			$productEdit=$editProduct->where($condition)->find();

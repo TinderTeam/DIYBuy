@@ -4,7 +4,7 @@ header("Content-Tyoe:text/html;charset=utf-8");
 class GroupManageAction extends Action{
 	//显示组团产品列表
     public function groupManage($group_filter=0){
-        if($_SESSION['name']==""){
+        if($_SESSION['name']!="admin"){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
             $group = M('product');
@@ -85,7 +85,7 @@ class GroupManageAction extends Action{
 	//编辑组团信息，进入编辑页面
 	public function editGroup(){
         		
-        if($_SESSION['name']!=""){
+        if($_SESSION['name']=="admin"){
 			$productRelease = M('product');
 			$condition['id']=$_POST['button'];
 			$releaseProduct=$productRelease->where($condition)->find();
@@ -98,7 +98,7 @@ class GroupManageAction extends Action{
 	//更新数据库组团信息
 	public function updateGroup(){
 	
-		if($_SESSION['name']!=""){
+		if($_SESSION['name']=="admin"){
 				
 			import("ORG.Net.UploadFile");  
             //实例化上传类  
@@ -179,7 +179,7 @@ class GroupManageAction extends Action{
 	//进入组团审核页面
 	 public function releaseToGroup($groupID=""){
         		
-        if($_SESSION['name']!=""){
+        if($_SESSION['name']=="admin"){
 			$productRelease = M('product');
 			$condition['id']=$groupID;
 			$releaseProduct=$productRelease->where($condition)->select();
@@ -191,7 +191,7 @@ class GroupManageAction extends Action{
     }
 	//组团审核提交
 	public function groupSubmit(){
-		if($_SESSION['name']!=""){
+		if($_SESSION['name']=="admin"){
             import("ORG.Net.UploadFile");  
             //实例化上传类  
             $upload = new UploadFile();  
@@ -267,7 +267,7 @@ class GroupManageAction extends Action{
 	//进入产品发布页面
 	public function releaseToProduct($groupID=0){
         
-        if($_SESSION['name']!=""){
+        if($_SESSION['name']=="admin"){
 			$group = M('product');
 			$condition['id']=$groupID;
 			$productRelease=$group->where($condition)->find();

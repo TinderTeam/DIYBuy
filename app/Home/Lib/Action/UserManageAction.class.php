@@ -5,7 +5,7 @@ class UserManageAction extends Action{
     
     // 显示用户管理页面
     public function userManage($user_filter=0){
-        if($_SESSION['name']!=""){
+        if($_SESSION['name']=="admin"){
             
 			$user = M('user');
             import("ORG.Util.Page");
@@ -72,36 +72,44 @@ class UserManageAction extends Action{
 	//用户搜索
 	public function userSearch()
 	{
-        $db = M('user');
-        import("ORG.Util.Page"); 
-	
-		if(isset($_POST['key'])){						//判断查询的关键字是否存在
-			$key=$_POST['key'];
-		}else if(isset($_GET['key'])){
-			$key=$_GET['key'];
-		}
-
-		if($key!=''){
-			$map="name like('%".$key."%') ";	
-			$count = $db->where($map)->count(); 		// 查询满足要求的总记录数
-			$Page = new Page($count,8,'key='.$key); 	// 实例化分页类 传入总记录数、每页显示的记录数和查询的关键字
-			$show = $Page->show(); 						// 分页显示输出
-			$list = $db->order('id')->where($map)->limit($Page->firstRow.','.$Page->listRows)->select();
-			$this->assign('b',$list);				// 赋值数据集
-			$this->assign('page',$show);   				// 赋值分页输出	
-			$this->display('UserManage/userManage'); 			// 输出模板
+        if($_SESSION['name']!="admin"){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
+			$db = M('user');
+			import("ORG.Util.Page"); 
 		
-		}else{	
+			if(isset($_POST['key'])){						//判断查询的关键字是否存在
+				$key=$_POST['key'];
+			}else if(isset($_GET['key'])){
+				$key=$_GET['key'];
+			}
 
-			$this->redirect('UserManage/userManage','',0,'登陆成功');//页面重定向
-			//echo "<script>alert('请输入关键信息!');history.back();</script>";
+			if($key!=''){
+				$map="name like('%".$key."%') ";	
+				$count = $db->where($map)->count(); 		// 查询满足要求的总记录数
+				$Page = new Page($count,8,'key='.$key); 	// 实例化分页类 传入总记录数、每页显示的记录数和查询的关键字
+				$show = $Page->show(); 						// 分页显示输出
+				$list = $db->order('id')->where($map)->limit($Page->firstRow.','.$Page->listRows)->select();
+				$this->assign('b',$list);				// 赋值数据集
+				$this->assign('page',$show);   				// 赋值分页输出	
+				$this->display('UserManage/userManage'); 			// 输出模板
 			
-		}	
+			}else{	
+
+				$this->redirect('UserManage/userManage','',0,'登陆成功');//页面重定向
+				//echo "<script>alert('请输入关键信息!');history.back();</script>";
+				
+			}
+		}		
 	}
 	//新增用户
 	public function newUser(){
 
-		$this->display();
+		if($_SESSION['name']!="admin"){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
+			$this->display();
+		}
     }
 	public function insertUser(){
 		$User = M('user');
@@ -159,7 +167,7 @@ class UserManageAction extends Action{
     }
 	public function accountChange(){
 	
-		if($_SESSION['name']!=""){
+		if($_SESSION['name']=="admin"){
 				
 			$user = M('user');
 			$condition['id']=$_POST['userID'];

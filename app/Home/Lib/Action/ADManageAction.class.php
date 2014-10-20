@@ -5,7 +5,7 @@ class ADManageAction extends Action{
     
     // 显示广告管理页面
     public function adManage(){
-        if($_SESSION['name']==""){
+        if($_SESSION['name']!="admin"){
             $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
         }else{
             $db = M('ad');

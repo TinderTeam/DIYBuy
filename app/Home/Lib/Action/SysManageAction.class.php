@@ -5,33 +5,38 @@ class sysManageAction extends Action{
     
 	//新增用户
 	public function sysManage(){
-		$SysDB = M('sys');
-		$syshtmlCondition['key']='note_html';
-		$context = $SysDB->where($syshtmlCondition)->find();
 		
-		$sysPhoneCondition['key']='phone';
-		$phone = $SysDB->where($sysPhoneCondition)->find();
-		
-		$sysEmailCondition['key']='email';
-		$email = $SysDB->where($sysEmailCondition)->find();
-		
-		$sysWorkTimeCondition['key']='work_time';
-		$work_time = $SysDB->where($sysWorkTimeCondition)->find();
-		
-		$sysTaobaoCondition['key']='taobao';
-		$taobao = $SysDB->where($sysTaobaoCondition)->find();
-		
-		$sysPaipaiCondition['key']='paipai';
-		$paipai = $SysDB->where($sysPaipaiCondition)->find();
-		
-		$this->assign('context',$context['value']);
-		$this->assign('phone',$phone['value']);
-		$this->assign('email',$email['value']);
-		$this->assign('work_time',$work_time['value']);
-		$this->assign('taobao',$taobao['value']);
-		$this->assign('paipai',$paipai['value']);
-		
-		$this->display();
+		if($_SESSION['name']!="admin"){
+            $this->redirect('Admin/login','',0,'你还没登陆');//页面重定向
+        }else{
+			$SysDB = M('sys');
+			$syshtmlCondition['key']='note_html';
+			$context = $SysDB->where($syshtmlCondition)->find();
+			
+			$sysPhoneCondition['key']='phone';
+			$phone = $SysDB->where($sysPhoneCondition)->find();
+			
+			$sysEmailCondition['key']='email';
+			$email = $SysDB->where($sysEmailCondition)->find();
+			
+			$sysWorkTimeCondition['key']='work_time';
+			$work_time = $SysDB->where($sysWorkTimeCondition)->find();
+			
+			$sysTaobaoCondition['key']='taobao';
+			$taobao = $SysDB->where($sysTaobaoCondition)->find();
+			
+			$sysPaipaiCondition['key']='paipai';
+			$paipai = $SysDB->where($sysPaipaiCondition)->find();
+			
+			$this->assign('context',$context['value']);
+			$this->assign('phone',$phone['value']);
+			$this->assign('email',$email['value']);
+			$this->assign('work_time',$work_time['value']);
+			$this->assign('taobao',$taobao['value']);
+			$this->assign('paipai',$paipai['value']);
+			
+			$this->display();
+		}
     }
 	
 	public function updateDesc(){

@@ -39,9 +39,7 @@ class PurchaseAction extends Action {
 			$data['productID'] = $productID;
 			$productName=$db->where('id='.$productID)->getField('name');
 			$data['productName'] = $productName;
-			$quantity=$_POST['amount'];
-			$data['quantity'] = $quantity;
-			$totalPrices=$quantity*$db->where('id='.$productID)->getField('price_low');
+			$totalPrices=$db->where('id='.$productID)->getField('price_low');
 			$totalPrices = number_format($totalPrices, 2, '.','');
 			$data['totalPrices'] = $totalPrices;
 			$user=$_SESSION['name'];
@@ -157,12 +155,12 @@ class PurchaseAction extends Action {
 		else
 		{
 			$dbOrder = M('order');
-			$condition['Id'] = $_SESSION['orderPayID'];
-			$productName=$dbOrder->where($condition)->getField('productName');
-			$sumMoney=$dbOrder->where($condition)->getField('totalPrices');
+			$IDcondition['Id'] = $_SESSION['orderPayID'];
+			$productName=$dbOrder->where($IDcondition)->getField('productName');
+			$sumMoney=$dbOrder->where($IDcondition)->getField('totalPrices');
 			$dbUser = M('user');
-			$condition1['name'] = $_SESSION['name'];
-			$finalAccount=$dbUser->where($condition1)->getField('account');
+			$Namecondition['name'] = $_SESSION['name'];
+			$finalAccount=$dbUser->where($Namecondition)->getField('account');
 		}
 
 		$this->assign('orderID',$_SESSION['orderPayID']); 

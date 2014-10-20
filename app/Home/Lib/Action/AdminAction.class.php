@@ -12,7 +12,7 @@ class AdminAction extends Action{
         $condition['name']=$_POST['name'];
         $password=$_POST['pwd'];
         $pwd = $admin->where($condition)->getField('pwd');
-        if($_SESSION['name']!=""){
+        if($_SESSION['name']=="admin"){
             if($admin->create()){
                 
                 if($pwd==$password){
